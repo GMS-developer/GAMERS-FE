@@ -120,5 +120,90 @@
         "summary_title": "설정 요약"
       }
     }
+  },
+  "my_contests": {
+    "title": "내 대회",
+    "subtitle": "MY CONTESTS",
+    "summary": {
+      "participating": "참여 중",
+      "completed": "완료"
+    },
+    "tabs": {
+      "participating": "참여 중인 대회",
+      "completed": "참여 완료한 대회"
+    },
+    "card": {
+      "my_team": "내 팀",
+      "next_match": "다음 경기",
+      "my_record": "내 전적",
+      "prize": "상금",
+      "view_details": "대회 상세 보기",
+      "enter_stadium": "대회장 입장",
+      "team_distribution": "팀배분 페이지",
+      "view_results": "결과 보기",
+      "final_rank": "최종 순위",
+      "prize_earned": "획득 상금",
+      "total_record": "전체 전적",
+      "no_record": "기록 없음",
+      "unbeatable": "무패",
+      "win": "W",
+      "loss": "L",
+      "rank_suffix": "위",
+      "ongoing_status": "진행 중"
+    }
+  },
+  "navbar": {
+    "find_contests": "대회 찾기",
+    "my_contests": "내 대회",
+    "community": "커뮤니티",
+    "login": "로그인",
+    "get_started": "시작하기"
+  },
+  "footer": {
+    "product": "제품",
+    "company": "회사",
+    "legal": "법적 고지",
+    "find_contests": "대회 찾기",
+    "create_contest": "대회 개최하기",
+    "community": "커뮤니티",
+    "about": "소개",
+    "blog": "블로그",
+    "jobs": "채용",
+    "terms": "이용약관",
+    "privacy": "개인정보처리방침",
+    "description": "캐주얼부터 정식 리그까지. 당신만의 무대에서 경쟁하세요.\n모든 경쟁이 기록되고 기억되는 국내 최대 게이밍 플랫폼 GAMERS.",
+    "rights": "© 2026 GAMERS Inc. All rights reserved."
+  },
+  "community": {
+    "title": "커뮤니티",
+    "subtitle": "게이머들과 정보를 나누고, 팀원을 찾아보세요.",
+    "write_post": "글 작성하기",
+    "categories": {
+      "all": "전체",
+      "free": "자유게시판",
+      "tips": "공략/팁",
+      "recruiting": "팀 찾기",
+      "reviews": "대회 후기"
+    },
+    "post": {
+      "hot": "HOT",
+      "recruiting_status": "모집 중",
+      "views": "조회",
+      "comments": "댓글",
+      "likes": "좋아요",
+      "time_ago": {
+        "hours": "{{count}}시간 전",
+        "days": "{{count}}일 전"
+      }
+    },
+    "sidebar": {
+      "popular_posts": "인기 글",
+      "team_recruiting": "팀원 모집 중",
+      "cta": {
+        "title": "팀원이 필요하신가요?",
+        "subtitle": "팀 찾기 글을 올려보세요.",
+        "button": "글 작성"
+      }
+    }
   }
 }

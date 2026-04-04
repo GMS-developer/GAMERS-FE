@@ -120,5 +120,90 @@
         "summary_title": "設定サマリー"
       }
     }
+  },
+  "my_contests": {
+    "title": "マイ大会",
+    "subtitle": "MY CONTESTS",
+    "summary": {
+      "participating": "参加中",
+      "completed": "完了"
+    },
+    "tabs": {
+      "participating": "参加中の大会",
+      "completed": "参加完了した大会"
+    },
+    "card": {
+      "my_team": "マイチーム",
+      "next_match": "次の試合",
+      "my_record": "マイ戦績",
+      "prize": "賞金",
+      "view_details": "大会の詳細を見る",
+      "enter_stadium": "大会場に入る",
+      "team_distribution": "チーム配分ページ",
+      "view_results": "結果を見る",
+      "final_rank": "最終順位",
+      "prize_earned": "獲得賞金",
+      "total_record": "全戦績",
+      "no_record": "記録なし",
+      "unbeatable": "無敗",
+      "win": "W",
+      "loss": "L",
+      "rank_suffix": "位",
+      "ongoing_status": "進行中"
+    }
+  },
+  "navbar": {
+    "find_contests": "大会を探す",
+    "my_contests": "マイ大会",
+    "community": "コミュニティ",
+    "login": "ログイン",
+    "get_started": "始める"
+  },
+  "footer": {
+    "product": "プロダクト",
+    "company": "会社",
+    "legal": "法的事項",
+    "find_contests": "大会を探す",
+    "create_contest": "大会を開催する",
+    "community": "コミュニティ",
+    "about": "紹介",
+    "blog": "ブログ",
+    "jobs": "採用",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "description": "カジュアルから公式リーグまで。あなただけの舞台で競い合いましょう。\nすべての競争が記録され記憶される、国内最大のゲーミングプラットフォーム GAMERS。",
+    "rights": "© 2026 GAMERS Inc. All rights reserved."
+  },
+  "community": {
+    "title": "コミュニティ",
+    "subtitle": "ゲーマーたちと情報を共有し、チームメイトを探ましょう。",
+    "write_post": "投稿する",
+    "categories": {
+      "all": "すべて",
+      "free": "自由掲示板",
+      "tips": "攻略/チップ",
+      "recruiting": "チーム探し",
+      "reviews": "大会レビュー"
+    },
+    "post": {
+      "hot": "HOT",
+      "recruiting_status": "募集中",
+      "views": "閲覧",
+      "comments": "コメント",
+      "likes": "いいね",
+      "time_ago": {
+        "hours": "{{count}}時間前",
+        "days": "{{count}}日前"
+      }
+    },
+    "sidebar": {
+      "popular_posts": "人気の投稿",
+      "team_recruiting": "チームメイト募集中",
+      "cta": {
+        "title": "チームメイトが必要ですか？",
+        "subtitle": "チーム探しの投稿をしてみましょう。",
+        "button": "投稿する"
+      }
+    }
   }
 }

@@ -5,8 +5,12 @@
   --color-foreground: #EEEEF0;
   
   --color-deep-black: #0C0C0F;
-  --color-neon-mint: #6EE7B7;
+  --color-neon-mint: #00D47A;
+  --color-neon-red: #E05C5C;
+  --color-neon-blue: #4A90D9;
   --color-neon-purple: #C084FC;
+  --color-neon-amber: #FFB700;
+  --color-neon-gold: #D4A017;
   --color-muted-gray: #7A7A85;
   --color-card-border: #1E1E24;
   --color-card-bg: #141418;
