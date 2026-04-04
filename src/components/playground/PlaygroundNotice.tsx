@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Megaphone, GraduationCap, Calendar, HelpCircle, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 // --- Data ---
 const NOTICES = [
@@ -100,6 +101,7 @@ function SectionHeader({ title, icon: Icon, extra }: { title: string; icon: any;
 }
 
 function NoticeCard({ notice }: { notice: typeof NOTICES[0] }) {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-2 p-5 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-white/[0.1] transition-all group">
       <h3 className="text-[14px] font-bold text-[#EEEEF0] group-hover:text-neon-mint transition-colors tracking-tight">
@@ -131,6 +133,7 @@ function RuleItem({ rule, index }: { rule: string; index: number }) {
 }
 
 function ScheduleItem({ item, isLast }: { item: typeof SCHEDULE[0]; isLast: boolean }) {
+  const { t } = useTranslation();
   return (
     <div className="flex gap-4 relative pb-8 group last:pb-0">
       {!isLast && (
@@ -167,6 +170,8 @@ function ScheduleItem({ item, isLast }: { item: typeof SCHEDULE[0]; isLast: bool
 // --- Main Component ---
 
 export function PlaygroundNotice() {
+  const { t } = useTranslation();
+
   return (
     <main className="flex-1 bg-[#09090B] p-8 overflow-y-auto">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-10">
@@ -182,11 +187,11 @@ export function PlaygroundNotice() {
             transition={{ duration: 0.5 }}
           >
             <SectionHeader 
-              title="공지사항" 
+              title={t('playground.notice.title')} 
               icon={Megaphone} 
               extra={
                 <div className="px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/[0.1] text-[#FFB800] text-[11px] font-bold">
-                  {NOTICES.length}개
+                  {t('playground.notice.notice_count', { count: NOTICES.length })}
                 </div>
               }
             />
@@ -204,7 +209,7 @@ export function PlaygroundNotice() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <SectionHeader title="대회 규칙" icon={GraduationCap} />
+            <SectionHeader title={t('playground.notice.rules_title')} icon={GraduationCap} />
             <div className="flex flex-col rounded-2xl bg-white/[0.02] border border-white/[0.05] overflow-hidden">
               {RULES.map((rule, idx) => (
                 <RuleItem key={idx} rule={rule} index={idx} />
@@ -219,7 +224,7 @@ export function PlaygroundNotice() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <SectionHeader title="대회 일정" icon={Calendar} />
+            <SectionHeader title={t('playground.notice.schedule_title')} icon={Calendar} />
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05]">
               {SCHEDULE.map((item, idx) => (
                 <ScheduleItem key={item.id} item={item} isLast={idx === SCHEDULE.length - 1} />
@@ -236,7 +241,7 @@ export function PlaygroundNotice() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <SectionHeader title="자주 묻는 질문" icon={HelpCircle} />
+          <SectionHeader title={t('playground.notice.faq_title')} icon={HelpCircle} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {FAQS.map((faq, idx) => (
               <div key={idx} className="flex flex-col gap-4 group">

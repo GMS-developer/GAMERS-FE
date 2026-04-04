@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Trophy, Users, Clock, Zap } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface SummaryCardProps {
   label: string;
@@ -33,30 +34,32 @@ function SummaryCard({ label, value, subValue, icon }: SummaryCardProps) {
 }
 
 export function PlaygroundSummaryCards() {
+  const { t } = useTranslation();
+
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 w-full">
       <SummaryCard 
-        label="현재 라운드"
-        value="준결승"
-        subValue="8강 완료 · 2경기 남음"
+        label={t('playground.summary.current_round')}
+        value={t('playground.summary.semi_final')}
+        subValue={t('playground.summary.quarter_final_done')}
         icon={<Trophy className="w-4 h-4" />}
       />
       <SummaryCard 
-        label="팀 성적"
-        value="3승 0패"
-        subValue="승률 100% · 평균 라운드 13.0"
+        label={t('playground.summary.team_performance')}
+        value={t('playground.summary.stats_format', { win: 3, loss: 0 })}
+        subValue={t('playground.summary.win_rate_format', { rate: 100, rounds: '13.0' })}
         icon={<Zap className="w-4 h-4 text-neon-mint" />}
       />
       <SummaryCard 
-        label="다음 경기"
-        value="vs Team Delta"
-        subValue="오늘 21:00 · 자동 매치"
+        label={t('playground.summary.next_match')}
+        value={t('playground.summary.next_match_format', { opponent: 'Team Delta' })}
+        subValue={t('playground.summary.next_match_time', { time: '21:00' })}
         icon={<Clock className="w-4 h-4 text-neon-blue" />}
       />
       <SummaryCard 
-        label="팀 준비 상태"
-        value="4/4"
-        subValue="전원 준비 완료"
+        label={t('playground.summary.team_readiness')}
+        value={t('playground.summary.readiness_format', { count: 4, total: 4 })}
+        subValue={t('playground.summary.all_ready')}
         icon={<Users className="w-4 h-4 text-neon-mint" />}
       />
     </div>

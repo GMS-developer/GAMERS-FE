@@ -8,14 +8,14 @@ export function CommunitySidebar() {
   const { t } = useTranslation();
 
   const popularPosts = [
-    { id: 1, rank: '01', title: 'GAMERS 플랫폼 쓰면서 달라진 점', likes: 215, comments: 67 },
-    { id: 2, rank: '02', title: '아이언~골드 빠르게 탈출하는 에임 루틴', likes: 128, comments: 34 },
-    { id: 3, rank: '03', title: '발로란트 신인 오픈컵 S3 참가 후기', likes: 89, comments: 21 },
+    { id: 1, rank: '01', title: t('community.mock_posts.post4.title'), likes: 215, comments: 67 },
+    { id: 2, rank: '02', title: t('community.mock_posts.post1.title'), likes: 128, comments: 34 },
+    { id: 3, rank: '03', title: t('community.mock_posts.post3.title'), likes: 89, comments: 21 },
   ];
 
   const recruitmentPosts = [
-    { id: 1, title: 'LoL 5vs5 팀원 모집', tags: '정글 · 서폿 · 골드 이상' },
-    { id: 2, title: 'Valorant 듀오 파트너', tags: '플래티넘 이상 · 주 4회 이상' },
+    { id: 1, title: t('community.mock_recruitment.post1.title'), tags: t('community.mock_recruitment.post1.tags') },
+    { id: 2, title: t('community.mock_recruitment.post2.title'), tags: t('community.mock_recruitment.post2.tags') },
   ];
 
   return (

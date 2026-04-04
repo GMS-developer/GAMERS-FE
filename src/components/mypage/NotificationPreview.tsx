@@ -11,24 +11,24 @@ export function NotificationPreview() {
     {
       id: 1,
       type: 'contest',
-      title: '참가하신 [발로란트 오픈컵] 대진표가 확정되었습니다.',
-      time: '2 hours ago',
+      title: t('mypage.notifications.mock.notif1'),
+      time: t('mypage.notifications.time.hours_ago', { count: 2 }),
       icon: <Trophy className="w-4 h-4 text-neon-mint" />,
       tag: 'CONTEST'
     },
     {
       id: 2,
       type: 'team',
-      title: 'Team Alpha 에서 새로운 멤버 가입 신청이 왔습니다.',
-      time: '5 hours ago',
+      title: t('mypage.notifications.mock.notif2'),
+      time: t('mypage.notifications.time.hours_ago', { count: 5 }),
       icon: <UserPlus className="w-4 h-4 text-sky-400" />,
       tag: 'TEAM'
     },
     {
       id: 3,
       type: 'system',
-      title: 'GAMERS 플랫폼 업데이트: 개인 프로필 설정 기능이 강화되었습니다.',
-      time: '1 day ago',
+      title: t('mypage.notifications.mock.notif3'),
+      time: t('mypage.notifications.time.days_ago', { count: 1 }),
       icon: <Info className="w-4 h-4 text-purple-400" />,
       tag: 'SYSTEM'
     }

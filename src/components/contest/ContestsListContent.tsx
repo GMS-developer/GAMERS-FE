@@ -10,91 +10,91 @@ import { useTranslation } from 'react-i18next';
 
 const GAMES = ['All', 'Valorant', 'LoL', 'CS2', 'Apex'];
 
-const MOCK_CONTESTS = [
-  {
-    id: 1,
-    game: 'Valorant',
-    status: 'OPEN' as const,
-    title: '발로란트 신인 오픈컵 시즌 3',
-    creator: 'GMS_Creator',
-    date: '2026-04-05',
-    prize: '₩500,000',
-    participants: 18,
-    maxParticipants: 32,
-    gameColor: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
-  },
-  {
-    id: 2,
-    game: 'LoL',
-    status: 'LIVE' as const,
-    title: '리그 오브 레전드 커뮤니티 5vs5',
-    creator: 'LOL_Official',
-    date: '2026-03-27',
-    prize: '₩200,000',
-    participants: 16,
-    maxParticipants: 16,
-    gameColor: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
-  },
-  {
-    id: 3,
-    game: 'CS2',
-    status: 'UPCOMING' as const,
-    title: 'CS2 한국 서버 토너먼트',
-    creator: 'KR_Gaming',
-    date: '2026-04-12',
-    prize: '₩1,000,000',
-    participants: 4,
-    maxParticipants: 64,
-    gameColor: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-  },
-  {
-    id: 4,
-    game: 'Apex',
-    status: 'OPEN' as const,
-    title: 'Apex Legends 듀오 챌린지',
-    creator: 'ApexKR',
-    date: '2026-04-10',
-    prize: '₩150,000',
-    participants: 22,
-    maxParticipants: 40,
-    gameColor: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
-  },
-  {
-    id: 5,
-    game: 'Valorant',
-    status: 'UPCOMING' as const,
-    title: '발로란트 챌린저스 예선',
-    creator: 'VCT_KR',
-    date: '2026-04-20',
-    prize: '₩3,000,000',
-    participants: 8,
-    maxParticipants: 128,
-    gameColor: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
-  },
-  {
-    id: 6,
-    game: '멀티게임',
-    status: 'OPEN' as const,
-    title: '멀티게임 배틀로얄 인비테이셔널',
-    creator: 'GMS_Creator',
-    date: '2026-04-08',
-    prize: '₩750,000',
-    participants: 31,
-    maxParticipants: 50,
-    gameColor: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
-  },
-];
-
 export function ContestsListContent() {
   const { t } = useTranslation();
   const [selectedGame, setSelectedGame] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
 
+  const MOCK_CONTESTS = [
+    {
+      id: 1,
+      game: 'Valorant',
+      status: 'OPEN' as const,
+      title: t('contests.mock.contest1'),
+      creator: 'GMS_Creator',
+      date: '2026-04-05',
+      prize: '₩500,000',
+      participants: 18,
+      maxParticipants: 32,
+      gameColor: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
+    },
+    {
+      id: 2,
+      game: 'LoL',
+      status: 'LIVE' as const,
+      title: t('contests.mock.contest2'),
+      creator: 'LOL_Official',
+      date: '2026-03-27',
+      prize: '₩200,000',
+      participants: 16,
+      maxParticipants: 16,
+      gameColor: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
+    },
+    {
+      id: 3,
+      game: 'CS2',
+      status: 'UPCOMING' as const,
+      title: t('contests.mock.contest3'),
+      creator: 'KR_Gaming',
+      date: '2026-04-12',
+      prize: '₩1,000,000',
+      participants: 4,
+      maxParticipants: 64,
+      gameColor: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
+    },
+    {
+      id: 4,
+      game: 'Apex',
+      status: 'OPEN' as const,
+      title: t('contests.mock.contest4'),
+      creator: 'ApexKR',
+      date: '2026-04-10',
+      prize: '₩150,000',
+      participants: 22,
+      maxParticipants: 40,
+      gameColor: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
+    },
+    {
+      id: 5,
+      game: 'Valorant',
+      status: 'UPCOMING' as const,
+      title: t('contests.mock.contest5'),
+      creator: 'VCT_KR',
+      date: '2026-04-20',
+      prize: '₩3,000,000',
+      participants: 8,
+      maxParticipants: 128,
+      gameColor: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
+    },
+    {
+      id: 6,
+      game: t('contests.mock.multi_game'),
+      status: 'OPEN' as const,
+      title: t('contests.mock.contest6'),
+      creator: 'GMS_Creator',
+      date: '2026-04-08',
+      prize: '₩750,000',
+      participants: 31,
+      maxParticipants: 50,
+      gameColor: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
+    },
+  ];
+
   const STATUSES = [
     { key: 'All', label: t('contests.filter_all') },
-    { key: '진행 중', label: t('contests.filter_ongoing') },
-    { key: '예정', label: t('contests.filter_upcoming') },
-    { key: '완료', label: t('contests.filter_completed') },
+    { key: 'ONGOING', label: t('contests.filter_ongoing') },
+    { key: 'UPCOMING', label: t('contests.filter_upcoming') },
+    { key: 'COMPLETED', label: t('contests.filter_completed') },
   ];
 
   return (
@@ -115,7 +115,7 @@ export function ContestsListContent() {
                     : "text-[#7A7A85] hover:text-[#EEEEF0]"
                 )}
               >
-                {game}
+                {game === 'All' ? t('contests.filter_all') : game}
               </button>
             ))}
           </div>
@@ -144,14 +144,14 @@ export function ContestsListContent() {
 
           {/* Sort Dropdown */}
           <div className="flex items-center gap-2 rounded-xl bg-[#141418] px-5 py-2.5 border border-white/5 cursor-pointer hover:bg-[#1C1C21] transition-all group shadow-lg">
-            <span className="text-[13px] font-bold text-[#EEEEF0]">{t('contests.sort_latest')}</span>
+            <span className="text-[13px] font-bold text-[#EEEEF0]">{t('contests.sort_recent')}</span>
             <ChevronDown className="h-4 w-4 text-[#7A7A85] group-hover:text-neon-mint transition-colors" />
           </div>
 
           {/* Result Count */}
           <div className="ml-auto flex items-center gap-2">
             <span className="text-[13px] font-medium text-[#7A7A85]">
-              <span className="text-neon-mint font-bold">{MOCK_CONTESTS.length}</span>{t('contests.count')}
+              <span className="text-neon-mint font-bold">{MOCK_CONTESTS.length}</span>{t('common.count_suffix')}
             </span>
           </div>
         </div>
@@ -163,6 +163,7 @@ export function ContestsListContent() {
           <ContestCard key={contest.id} {...contest} />
         ))}
       </div>
+
 
       {/* CTA Section */}
       <motion.div

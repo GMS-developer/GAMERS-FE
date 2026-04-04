@@ -20,7 +20,7 @@ export function ScheduleSettingsSection() {
           {t('contests.create.sections.schedule_settings')}
         </h2>
         <p className="text-sm font-medium text-[#7A7A85]">
-          대회의 진행 일정을 설정합니다. 시간대는 현재 브라우저 기준(KST)입니다.
+          {t('contests.create.schedule.desc')}
         </p>
       </div>
 

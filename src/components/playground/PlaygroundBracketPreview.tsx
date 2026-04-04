@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Share2, Swords } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface BracketItemProps {
   round: string;
@@ -38,32 +39,34 @@ function BracketItem({ round, status, teamA, teamB, isActive }: BracketItemProps
 }
 
 export function PlaygroundBracketPreview() {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col gap-6 rounded-3xl border border-white/5 bg-[#141418] p-8 h-full">
       <div className="flex items-center justify-between">
-        <h3 className="text-[17px] font-black italic tracking-tighter text-[#EEEEF0]">대진표 현황</h3>
-        <button className="text-[11px] font-black uppercase tracking-widest text-[#4A4A55] hover:text-[#7A7A85]">상세보기</button>
+        <h3 className="text-[17px] font-black italic tracking-tighter text-[#EEEEF0]">{t('common.bracket.title')}</h3>
+        <button className="text-[11px] font-black uppercase tracking-widest text-[#4A4A55] hover:text-[#7A7A85]">{t('common.recent_matches.view_details')}</button>
       </div>
 
       <div className="flex flex-col gap-4">
         <BracketItem 
-          round="8강"
-          status="완료"
-          teamA="Antigravity (승)"
-          teamB="Team Beta (패)"
+          round={t('playground.rounds.quarter_final')}
+          status={t('common.status.completed')}
+          teamA={`Antigravity (${t('common.recent_matches.win')})`}
+          teamB={`Team Beta (${t('common.recent_matches.loss')})`}
         />
         <BracketItem 
-          round="준결승"
-          status="진행 중"
+          round={t('playground.rounds.semi_final')}
+          status={t('common.status.active')}
           teamA="Antigravity"
           teamB="Team Delta"
           isActive
         />
         <BracketItem 
-          round="결승"
-          status="미정"
-          teamA="WINNER TBD"
-          teamB="WINNER TBD"
+          round={t('playground.rounds.final')}
+          status={t('common.status.pending')}
+          teamA={t('common.bracket.winner_tbd')}
+          teamB={t('common.bracket.winner_tbd')}
         />
       </div>
     </div>

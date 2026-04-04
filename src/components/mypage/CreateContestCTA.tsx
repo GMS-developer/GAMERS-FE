@@ -18,7 +18,7 @@ export function CreateContestCTA() {
         <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left gap-4 max-w-[600px]">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon-mint/10 border border-neon-mint/20">
              <Trophy className="w-3.5 h-3.5 text-neon-mint" />
-             <span className="text-[10px] font-black text-neon-mint uppercase tracking-[0.2em]">HOST YOUR OWN TOURNAMENT</span>
+             <span className="text-[10px] font-black text-neon-mint uppercase tracking-[0.2em]">{t('mypage.cta.badge')}</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-black text-[#EEEEF0] leading-tight">
              {t('mypage.cta.title', '당신만의 대회를 열어보세요')}
@@ -40,7 +40,7 @@ export function CreateContestCTA() {
            </Link>
            <div className="flex items-center gap-2 text-[11px] font-black text-[#4A4A55] uppercase tracking-widest">
               <Sparkles className="w-3 h-3" />
-              <span>It's free to start</span>
+              <span>{t('mypage.cta.free_info')}</span>
            </div>
         </div>
       </div>

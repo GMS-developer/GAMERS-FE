@@ -45,7 +45,7 @@ export function DiscordIntegrationSection() {
                 <div className="group/help relative">
                   <HelpCircle className="h-3.5 w-3.5 text-[#4A4A55] cursor-help" />
                   <div className="absolute bottom-full right-0 mb-2 w-48 p-3 rounded-xl bg-[#1C1C21] border border-white/10 text-[10px] font-medium text-[#BBBBCB] opacity-0 invisible group-hover/help:opacity-100 group-hover/help:visible transition-all shadow-xl">
-                    Discord의 개발자 모드를 켜고 서버 우클릭 후 ID를 복사하세요.
+                    {t('contests.create.discord.server_id_help')}
                   </div>
                 </div>
               </div>
@@ -82,20 +82,20 @@ export function DiscordIntegrationSection() {
           <div className="flex flex-col gap-2">
             <h4 className="text-[13px] font-bold text-[#EEEEF0] flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-neon-mint" />
-              GAMERS Bot 권한 설정
+              {t('contests.create.discord.bot_permissions')}
             </h4>
             <ul className="flex flex-col gap-2">
               <li className="text-[11px] font-medium text-[#7A7A85] flex items-center gap-2">
                 <div className="w-1 h-1 rounded-full bg-[#5865F2]" />
-                참가자 전용 채널 자동 생성
+                {t('contests.create.discord.auto_channel')}
               </li>
               <li className="text-[11px] font-medium text-[#7A7A85] flex items-center gap-2">
                 <div className="w-1 h-1 rounded-full bg-[#5865F2]" />
-                매치 결과 실시간 알림 서비스
+                {t('contests.create.discord.realtime_notif')}
               </li>
               <li className="text-[11px] font-medium text-[#7A7A85] flex items-center gap-2">
                 <div className="w-1 h-1 rounded-full bg-[#5865F2]" />
-                스태프 호출 및 지원 관리
+                {t('contests.create.discord.staff_support')}
               </li>
             </ul>
           </div>

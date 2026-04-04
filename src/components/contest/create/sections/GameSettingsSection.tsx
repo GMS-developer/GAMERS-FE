@@ -27,7 +27,7 @@ export function GameSettingsSection() {
           {t('contests.create.sections.game_settings')}
         </h2>
         <p className="text-sm font-medium text-[#7A7A85]">
-          대회에서 진행할 게임의 세부 규칙을 설정합니다.
+          {t('contests.create.game_settings.desc')}
         </p>
       </div>
 
@@ -68,7 +68,9 @@ export function GameSettingsSection() {
                   {game.name}
                 </span>
                 <span className="text-[11px] font-medium text-[#7A7A85]">
-                  {game.id === 'VALORANT' ? '5:5 Tactical Shooter' : '5:5 MOBA'}
+                  {game.id === 'VALORANT' 
+                    ? t('contests.create.game_settings.valorant_sub') 
+                    : t('contests.create.game_settings.lol_sub')}
                 </span>
               </div>
 

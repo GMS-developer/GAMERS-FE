@@ -17,13 +17,13 @@ export function MyContestsContent() {
     {
       id: '1',
       game: 'Valorant',
-      title: '발로란트 신인 오픈컵 시즌 4 by GMS_Creator',
+      title: t('my_contests.mock.contest1'),
       host: 'GMS_Creator',
       date: '2026-04-05',
-      statusText: '8강 진행 중',
-      formatText: '토너먼트 · 5v5',
+      statusText: t('my_contests.mock.contest1_status'),
+      formatText: t('my_contests.mock.contest1_format'),
       myTeam: { name: 'Team Alpha', membersCount: 5 },
-      nextMatch: { opponent: 'NexusGG', time: '3시간' },
+      nextMatch: { opponent: 'NexusGG', time: t('community.post.time_ago.hours', { count: 3 }) },
       record: { wins: 2, losses: 0, isUnbeatable: true },
       prize: '₩500,000',
       isLive: true,
@@ -32,11 +32,11 @@ export function MyContestsContent() {
     {
       id: '2',
       game: 'League of Legends',
-      title: '리그 오브 레전드 커뮤니티 5vs5 by LOL_Official',
+      title: t('my_contests.mock.contest2'),
       host: 'LOL_Official',
       date: '2026-03-27',
-      statusText: '접수 중',
-      formatText: '리그 · 5v5',
+      statusText: t('my_contests.mock.contest2_status'),
+      formatText: t('my_contests.mock.contest2_format'),
       myTeam: { name: 'DragonRift', membersCount: 5 },
       record: { wins: 16, losses: 16 },
       prize: '₩200,000',
@@ -50,37 +50,38 @@ export function MyContestsContent() {
     {
       id: '3',
       game: 'Valorant',
-      title: '발로란트 신인 오픈컵 시즌 3',
+      title: t('my_contests.mock.contest3'),
       date: '2026-02-15',
       rank: 1,
       totalTeams: 32,
       prize: '₩300K',
       record: { wins: 5, losses: 0 },
-      resultLabel: '🏆 우승'
+      resultLabel: `🏆 ${t('common.winning')}`
     },
     {
       id: '4',
       game: 'League of Legends',
-      title: '리그 오브 레전드 5vs5 Winter',
+      title: t('my_contests.mock.contest4'),
       date: '2026-01-20',
       rank: 2,
       totalTeams: 16,
       prize: '₩100K',
       record: { wins: 4, losses: 1 },
-      resultLabel: '🥈 준우승'
+      resultLabel: `🥈 ${t('common.runner_up')}`
     },
     {
       id: '5',
       game: 'CS2',
-      title: 'CS2 한국 서버 토너먼트',
+      title: t('my_contests.mock.contest5'),
       date: '2025-12-10',
       rank: 16,
       totalTeams: 64,
       prize: '—',
       record: { wins: 1, losses: 1 },
-      resultLabel: '16강 탈락'
+      resultLabel: t('common.eliminated')
     }
   ];
+
 
   return (
     <div className="container mx-auto px-6 py-8 max-w-7xl">
@@ -146,10 +147,10 @@ export function MyContestsContent() {
               <h3 className="text-[14px] font-black text-[#8A8A95] uppercase tracking-[0.2em]">
                 {t('my_contests.tabs.completed')}
               </h3>
-              <span className="text-[13px] font-bold text-[#4A4A55]">{completedContests.length}개</span>
+              <span className="text-[13px] font-bold text-[#4A4A55]">{completedContests.length}{t('common.count_suffix')}</span>
             </div>
             <button className="flex items-center gap-1 text-[13px] font-black text-neon-mint hover:underline group tracking-tight transition-all">
-              전체 보기 
+              {t('common.view_all')}
               <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
             </button>
           </div>

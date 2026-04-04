@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Clock, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface PlaygroundHeaderProps {
   title: string;
@@ -17,6 +18,8 @@ export function PlaygroundHeader({
   host = "GMS_Creator",
   timeLeft = "01:23:45"
 }: PlaygroundHeaderProps) {
+  const { t } = useTranslation();
+
   return (
     <header className="h-[72px] border-b border-white/5 bg-[#0C0C0D]/50 backdrop-blur-md px-6">
       <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between">
@@ -43,7 +46,7 @@ export function PlaygroundHeader({
                 <span className="text-[20px] font-black italic text-[#EEEEF0] leading-none tracking-tight tabular-nums">
                   {timeLeft}
                 </span>
-                <span className="text-[11px] font-black text-neon-red uppercase tracking-wider">남음</span>
+                <span className="text-[11px] font-black text-neon-red uppercase tracking-wider">{t('common.remaining')}</span>
               </div>
            </div>
         </div>

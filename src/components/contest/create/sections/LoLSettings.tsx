@@ -68,8 +68,8 @@ export function LoLSettings() {
           <p className="text-[11px] font-medium text-[#4A4A55] flex items-center gap-1.5">
             <Info className="h-3 w-3" />
             {format === 'TOURNAMENT' 
-              ? '토너먼트: 드래프트 픽 규칙이 적용되는 다단계 토너먼트입니다.' 
-              : '리그: 풀리그 방식으로 모든 팀과 경기합니다.'}
+              ? t('contests.create.game_settings.lol.tournament_desc')
+              : t('contests.create.game_settings.lol.league_desc')}
           </p>
         </div>
 
@@ -143,10 +143,10 @@ export function LoLSettings() {
             {/* Selected Count */}
             <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
                <span className="text-[11px] font-medium text-[#4A4A55]">
-                 검색 결과: <span className="text-[#EEEEF0] font-bold">{LOL_CHAMPIONS.filter(c => c.toLowerCase().includes(searchTerm.toLowerCase())).length}</span>개
+                 {t('contests.create.game_settings.lol.search_results', { count: LOL_CHAMPIONS.filter(c => c.toLowerCase().includes(searchTerm.toLowerCase())).length })}
                </span>
                <span className="text-[11px] font-medium text-[#4A4A55]">
-                 제한된 챔피언: <span className="text-neon-mint font-bold">{selectedChampions.length}</span>명
+                 {t('contests.create.game_settings.lol.restricted_champions', { count: selectedChampions.length })}
                </span>
             </div>
           </div>

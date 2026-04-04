@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 export function AuthSidePanel() {
+  const { t } = useTranslation();
+
   return (
     <div className="hidden lg:flex flex-col justify-between w-full max-w-[520px] h-full relative shrink-0 py-20 px-16 overflow-hidden bg-[#0C0C0F] border-r border-[#242428]">
       {/* Background Gradients */}
@@ -41,13 +44,12 @@ export function AuthSidePanel() {
         <div className="w-16 h-1.5 rounded-full bg-[#6EE7B7] shadow-[0_0_15px_rgba(110,231,183,0.6)]" />
         <div className="space-y-4">
           <h1 className="text-5xl xl:text-6xl leading-[1.1] uppercase font-barlow font-black text-[#EEEEF0] tracking-tight">
-            모든 게이머의 경쟁이<br />
-            <span className="text-[#6EE7B7] text-glow-mint">기억이 되는</span><br />
-            플랫폼
+            {t('auth.hero.title_1')}<br />
+            <span className="text-[#6EE7B7] text-glow-mint">{t('auth.hero.title_2')}</span><br />
+            {t('auth.hero.title_3')}
           </h1>
           <p className="text-xl text-[#7A7A85] font-inter max-w-md leading-relaxed font-medium">
-            대회를 만들고, 팀을 꾸리고, 기록을 남기세요.<br />
-            GAMERS에서 모든 게 시작됩니다.
+            {t('auth.hero.description')}
           </p>
         </div>
       </div>

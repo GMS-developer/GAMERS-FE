@@ -21,16 +21,16 @@ export function ContestHistory() {
     participating: [
       {
         id: 1,
-        title: '발로란트 신인 오픈컵 시즌 3',
-        info: 'Team Alpha · 4강 진출',
+        title: t('mypage.mock_data.contest1.title'),
+        info: t('mypage.mock_data.contest1.info'),
         status: 'ONGOING',
         date: '2026-04-05',
         color: 'neon-mint'
       },
       {
         id: 2,
-        title: '리그 오브 레전드 커뮤니티 5vs5',
-        info: 'NexusGG · 참가 신청 완료',
+        title: t('mypage.mock_data.contest2.title'),
+        info: t('mypage.mock_data.contest2.info'),
         status: 'UPCOMING',
         date: '2026-04-12',
         color: 'sky-400'
@@ -39,8 +39,8 @@ export function ContestHistory() {
     completed: [
       {
         id: 3,
-        title: 'Apex Legends 듀오 챌린지',
-        info: 'ApexDuo · 16강 탈락',
+        title: t('mypage.mock_data.contest3.title'),
+        info: t('mypage.mock_data.contest3.info'),
         status: 'ENDED',
         date: '2026-03-15',
         color: 'gray-500'
@@ -122,7 +122,7 @@ export function ContestHistory() {
                       contest.status === 'UPCOMING' ? "bg-sky-400/10 text-sky-400 border-sky-400/20" : 
                       "bg-gray-500/10 text-gray-500 border-gray-500/20 shadow-inner"
                     )}>
-                       {contest.status}
+                       {t(`mypage.contests.status.${contest.status}`)}
                     </div>
                     <span className="text-[12px] font-bold text-[#4A4A55] tabular-nums font-mono opacity-60">
                        <Calendar className="inline-block w-3 h-3 mr-1 mb-0.5" />

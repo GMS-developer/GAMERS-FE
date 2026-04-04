@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Twitter, Github, MessageSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -38,11 +39,14 @@ export function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="h-7 w-7 rounded bg-neon-mint" />
-              <span className="font-space text-xl font-bold tracking-tight text-foreground">
-                GAMERS
-              </span>
+            <Link href="/" className="flex items-center gap-2 group shrink-0">
+              <Image
+                src="/logo.png"
+                alt="GAMERS Logo"
+                width={120}
+                height={32}
+                className="h-8 w-auto object-contain brightness-110"
+              />
             </Link>
             <p className="text-sm whitespace-pre-line leading-relaxed text-muted-gray">
               {t('footer.description')}

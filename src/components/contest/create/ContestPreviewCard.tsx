@@ -11,7 +11,7 @@ export function ContestPreviewCard() {
   const { t } = useTranslation();
   const { watch } = useFormContext<ContestCreateFormValues>();
 
-  const title = watch('name') || '대회명을 입력하세요';
+  const title = watch('name') || t('contests.create.basic.title_placeholder');
   const game = watch('game') || 'VALORANT';
   const maxTeams = watch('maxTeams') || 16;
   const thumbnail = watch('thumbnail');
@@ -37,10 +37,10 @@ export function ContestPreviewCard() {
   return (
     <div className="flex flex-col gap-4 sticky top-32">
       <div className="flex items-center justify-between px-2">
-        <h3 className="text-[11px] font-black text-[#7A7A85] uppercase tracking-[0.2em]">Live Preview</h3>
+        <h3 className="text-[11px] font-black text-[#7A7A85] uppercase tracking-[0.2em]">{t('contests.create.preview.live')}</h3>
         <div className="flex items-center gap-1.5">
            <div className="w-1.5 h-1.5 rounded-full bg-neon-mint animate-pulse" />
-           <span className="text-[10px] font-bold text-neon-mint uppercase">Draft</span>
+           <span className="text-[10px] font-bold text-neon-mint uppercase">{t('contests.create.preview.draft')}</span>
         </div>
       </div>
 
@@ -68,15 +68,19 @@ export function ContestPreviewCard() {
                    <polyline points="21 15 16 10 5 21" />
                  </svg>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-center px-4">Thumb Nail<br/>Preview</span>
+               <span className="text-[10px] font-black uppercase tracking-widest text-center px-4">
+                 {t('contests.create.preview.thumbnail_preview')}
+               </span>
             </div>
           )}
 
           {/* Overlay Status */}
-          <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/10">
-             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-             <span className="text-[10px] font-black text-emerald-500 tracking-wider">OPEN</span>
-          </div>
+           <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/10">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] font-black text-emerald-500 tracking-wider">
+                {t('contests.create.preview.status')}
+              </span>
+           </div>
         </div>
 
         {/* Header Information */}
@@ -93,51 +97,65 @@ export function ContestPreviewCard() {
           </h3>
           
           <div className="flex items-center gap-2 text-[11px] font-bold text-[#7A7A85]">
-            <span className="flex items-center gap-1.5">
-               <div className="w-4 h-4 rounded-full bg-[#1C1C21] border border-white/10" />
-               Host Admin
-            </span>
-            <span className="opacity-20">•</span>
-            <span>Just now</span>
-          </div>
+             <span className="flex items-center gap-1.5">
+                <div className="w-4 h-4 rounded-full bg-[#1C1C21] border border-white/10" />
+                {t('contests.create.preview.organizer')}
+             </span>
+             <span className="opacity-20">•</span>
+             <span>Just now</span>
+           </div>
         </div>
 
         <div className="h-px bg-white/5 mb-6" />
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
-           <div className="flex flex-col gap-1">
-              <span className="text-[10px] font-black text-[#4A4A55] uppercase tracking-widest">Entry Fee</span>
-              <span className="text-lg font-black text-[#EEEEF0]">FREE</span>
-           </div>
-           <div className="flex flex-col gap-1 items-end">
-              <span className="text-[10px] font-black text-[#4A4A55] uppercase tracking-widest">Slots</span>
-              <span className="text-lg font-black text-[#EEEEF0] tabular-nums">0 / {maxTeams}</span>
-           </div>
-        </div>
+         <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="flex flex-col gap-1">
+               <span className="text-[10px] font-black text-[#4A4A55] uppercase tracking-widest">
+                 {t('contests.create.preview.entry_fee')}
+               </span>
+               <span className="text-lg font-black text-[#EEEEF0]">
+                 {t('contests.create.preview.free')}
+               </span>
+            </div>
+            <div className="flex flex-col gap-1 items-end">
+               <span className="text-[10px] font-black text-[#4A4A55] uppercase tracking-widest">
+                 Slots
+               </span>
+               <span className="text-lg font-black text-[#EEEEF0] tabular-nums">0 / {maxTeams}</span>
+            </div>
+         </div>
 
         {/* Action Button */}
-        <div className="w-full h-12 bg-neon-mint rounded-xl flex items-center justify-center text-deep-black text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(110,231,183,0.3)] group-hover:shadow-[0_0_30px_rgba(110,231,183,0.5)] transition-all active:scale-95 cursor-not-allowed">
-           Apply Registration
-        </div>
+         <div className="w-full h-12 bg-neon-mint rounded-xl flex items-center justify-center text-deep-black text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(110,231,183,0.3)] group-hover:shadow-[0_0_30px_rgba(110,231,183,0.5)] transition-all active:scale-95 cursor-not-allowed">
+            {t('contests.create.preview.apply')}
+         </div>
       </motion.div>
       
       {/* Visual Indicator */}
       <div className="bg-[#141418] border border-white/5 rounded-2xl p-4 flex flex-col gap-3">
-         <h4 className="text-[10px] font-black text-[#BBBBCB] uppercase tracking-wider flex items-center gap-2">
-           <div className="w-1 h-1 rounded-full bg-neon-mint" />
-           Config Summary
-         </h4>
-         <div className="grid grid-cols-2 gap-2">
-            <div className="p-2 rounded-lg bg-[#0C0C0F] border border-white/5 flex flex-col gap-0.5">
-               <span className="text-[9px] font-bold text-[#4A4A55] uppercase">Mode</span>
-               <span className="text-[10px] font-black text-[#EEEEF0]">Tournament</span>
-            </div>
-            <div className="p-2 rounded-lg bg-[#0C0C0F] border border-white/5 flex flex-col gap-0.5">
-               <span className="text-[9px] font-bold text-[#4A4A55] uppercase">Region</span>
-               <span className="text-[10px] font-black text-[#EEEEF0]">ASIA</span>
-            </div>
-         </div>
+          <h4 className="text-[10px] font-black text-[#BBBBCB] uppercase tracking-wider flex items-center gap-2">
+            <div className="w-1 h-1 rounded-full bg-neon-mint" />
+            {t('contests.create.preview.summary')}
+          </h4>
+          <div className="grid grid-cols-2 gap-2">
+             <div className="p-2 rounded-lg bg-[#0C0C0F] border border-white/5 flex flex-col gap-0.5">
+                <span className="text-[9px] font-bold text-[#4A4A55] uppercase">
+                  {t('contests.create.preview.mode')}
+                </span>
+                <span className="text-[10px] font-black text-[#EEEEF0]">
+                  {t('contests.create.preview.tournament')}
+                </span>
+             </div>
+             <div className="p-2 rounded-lg bg-[#0C0C0F] border border-white/5 flex flex-col gap-0.5">
+                <span className="text-[9px] font-bold text-[#4A4A55] uppercase">
+                  {t('contests.create.preview.region')}
+                </span>
+                <span className="text-[10px] font-black text-[#EEEEF0]">
+                  {t('contests.create.preview.asia')}
+                </span>
+             </div>
+          </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Shield, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface Member {
   name: string;
@@ -20,11 +21,13 @@ const MEMBERS: Member[] = [
 ];
 
 export function PlaygroundTeamMembersMini() {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col gap-6 rounded-3xl border border-white/5 bg-[#141418] p-8 h-full">
       <div className="flex items-center justify-between">
-        <h3 className="text-[17px] font-black italic tracking-tighter text-[#EEEEF0]">팀원 현황</h3>
-        <button className="text-[11px] font-black uppercase tracking-widest text-[#4A4A55] hover:text-[#7A7A85]">팀 관리</button>
+        <h3 className="text-[17px] font-black italic tracking-tighter text-[#EEEEF0]">{t('playground.team_status.title')}</h3>
+        <button className="text-[11px] font-black uppercase tracking-widest text-[#4A4A55] hover:text-[#7A7A85]">{t('playground.quick_links.team_mgmt')}</button>
       </div>
 
       <div className="flex flex-col gap-3">
@@ -40,7 +43,7 @@ export function PlaygroundTeamMembersMini() {
                     {member.name}
                   </span>
                   {member.isMe && (
-                    <span className="px-1.5 py-0.5 rounded-md bg-neon-mint/10 border border-neon-mint/20 text-[9px] font-black text-neon-mint tracking-wider uppercase">YOU</span>
+                    <span className="px-1.5 py-0.5 rounded-md bg-neon-mint/10 border border-neon-mint/20 text-[9px] font-black text-neon-mint tracking-wider uppercase">{t('playground.team_status.you')}</span>
                   )}
                 </div>
                 <span className="text-[11px] font-bold text-[#5A5A65] tracking-tight uppercase tracking-[0.1em]">
@@ -49,7 +52,7 @@ export function PlaygroundTeamMembersMini() {
               </div>
             </div>
             {member.isReady && (
-              <span className="text-[10px] font-black text-neon-mint uppercase tracking-wider bg-neon-mint/5 px-2 py-1 rounded-lg border border-neon-mint/20">READY</span>
+              <span className="text-[10px] font-black text-neon-mint uppercase tracking-wider bg-neon-mint/5 px-2 py-1 rounded-lg border border-neon-mint/20">{t('playground.team_status.ready')}</span>
             )}
           </div>
         ))}

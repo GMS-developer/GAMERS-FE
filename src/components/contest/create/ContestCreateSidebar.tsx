@@ -25,7 +25,7 @@ export function ContestCreateSidebar({ activeSection, onSectionClick, progress }
   return (
     <div className="sticky top-32 flex flex-col gap-8 w-64 shrink-0">
       <div className="flex flex-col gap-2">
-        <span className="text-xs font-bold text-[#7A7A85] uppercase tracking-wider">섹션</span>
+        <span className="text-xs font-bold text-[#7A7A85] uppercase tracking-wider">{t('contests.create.section_label')}</span>
         <div className="flex flex-col gap-1">
           {sections.map((section) => (
             <button
@@ -60,7 +60,7 @@ export function ContestCreateSidebar({ activeSection, onSectionClick, progress }
       {/* Progress Section */}
       <div className="flex flex-col gap-4 p-5 rounded-2xl bg-[#141418] border border-white/5 mt-4">
         <div className="flex items-center justify-between">
-          <span className="text-[13px] font-bold text-[#7A7A85]">진행률</span>
+          <span className="text-[13px] font-bold text-[#7A7A85]">{t('contests.create.progress_label')}</span>
           <span className="text-[13px] font-black text-neon-mint">{progress}%</span>
         </div>
         <div className="h-1.5 w-full bg-[#1C1C21] rounded-full overflow-hidden">
@@ -71,7 +71,7 @@ export function ContestCreateSidebar({ activeSection, onSectionClick, progress }
           />
         </div>
         <p className="text-[11px] font-medium text-[#7A7A85] leading-relaxed">
-          {Math.floor(progress / 16.6).toString()} / 6 섹션 완료
+          {t('contests.create.sections_completed', { count: Math.floor(progress / 16.6) })}
         </p>
       </div>
     </div>

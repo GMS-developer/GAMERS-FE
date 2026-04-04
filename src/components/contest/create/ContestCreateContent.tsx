@@ -74,12 +74,12 @@ export function ContestCreateContent() {
 
   const onSubmit: SubmitHandler<ContestCreateFormValues> = (data) => {
     console.log('Form Submitted:', data);
-    alert('대회가 성공적으로 생성되었습니다!');
+    alert(t('contests.create.success_alert'));
   };
 
   const handleSaveDraft = () => {
     console.log('Saving Draft:', methods.getValues());
-    alert('임시저장되었습니다.');
+    alert(t('contests.create.save_alert'));
   };
 
   return (

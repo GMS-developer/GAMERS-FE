@@ -2,8 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { Edit2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function TeamProfileCard() {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-6 rounded-2xl border border-white/5 bg-[#0C0C0D] p-6 shadow-2xl">
       
@@ -19,16 +21,18 @@ export function TeamProfileCard() {
               <Edit2 className="h-3 w-3" />
             </button>
           </div>
-          <span className="text-[12px] font-bold text-[#5A5A65]">4명 · VALORANT · 주말 내전 파티</span>
+          <span className="text-[12px] font-bold text-[#5A5A65]">
+            {t('playground.info_format', { count: 4, game: 'VALORANT', desc: t('playground.desc_party') })}
+          </span>
         </div>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-        <StatItem value="3W" label="이번 대회" color="text-neon-mint" />
-        <StatItem value="0L" label="패배" color="text-ruby" />
-        <StatItem value="준결" label="현재 라운드" color="text-gold" />
-        <StatItem value="100%" label="승률" color="text-[#EEEEF0]" />
+        <StatItem value="3W" label={t('playground.stats.this_tournament')} color="text-neon-mint" />
+        <StatItem value="0L" label={t('playground.stats.loss')} color="text-ruby" />
+        <StatItem value={t('playground.rounds.semifinals')} label={t('playground.stats.current_round')} color="text-gold" />
+        <StatItem value="100%" label={t('playground.stats.win_rate')} color="text-[#EEEEF0]" />
       </div>
 
     </div>

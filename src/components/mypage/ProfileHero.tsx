@@ -33,11 +33,11 @@ export function ProfileHero() {
                 <h1 className="text-3xl font-black text-[#EEEEF0] tracking-tight">StarPlayer_KR</h1>
                 <span className="text-lg font-bold text-[#7A7A85]">#KR01</span>
                 <div className="px-2 py-0.5 rounded bg-neon-mint/10 border border-neon-mint/20">
-                  <span className="text-[10px] font-black text-neon-mint uppercase tracking-widest">MEMBER</span>
+                  <span className="text-[10px] font-black text-neon-mint uppercase tracking-widest">{t('mypage.member_tag', 'MEMBER')}</span>
                 </div>
               </div>
               <p className="text-[#BBBBCB] font-medium leading-relaxed max-w-xl">
-                {t('mypage.bio', '발로란트를 주로 즐기는 게이머입니다. 팀원 구하는 중!')}
+                {t('mypage.bio_default')}
               </p>
             </div>
 
@@ -46,7 +46,7 @@ export function ProfileHero() {
                 variant="riot" 
                 className="bg-[#1C1C21] hover:bg-[#242428] border border-white/5 text-[13px] font-bold px-6 h-10 flex items-center gap-2"
               >
-                {t('mypage.edit_profile', '프로필 편집')}
+                {t('mypage.edit_profile')}
               </Button>
               <Button 
                 variant="riot" 
@@ -61,21 +61,22 @@ export function ProfileHero() {
         {/* Right Side: Quick Stats */}
         <div className="grid grid-cols-3 gap-3 md:w-[480px]">
           <StatCard 
-            label={t('mypage.stats.contests', '참가 대회')} 
+            label={t('mypage.stats.contests')} 
             value="14" 
             icon={<Target className="w-5 h-5 text-[#7A7A85]" />} 
           />
           <StatCard 
-            label={t('mypage.stats.win_rate', '승률')} 
+            label={t('mypage.stats.win_rate')} 
             value="68%" 
             icon={<PlayCircle className="w-5 h-5 text-[#7A7A85]" />} 
             highlight
           />
           <StatCard 
-            label={t('mypage.stats.trophies', '우승')} 
+            label={t('mypage.stats.trophies')} 
             value="3" 
             icon={<Trophy className="w-5 h-5 text-[#7A7A85]" />} 
           />
+
         </div>
       </div>
     </section>

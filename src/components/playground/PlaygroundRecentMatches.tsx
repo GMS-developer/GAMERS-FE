@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface Match {
   round: string;
@@ -13,18 +14,20 @@ interface Match {
   score: string;
 }
 
-const MATCHES: Match[] = [
-  { round: '8강', opponent: 'Team Beta', map: 'Ascent', date: '03.28 20:00', result: 'win', score: '13:7' },
-  { round: '조별', opponent: 'Team Gamma', map: 'Bind', date: '03.27 21:00', result: 'win', score: '13:5' },
-  { round: '조별', opponent: 'Team Hotel', map: 'Haven', date: '03.26 20:30', result: 'win', score: '13:9' },
-];
-
 export function PlaygroundRecentMatches() {
+  const { t } = useTranslation();
+
+  const MATCHES: Match[] = [
+    { round: t('playground.rounds.quarter_final'), opponent: 'Team Beta', map: 'Ascent', date: '03.28 20:00', result: 'win', score: '13:7' },
+    { round: t('playground.rounds.group'), opponent: 'Team Gamma', map: 'Bind', date: '03.27 21:00', result: 'win', score: '13:5' },
+    { round: t('playground.rounds.group'), opponent: 'Team Hotel', map: 'Haven', date: '03.26 20:30', result: 'win', score: '13:9' },
+  ];
+
   return (
     <div className="flex flex-col gap-6 rounded-3xl border border-white/5 bg-[#141418] p-8 h-full">
       <div className="flex items-center justify-between">
-        <h3 className="text-[17px] font-black italic tracking-tighter text-[#EEEEF0]">최근 경기 기록</h3>
-        <button className="text-[11px] font-black uppercase tracking-widest text-[#4A4A55] hover:text-[#7A7A85]">상세보기</button>
+        <h3 className="text-[17px] font-black italic tracking-tighter text-[#EEEEF0]">{t('playground.recent_matches.title')}</h3>
+        <button className="text-[11px] font-black uppercase tracking-widest text-[#4A4A55] hover:text-[#7A7A85]">{t('playground.recent_matches.view_details')}</button>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -48,7 +51,7 @@ export function PlaygroundRecentMatches() {
                 "text-[17px] font-black italic tracking-tighter leading-none mb-1",
                 match.result === 'win' ? "text-neon-mint" : "text-neon-red"
               )}>
-                {match.result === 'win' ? '승' : '패'} {match.score}
+                {match.result === 'win' ? t('playground.recent_matches.win') : t('playground.recent_matches.loss')} {match.score}
               </span>
             </div>
           </div>

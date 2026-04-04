@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -21,13 +22,15 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <div className="flex items-center gap-10">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex h-7 w-7 items-center justify-center rounded bg-neon-mint text-deep-black font-barlow font-black text-sm">
-              G
-            </div>
-            <span className="font-space text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-neon-mint">
-              GAMERS
-            </span>
+          <Link href="/" className="flex items-center gap-2 group shrink-0">
+            <Image
+              src="/logo.png"
+              alt="GAMERS Logo"
+              width={120}
+              height={32}
+              className="h-8 w-auto object-contain"
+              priority
+            />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
