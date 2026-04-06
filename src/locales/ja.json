@@ -15,6 +15,28 @@
     "filter": "フィルター",
     "sort": "整列"
   },
+  "navbar": {
+    "find_contests": "大会を探す",
+    "my_contests": "自分の大会",
+    "community": "コミュニティ",
+    "login": "ログイン",
+    "get_started": "始める"
+  },
+  "footer": {
+    "product": "製品",
+    "company": "会社",
+    "legal": "法的通知",
+    "find_contests": "大会を探す",
+    "create_contest": "大会を開催",
+    "community": "コミュニティ",
+    "about": "紹介",
+    "blog": "ブログ",
+    "jobs": "採用",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "description": "国内最大級のリアルタイムE-Sportsトーナメント運用プラットフォーム\nすべてのゲーマーのためのインフラ、GAMERS。",
+    "rights": "© 2026 GAMERS. All rights reserved."
+  },
   "header": {
     "contests": "大会",
     "playground": "プレイグラウンド",
@@ -49,7 +71,7 @@
       "empty": "進行中の大会がありません。",
       "mock": {
         "contest1": "VALORANTコミュニティオープンカップ",
-        "contest2": "LoLアカデミーリーグ シーズン4",
+        "contest2": "LoLアカ데미リーグ シーズン4",
         "contest3": "CS2日韓交流戦",
         "contest4": "Apex Legends デュオチャレンジ",
         "contest5": "Valorant チャレンジャーズ予選",
@@ -127,7 +149,7 @@
         "title": "大会タイトル",
         "title_placeholder": "例：Valorant 新人オープンカップ",
         "description": "大会紹介",
-        "description_placeholder": "大会ルールや詳細 내용をMDX形式で入力してください。",
+        "description_placeholder": "大会ルールや詳細内容をMDX形式で入力してください。",
         "precautions": "注意事項",
         "precautions_placeholder": "参加者が必ず確認すべき内容を入力してください。",
         "subtitle": "大会の最も基本的な情報を入力します。",
@@ -168,7 +190,7 @@
         "lol_sub": "戦略的なチームバトルMOBAゲーム",
         "valorant": {
           "tournament_desc": "トーナメント：段階別の脱落方式です。最後の1チームが優勝します。",
-          "league_desc": "リーグ：すべての対象と試合し、勝ち点によって順위が決定されます。"
+          "league_desc": "リーグ：すべての対象と試合し、勝ち点によって順位が決定されます。"
         },
         "lol": {
           "tournament_desc": "トーナメント：段階別の脱落方式です。",
@@ -189,7 +211,7 @@
         "title": "チーム構成",
         "desc": "参加チームの構成と規模を設定します。",
         "max_teams": "最大参加チーム数",
-        "max_teams_help": "最小2팀から最大128チームまで設定可能です。",
+        "max_teams_help": "最小2チームから最大128チームまで設定可能です。",
         "team_size": "チームあたりの人数",
         "team_size_help": "1チームあたりの参加人数です（補欠選手は含みません）。",
         "total_points": "ポイント合計制限",
@@ -199,10 +221,10 @@
       "schedule": {
         "title": "日程設定",
         "start_date": "大会開始日",
-        "end_date": "大会終了日",
+        "end_date": "大会終了일",
         "auto_start": "自動開始",
         "auto_start_desc": "開始日になると大会を自動的にACTIVE状態に切り替えます",
-        "desc": "大会の進行スケジュールを設定します。タイムゾーンは現在のブラウザ基準(KST)です。"
+        "desc": "大会の進行スケジュールを設定します。タイムゾーンは現在のブラウザ基準(KST)입니다。"
       },
       "discord": {
         "title": "Discord連携",
@@ -236,7 +258,7 @@
         "tournament": "トーナメント",
         "league": "リーグ",
         "region": "地域",
-        "asia": "アシア"
+        "asia": "アジア"
       },
       "cancel": "キャンセル",
       "save_draft": "下書き保存",
@@ -244,7 +266,7 @@
     }
   },
   "my_contests": {
-    "title": "内大会",
+    "title": "自分の大会",
     "subtitle": "MY CONTESTS",
     "summary": {
       "participating": "参加中",
@@ -392,6 +414,10 @@
         ]
       }
     },
+    "rounds": {
+      "quarter_final": "準々決勝",
+      "group": "グループ"
+    },
     "team": {
       "current_leader": "現在のリーダー",
       "transfer_desc": "リーダー権限を委譲できます。",
@@ -400,10 +426,6 @@
     "ranks": {
       "diamond": "ダイヤ {{level}}",
       "platinum": "プラチナ {{level}}"
-    },
-    "rounds": {
-      "quarter_final": "準々決勝",
-      "group": "グループ"
     }
   },
   "admin": {
@@ -502,38 +524,62 @@
   "landing": {
     "hero": {
       "tag": "E-SPORTS INFRASTRUCTURE FOR EVERYONE",
-      "title": "自分だけの\n大会を完璧に。",
+      "title_1": "自分だけの",
+      "title_2": "大会を完璧に。",
       "subtitle": "GAMERSは大会作成から運営、チーム募集、試合結果の管理まで、\nすべてのE-Sportsプロセスを自動化するオールインワン・プラットフォームです。",
-      "primary_cta": "今すぐ始めましょう",
-      "secondary_cta": "데모를 체험하기"
+      "cta_join": "大会に申し込む",
+      "cta_create": "大会を開催する"
     },
     "problem": {
       "tag": "PAIN POINTS",
       "title": "大会運営は、なぜ\nこれほど大変なのでしょうか？",
-      "subtitle": "面倒な手続きもミスできない集計作業も、すべてGAMERSにお任せください。",
-      "point_1": "Googleフォーム、Excel、Discord間の\n手動データの同期はもう不要です。",
-      "point_2": "ティアの検証や本人確認のための\n面倒なプロセスから解放。GAMERSが自動で行います。",
-      "point_3": "結果の集計ミスや判定トラブルを防止。\n透明で公正な運営環境を提供します。"
+      "card_1": {
+        "title": "手動データ管理",
+        "description": "Googleフォーム、Excel、Discord間の手動データの同期はもう不要です。"
+      },
+      "card_2": {
+        "title": "面倒な検証プロセス",
+        "description": "ティアの検証や本人確認のための面倒なプロセスから解放。GAMERSが自動で行います。"
+      },
+      "card_3": {
+        "title": "運営の不透明性",
+        "description": "結果の集計ミスや判定トラブルを防止。透明で公正な運営環境を提供します。"
+      }
     },
     "solution": {
       "tag": "THE SOLUTION",
       "title": "複雑な運営を\nワンクリックで。",
-      "subtitle": "最先端の自動化システムで、主催者は大会の楽しさにだけ集中できます。",
-      "card_1": {
+      "item_1": {
         "title": "自動トーナメント表生成",
         "description": "参加申込からトーナメント表確定まで1秒で十分です。"
       },
-      "card_2": {
-        "title": "チーム管理システム",
+      "item_2": {
+        "title": "リアルタイムのチームマッチング",
         "description": "チームメイトを招待し役割を割り当てて、完璧なシナジーを生み出しましょう。"
       },
-      "card_3": {
-        "title": "Discord連携",
+      "item_3": {
+        "title": "Discordボット連携",
         "description": "ボットがすべてのチャンネル管理と通知を自動的に処理します。"
+      }
+    },
+    "features": {
+      "tag": "POWERFUL FEATURES",
+      "title": "すべてが自動化された利便性",
+      "card_1": {
+        "title": "自動トーナメント表",
+        "description": "多様なトーナメント形式に合わせた高度な対戦生成をサポートします。"
+      },
+      "card_2": {
+        "title": "参加者の検証",
+        "description": "リアルタイムのAPI連携により、正確なゲーム内データの検証が可能です。"
+      },
+      "card_3": {
+        "title": "統合通知",
+        "description": "重要な日程や結果情報をリアルタイムで参加者に伝えます。"
       },
       "card_4": {
         "title": "管理者ダッシュボード",
-        "description": "主催者のための洗練された運営ツールを無料で提供します。"
+        "description": "一目でわかるデータで、大会の進行状況をリアルタイムで管理しましょう。"
       }
     },
     "cta": {

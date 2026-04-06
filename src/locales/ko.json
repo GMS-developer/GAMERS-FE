@@ -15,6 +15,28 @@
     "filter": "필터",
     "sort": "정렬"
   },
+  "navbar": {
+    "find_contests": "대회 찾기",
+    "my_contests": "내 대회",
+    "community": "커뮤니티",
+    "login": "로그인",
+    "get_started": "시작하기"
+  },
+  "footer": {
+    "product": "제품",
+    "company": "회사",
+    "legal": "법적 고지",
+    "find_contests": "대회 찾기",
+    "create_contest": "대회 개최",
+    "community": "커뮤니티",
+    "about": "소개",
+    "blog": "블로그",
+    "jobs": "채용",
+    "terms": "이용약관",
+    "privacy": "개인정보처리방침",
+    "description": "국내 최대 실시간 E-스포츠 토너먼트 운영 플랫폼\n모든 게이머를 위한 인프라, GAMERS.",
+    "rights": "© 2026 GAMERS. All rights reserved."
+  },
   "header": {
     "contests": "대회",
     "playground": "플레이그라운드",
@@ -317,49 +339,94 @@
       "player_view": "참가자 뷰"
     },
     "notice": {
-        "title": "안내사항",
-        "desc": "대회 진행 및 운영 관련 안내사항입니다.",
-        "notice_count": "{{count}}개의 공지",
-        "rules_title": "대회 규칙",
-        "schedule_title": "오늘의 일정",
-        "faq_title": "자주 묻는 질문",
-        "host_label": "호스트: ",
-        "mock": {
-          "notices": [
-            { "id": 1, "title": "결승전 시간 변경 안내", "content": "기존 20:00에서 21:00로 변경되었습니다. 모든 선수들은 20:30까지 대기해주세요.", "date": "1시간 전", "host": "GAMERS Admin" },
-            { "id": 2, "title": "서버 점검 공지", "content": "안정적인 경기 환경을 위해 오전 4시부터 6시까지 정기 점검이 진행됩니다.", "date": "3시간 전", "host": "System Manager" }
-          ],
-          "rules": [
-            "모든 경기는 최신 패치 버전으로 진행됩니다.",
-            "경기 시작 15분 전까지 로비 입장을 완료해야 합니다.",
-            "인종차별, 비하 발언 등 부정행위 적발 시 즉시 실격 처리됩니다.",
-            "일시 중지는 각 팀당 1회, 최대 5분까지 허용됩니다."
-          ],
-          "schedule": [
-            { "id": 1, "title": "8강 A조 경기", "time": "14:00", "desc": "1경기", "status": "completed" },
-            { "id": 2, "title": "8강 B조 경기", "time": "15:30", "desc": "2경기", "status": "completed" },
-            { "id": 3, "title": "준결승전", "time": "20:00", "desc": "BO3", "status": "active", "badge": "LIVE" },
-            { "id": 4, "title": "시상식 및 폐막", "time": "22:00", "status": "pending" }
-          ],
-          "faqs": [
-            { "q": "경기 중 핑이 높으면 어떻게 하나요?", "a": "즉시 관리자에게 알리고 스태프의 지시에 따르시기 바랍니다." },
-            { "q": "팀 교체 선수는 몇 명까지 가능한가요?", "a": "한 팀당 최대 2명의 후보 선수를 등록할 수 있습니다." },
-            { "q": "대회 상금은 언제 지급되나요?", "a": "대회 종료 후 영업일 기준 7일 이내에 지급됩니다." }
-          ]
-        }
+      "title": "안내사항",
+      "desc": "대회 진행 및 운영 관련 안내사항입니다.",
+      "notice_count": "{{count}}개의 공지",
+      "rules_title": "대회 규칙",
+      "schedule_title": "오늘의 일정",
+      "faq_title": "자주 묻는 질문",
+      "host_label": "호스트: ",
+      "mock": {
+        "notices": [
+          {
+            "id": 1,
+            "title": "결승전 시간 변경 안내",
+            "content": "기존 20:00에서 21:00로 변경되었습니다. 모든 선수들은 20:30까지 대기해주세요.",
+            "date": "1시간 전",
+            "host": "GAMERS Admin"
+          },
+          {
+            "id": 2,
+            "title": "서버 점검 공지",
+            "content": "안정적인 경기 환경을 위해 오전 4시부터 6시까지 정기 점검이 진행됩니다.",
+            "date": "3시간 전",
+            "host": "System Manager"
+          }
+        ],
+        "rules": [
+          "모든 경기는 최신 패치 버전으로 진행됩니다.",
+          "경기 시작 15분 전까지 로비 입장을 완료해야 합니다.",
+          "인종차별, 비하 발언 등 부정행위 적발 시 즉시 실격 처리됩니다.",
+          "일시 중지는 각 팀당 1회, 최대 5분까지 허용됩니다."
+        ],
+        "schedule": [
+          {
+            "id": 1,
+            "title": "8강 A조 경기",
+            "time": "14:00",
+            "desc": "1경기",
+            "status": "completed"
+          },
+          {
+            "id": 2,
+            "title": "8강 B조 경기",
+            "time": "15:30",
+            "desc": "2경기",
+            "status": "completed"
+          },
+          {
+            "id": 3,
+            "title": "준결승전",
+            "time": "20:00",
+            "desc": "BO3",
+            "status": "active",
+            "badge": "LIVE"
+          },
+          {
+            "id": 4,
+            "title": "시상식 및 폐막",
+            "time": "22:00",
+            "status": "pending"
+          }
+        ],
+        "faqs": [
+          {
+            "q": "경기 중 핑이 높으면 어떻게 하나요?",
+            "a": "즉시 관리자에게 알리고 스태프의 지시에 따르시기 바랍니다."
+          },
+          {
+            "q": "팀 교체 선수는 몇 명까지 가능한가요?",
+            "a": "한 팀당 최대 2명의 후보 선수를 등록할 수 있습니다."
+          },
+          {
+            "q": "대회 상금은 언제 지급되나요?",
+            "a": "대회 종료 후 영업일 기준 7일 이내에 지급됩니다."
+          }
+        ]
+      }
     },
     "rounds": {
       "quarter_final": "8강",
       "group": "그룹"
     },
     "team": {
-        "current_leader": "현재 리더",
-        "transfer_desc": "리더 권한을 위임할 수 있습니다.",
-        "me": "(나)"
+      "current_leader": "현재 리더",
+      "transfer_desc": "리더 권한을 위임할 수 있습니다.",
+      "me": "(나)"
     },
     "ranks": {
-        "diamond": "다이아 {{level}}",
-        "platinum": "플래티넘 {{level}}"
+      "diamond": "다이아 {{level}}",
+      "platinum": "플래티넘 {{level}}"
     }
   },
   "admin": {
@@ -458,38 +525,62 @@
   "landing": {
     "hero": {
       "tag": "E-SPORTS INFRASTRUCTURE FOR EVERYONE",
-      "title": "당신만의\n대회를 완벽하게.",
+      "title_1": "당신만의",
+      "title_2": "대회를 완벽하게.",
       "subtitle": "GAMERS는 대회 생성부터 운영, 팀 모집, 경기 결과 관리까지,\n모든 E-스포츠 프로세스를 자동화하는 올인원 플랫폼입니다.",
-      "primary_cta": "지금 시작하기",
-      "secondary_cta": "데모 체험하기"
+      "cta_join": "대회 참여하기",
+      "cta_create": "대회 개최하기"
     },
     "problem": {
       "tag": "PAIN POINTS",
       "title": "대회 운영은 왜\n이토록 힘들까요?",
-      "subtitle": "번거로운 절차도 실수가 용납되지 않는 집계 작업도, 이제 GAMERS에게 맡기세요.",
-      "point_1": "구글 폼, 엑셀, 디스코드 사이의\n수동 데이터 동기화는 이제 그만.",
-      "point_2": "티어 검증부터 본인 인증까지\n번거로운 프로세스를 자동화하여 해결합니다.",
-      "point_3": "결과 집계 오류와 판정 시비를 방지하고\n투명하고 공정한 운영 환경을 제공합니다."
+      "card_1": {
+        "title": "수동 데이터 관리",
+        "description": "구글 폼, 엑셀, 디스코드 사이의 수동 데이터 동기화는 이제 그만."
+      },
+      "card_2": {
+        "title": "번거로운 검증 절차",
+        "description": "티어 검증부터 본인 인증까지 번거로운 프로세스를 자동화하여 해결합니다."
+      },
+      "card_3": {
+        "title": "운영의 불투명성",
+        "description": "결과 집계 오류와 판정 시비를 방지하고 투명하고 공정한 운영 환경을 제공합니다."
+      }
     },
     "solution": {
       "tag": "THE SOLUTION",
       "title": "복잡한 운영을\n클릭 한 번으로.",
-      "subtitle": "최첨단 자동화 시스템으로 주최자는 대회의 즐거움에만 집중할 수 있습니다.",
-      "card_1": {
+      "item_1": {
         "title": "자동 대진표 생성",
         "description": "참가 신청부터 대진표 확정까지 1초면 충분합니다."
       },
-      "card_2": {
-        "title": "팀 관리 시스템",
+      "item_2": {
+        "title": "실시간 팀 매칭",
         "description": "팀원을 초대하고 역할을 부여하여 완벽한 시너지를 만드세요."
       },
-      "card_3": {
-        "title": "디스코드 연동",
+      "item_3": {
+        "title": "디스코드 봇 연동",
         "description": "봇이 모든 채널 관리와 알림을 자동으로 처리합니다."
+      }
+    },
+    "features": {
+      "tag": "POWERFUL FEATURES",
+      "title": "모든 것이 자동화된 편리함",
+      "card_1": {
+        "title": "자동 대진표",
+        "description": "다양한 토너먼트 규격에 맞춘 지능형 대진 생성을 지원합니다."
+      },
+      "card_2": {
+        "title": "참가자 검증",
+        "description": "실시간 API 연동으로 정확한 게임 내 데이터 검증이 가능합니다."
+      },
+      "card_3": {
+        "title": "통합 알림",
+        "description": "중요한 일정과 결과 정보를 실시간으로 참가자에게 전달합니다."
       },
       "card_4": {
         "title": "관리자 대시보드",
-        "description": "주최자를 위한 정교한 운영 도구를 무료로 제공합니다."
+        "description": "한눈에 들어오는 데이터로 대회 진행 상황을 실시간 관리하세요."
       }
     },
     "cta": {
