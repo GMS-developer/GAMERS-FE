@@ -19,6 +19,7 @@
   --font-barlow: var(--font-barlow);
   --font-space: var(--font-space);
   --font-pretendard: var(--font-pretendard);
+  --font-koulen: var(--font-koulen);
 }
 
 @layer base {

@@ -14,7 +14,9 @@ export function PlaygroundNavbar() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-4">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-black italic tracking-tighter text-[#EEEEF0]">GAMERS</span>
+              <span className="font-koulen text-2xl font-normal tracking-tight text-foreground uppercase italic text-glow-mint leading-none pt-0.5">
+                GAMERS
+              </span>
             </Link>
             <div className="h-4 w-[1px] bg-white/10" />
             <span className="text-[13px] font-black text-[#5A5A65] uppercase tracking-wider">Playground</span>

@@ -40,14 +40,9 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-2 group shrink-0">
-              <Image
-                src="/logo.png"
-                alt="GAMERS Logo"
-                width={120}
-                height={32}
-                className="h-8 w-auto object-contain brightness-110"
-                priority
-              />
+              <span className="font-koulen text-3xl font-normal tracking-tight text-foreground uppercase italic text-glow-mint leading-none">
+                GAMERS
+              </span>
             </Link>
             <p className="text-sm whitespace-pre-line leading-relaxed text-muted-gray">
               {t('footer.description')}

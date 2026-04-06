@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Barlow_Condensed, Space_Grotesk } from 'next/font/google';
+import { Inter, Barlow_Condensed, Space_Grotesk, Koulen } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { ClientProviders } from '@/components/providers/client-providers';
@@ -23,10 +23,20 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+const koulen = Koulen({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-koulen',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'GAMERS | 모든 경쟁이 기억이 되는 곳',
   description: '캐주얼부터 정식 리그까지. 당신만의 무대에서 경쟁하세요. 모든 경쟁이 기록되고 기억되는 국내 최대 게이밍 플랫폼 GAMERS.',
   keywords: ['Gaming', 'Esports', 'Tournament', 'Pro Gaming', 'Valorant', 'LoL', 'Community'],
+  icons: {
+    icon: '/logo.png',
+  },
   openGraph: {
     title: 'GAMERS | 모든 경쟁이 기억이 되는 곳',
     description: '모든 경쟁이 기록되고 기억되는 국내 최대 게이밍 플랫폼 GAMERS.',
@@ -46,6 +56,7 @@ export default function RootLayout({
           inter.variable,
           barlow.variable,
           spaceGrotesk.variable,
+          koulen.variable,
           'min-h-screen bg-background text-foreground font-sans antialiased overflow-x-hidden'
         )}
       >

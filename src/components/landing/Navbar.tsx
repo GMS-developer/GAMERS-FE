@@ -23,14 +23,9 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <div className="flex items-center gap-10">
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <Image
-              src="/logo.png"
-              alt="GAMERS Logo"
-              width={120}
-              height={32}
-              className="h-8 w-auto object-contain"
-              priority
-            />
+            <span className="font-koulen text-3xl font-normal tracking-tight text-foreground uppercase italic text-glow-mint leading-none pt-1">
+              GAMERS
+            </span>
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
