@@ -72,10 +72,8 @@
       "mock": {
         "contest1": "발로란트 커뮤니티 오픈컵",
         "contest2": "LoL 아카데미 리그 시즌 4",
-        "contest3": "CS2 한일 교류전",
-        "contest4": "Apex Legends 듀오 챌린지",
-        "contest5": "발로란트 챌린저스 예선",
-        "contest6": "멀티 게임 배틀로얄 인비테이셔널",
+        "contest3": "발로란트 챌린저스 예선",
+        "contest4": "멀티 게임 배틀로얄 인비테이셔널",
         "multi_game": "멀티 게임"
       }
     },

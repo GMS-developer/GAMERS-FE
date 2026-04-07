@@ -8,7 +8,7 @@ import { ChevronDown, PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 
-const GAMES = ['All', 'Valorant', 'LoL', 'CS2', 'Apex'];
+const GAMES = ['All', 'Valorant', 'LoL'];
 
 export function ContestsListContent() {
   const { t } = useTranslation();
@@ -40,35 +40,12 @@ export function ContestsListContent() {
       maxParticipants: 16,
       gameColor: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
     },
+
     {
       id: 3,
-      game: 'CS2',
-      status: 'UPCOMING' as const,
-      title: t('contests.list.mock.contest3'),
-      creator: 'KR_Gaming',
-      date: '2026-04-12',
-      prize: '₩1,000,000',
-      participants: 4,
-      maxParticipants: 64,
-      gameColor: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-    },
-    {
-      id: 4,
-      game: 'Apex',
-      status: 'OPEN' as const,
-      title: t('contests.list.mock.contest4'),
-      creator: 'ApexKR',
-      date: '2026-04-10',
-      prize: '₩150,000',
-      participants: 22,
-      maxParticipants: 40,
-      gameColor: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
-    },
-    {
-      id: 5,
       game: 'Valorant',
       status: 'UPCOMING' as const,
-      title: t('contests.list.mock.contest5'),
+      title: t('contests.list.mock.contest3'),
       creator: 'VCT_KR',
       date: '2026-04-20',
       prize: '₩3,000,000',
@@ -77,10 +54,10 @@ export function ContestsListContent() {
       gameColor: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
     },
     {
-      id: 6,
+      id: 4,
       game: t('contests.list.mock.multi_game'),
       status: 'OPEN' as const,
-      title: t('contests.list.mock.contest6'),
+      title: t('contests.list.mock.contest4'),
       creator: 'GMS_Creator',
       date: '2026-04-08',
       prize: '₩750,000',

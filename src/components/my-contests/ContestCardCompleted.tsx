@@ -8,7 +8,7 @@ import { Trophy, Medal, XCircle, ChevronRight } from 'lucide-react';
 
 interface CompletedProps {
   id: string;
-  game: 'Valorant' | 'League of Legends' | 'CS2' | string;
+  game: 'Valorant' | 'League of Legends' | string;
   title: string;
   date: string;
   rank: number;

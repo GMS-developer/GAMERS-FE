@@ -68,17 +68,6 @@ export function MyContestsContent() {
       prize: '₩100K',
       record: { wins: 4, losses: 1 },
       resultLabel: `🥈 ${t('common.runner_up')}`
-    },
-    {
-      id: '5',
-      game: 'CS2',
-      title: t('my_contests.mock.contest5'),
-      date: '2025-12-10',
-      rank: 16,
-      totalTeams: 64,
-      prize: '—',
-      record: { wins: 1, losses: 1 },
-      resultLabel: t('common.eliminated')
     }
   ];
 

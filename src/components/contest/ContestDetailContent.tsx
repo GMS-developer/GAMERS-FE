@@ -93,18 +93,6 @@ const RELATED_MOCK = [
     participants: 16,
     maxParticipants: 16,
     gameColor: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-  },
-  {
-    id: 3,
-    game: 'CS2',
-    status: 'UPCOMING' as const,
-    title: 'contests.single.mock.related.2',
-    creator: 'KR_Gaming',
-    date: '2026-04-12',
-    prize: '₩1,000,000',
-    participants: 4,
-    maxParticipants: 64,
-    gameColor: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
   }
 ];
 

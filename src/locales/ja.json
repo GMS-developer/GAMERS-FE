@@ -71,11 +71,9 @@
       "empty": "進行中の大会がありません。",
       "mock": {
         "contest1": "VALORANTコミュニティオープンカップ",
-        "contest2": "LoLアカ데미リーグ シーズン4",
-        "contest3": "CS2日韓交流戦",
-        "contest4": "Apex Legends デュオチャレンジ",
-        "contest5": "Valorant チャレンジャーズ予選",
-        "contest6": "マルチゲーム バトルロイヤル インビテーショナル",
+        "contest2": "LoLアカデミーリーグ シーズン4",
+        "contest3": "Valorant チャレンジャーズ予選",
+        "contest4": "マルチゲーム バトルロイヤル インビテーショナル",
         "multi_game": "マルチゲーム"
       }
     },
