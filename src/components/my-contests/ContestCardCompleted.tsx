@@ -79,7 +79,7 @@ export function ContestCardCompleted({
           <span className="text-[9px] font-black text-[#4A4A55] uppercase tracking-widest leading-none">{t('my_contests.card.prize_earned')}</span>
         </div>
         <div className="flex flex-col items-center justify-center gap-1.5 rounded-xl bg-white/[0.02] border border-white/5 py-4">
-          <span className="text-[14px] font-black text-[#EEEEF0] italic leading-none">{record.wins}W{record.losses}L</span>
+          <span className="text-[14px] font-black text-[#EEEEF0] italic leading-none">{record.wins}{t('playground.recent_matches.win')}{record.losses}{t('playground.recent_matches.lose')}</span>
           <span className="text-[9px] font-black text-[#4A4A55] uppercase tracking-widest leading-none">{t('my_contests.card.total_record')}</span>
         </div>
       </div>

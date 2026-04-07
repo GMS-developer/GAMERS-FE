@@ -1,5 +1,7 @@
 import React from 'react';
+import Link from 'next/link';
 import { AuthSidePanel } from '@/components/auth/AuthSidePanel';
+import { ChevronLeft } from 'lucide-react';
 
 export default function AuthLayout({
   children,
@@ -13,6 +15,18 @@ export default function AuthLayout({
       
       {/* Form Content Area */}
       <main className="flex-1 flex flex-col items-center justify-center bg-[#141418] relative px-6 py-12">
+        {/* Back to Home Link */}
+        <div className="absolute top-8 left-8 z-20">
+          <Link 
+            href="/" 
+            className="flex items-center gap-2 text-[#7A7A85] hover:text-white transition-colors group"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#1A1A20] flex items-center justify-center group-hover:bg-[#24242B] transition-colors">
+              <ChevronLeft className="w-4 h-4" />
+            </div>
+            <span className="font-inter text-sm font-bold uppercase tracking-wider">랜딩 페이지로</span>
+          </Link>
+        </div>
         {/* Decorative Grid Background */}
         <div 
           className="absolute inset-0 opacity-[0.02] pointer-events-none" 

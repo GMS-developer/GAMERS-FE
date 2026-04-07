@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Trophy } from 'lucide-react';
@@ -53,15 +54,20 @@ export function HeroSection() {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="mt-12 flex flex-col gap-4 sm:flex-row"
       >
-        <Button variant="neon" size="xl" className="group">
-          <Trophy className="mr-2 h-5 w-5" />
-          {t('landing.hero.cta_join')}
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        <Button variant="neon" size="xl" className="group" asChild>
+          <Link href="/contests">
+            <Trophy className="mr-2 h-5 w-5" />
+            {t('landing.hero.cta_join')}
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </Button>
-        <Button variant="outline" size="xl" className="border-white/10 text-foreground hover:bg-white/5">
-          {t('landing.hero.cta_create')}
+        <Button variant="outline" size="xl" className="border-white/10 text-foreground hover:bg-white/5" asChild>
+          <Link href="/contests/create">
+            {t('landing.hero.cta_create')}
+          </Link>
         </Button>
       </motion.div>
+
       
       {/* Decorative Grid */}
       <div className="absolute bottom-0 left-0 right-0 -z-20 h-full w-full opacity-[0.03] [mask-image:radial-gradient(ellipse_at_center,black,transparent)]" 

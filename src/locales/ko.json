@@ -13,14 +13,19 @@
     "submit": "제출",
     "search": "검색",
     "filter": "필터",
-    "sort": "정렬"
+    "sort": "정렬",
+    "winning": "우승",
+    "runner_up": "준우승",
+    "count_suffix": "건",
+    "view_all": "전체 보기"
   },
   "navbar": {
     "find_contests": "대회 찾기",
     "my_contests": "내 대회",
     "community": "커뮤니티",
     "login": "로그인",
-    "get_started": "시작하기"
+    "get_started": "시작하기",
+    "language": "언어 설정"
   },
   "footer": {
     "product": "제품",
@@ -287,7 +292,26 @@
       "team_suffix": "팀",
       "full": "마감",
       "no_info": "정보 없음",
-      "contest_start": "대회 시작"
+      "contest_start": "대회 시작",
+      "prize_earned": "획득 상금",
+      "rank_suffix": "위",
+      "completed_suffix": "종료됨",
+      "final_rank": "최종 순위",
+      "total_record": "총 전적",
+      "view_results": "결과 보기",
+      "view_details": "상세 보기",
+      "enter_stadium": "경기장 입장",
+      "team_distribution": "팀 분배 확인"
+    },
+    "mock": {
+      "contest1": "발로란트 커뮤니티 오픈컵",
+      "contest1_status": "진행 중",
+      "contest1_format": "5v5 토너먼트",
+      "contest2": "LoL 아카데미 리그 시즌 4",
+      "contest2_status": "모집 중",
+      "contest2_format": "5v5 리그",
+      "contest3": "발로란트 챌린저스 예선",
+      "contest4": "LoL 챔피언스 코리아"
     }
   },
   "playground": {

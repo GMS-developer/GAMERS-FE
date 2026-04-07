@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
@@ -51,8 +52,8 @@ export function CTASection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-12"
         >
-          <Button variant="neon" size="xl" className="h-16 px-12 text-lg shadow-[0_0_40px_rgba(110,231,183,0.3)]">
-            {t('landing.cta.button')}
+          <Button variant="neon" size="xl" className="h-16 px-12 text-lg shadow-[0_0_40px_rgba(110,231,183,0.3)]" asChild>
+            <Link href="/signup">{t('landing.cta.button')}</Link>
           </Button>
         </motion.div>
       </div>

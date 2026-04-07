@@ -13,14 +13,19 @@
     "submit": "提出",
     "search": "検索",
     "filter": "フィルター",
-    "sort": "整列"
+    "sort": "整列",
+    "winning": "優勝",
+    "runner_up": "準優勝",
+    "count_suffix": "件",
+    "view_all": "すべて表示"
   },
   "navbar": {
     "find_contests": "大会を探す",
     "my_contests": "自分の大会",
     "community": "コミュニティ",
     "login": "ログイン",
-    "get_started": "始める"
+    "get_started": "始める",
+    "language": "言語設定"
   },
   "footer": {
     "product": "製品",
@@ -286,7 +291,26 @@
       "team_suffix": "チーム",
       "full": "満員",
       "no_info": "情報なし",
-      "contest_start": "大会開始"
+      "contest_start": "大会開始",
+      "prize_earned": "獲得賞金",
+      "rank_suffix": "位",
+      "completed_suffix": "終了",
+      "final_rank": "最終順位",
+      "total_record": "通算戦績",
+      "view_results": "結果を見る",
+      "view_details": "詳細を見る",
+      "enter_stadium": "会場に入場",
+      "team_distribution": "チーム編成を確認"
+    },
+    "mock": {
+      "contest1": "VALORANTコミュニティオープンカップ",
+      "contest1_status": "進行中",
+      "contest1_format": "5v5 トーナメント",
+      "contest2": "LoLアカデミーリーグ シーズン4",
+      "contest2_status": "募集中",
+      "contest2_format": "5v5 リーグ",
+      "contest3": "Valorant チャレンジャーズ予選",
+      "contest4": "LoL チャンピオンズ・コリア"
     }
   },
   "playground": {

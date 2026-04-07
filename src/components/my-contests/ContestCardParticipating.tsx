@@ -94,11 +94,11 @@ export function ContestCardParticipating({
                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-red opacity-75"></span>
                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-neon-red"></span>
                  </span>
-                 LIVE
+                 {t('contests.detail.cta.live')}
                </span>
              ) : (
                <span className="flex items-center gap-1.5 rounded-lg bg-neon-mint/10 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-neon-mint border border-neon-mint/20">
-                 OPEN
+                 {t('contests.detail.status.OPEN')}
                </span>
              )}
           </div>
@@ -153,7 +153,7 @@ export function ContestCardParticipating({
                     <Clock className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[15px] font-black text-[#EEEEF0] leading-tight">vs {nextMatch.opponent}</span>
+                    <span className="text-[15px] font-black text-[#EEEEF0] leading-tight">{t('playground.recent_matches.vs')} {nextMatch.opponent}</span>
                     <span className="text-[11px] font-bold text-neon-mint">{nextMatch.time}</span>
                   </div>
                 </div>
@@ -172,10 +172,10 @@ export function ContestCardParticipating({
               <div className="flex items-center gap-2.5">
                 <div className="flex items-baseline gap-1">
                   <span className="text-xl font-black italic text-[#EEEEF0]">{record.wins}</span>
-                  <span className="text-[11px] font-black text-[#4A4A55]">W</span>
+                  <span className="text-[11px] font-black text-[#4A4A55]">{t('playground.recent_matches.win')}</span>
                   <span className="mx-1 text-[#4A4A55] opacity-30">·</span>
                   <span className="text-xl font-black italic text-neon-red">{record.losses}</span>
-                  <span className="text-[11px] font-black text-[#4A4A55]">L</span>
+                  <span className="text-[11px] font-black text-[#4A4A55]">{t('playground.recent_matches.lose')}</span>
                 </div>
                 {record.isUnbeatable && (
                   <span className="rounded-md bg-neon-mint/5 border border-neon-mint/20 px-2 py-0.5 text-[9px] font-black text-neon-mint tracking-wider uppercase">
