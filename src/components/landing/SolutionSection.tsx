@@ -1,24 +1,23 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Target, BarChart3, Medal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { TournamentAnimation } from './animations/TournamentAnimation';
+import { MatchingAnimation } from './animations/MatchingAnimation';
+import { DiscordBotAnimation } from './animations/DiscordBotAnimation';
 
 const solutions = [
   {
-    icon: Target,
     key: 'item_1',
-    color: 'text-neon-mint',
+    animation: TournamentAnimation,
   },
   {
-    icon: BarChart3,
     key: 'item_2',
-    color: 'text-neon-mint',
+    animation: MatchingAnimation,
   },
   {
-    icon: Medal,
     key: 'item_3',
-    color: 'text-neon-mint',
+    animation: DiscordBotAnimation,
   },
 ];
 
@@ -60,9 +59,9 @@ export function SolutionSection() {
                 i % 2 === 1 ? 'md:flex-row-reverse' : ''
               }`}
             >
-              <div className="relative flex aspect-video w-full flex-1 items-center justify-center rounded-2xl bg-white/5 border border-white/5 md:w-1/2">
-                <sol.icon className="h-16 w-16 text-neon-mint opacity-20" />
-                <div className="absolute inset-0 glow-bg-mint opacity-10" />
+              <div className="relative flex aspect-video w-full flex-1 items-center justify-center rounded-2xl bg-white/5 border border-white/5 md:w-1/2 overflow-hidden">
+                <sol.animation />
+                <div className="absolute inset-0 glow-bg-mint opacity-5 pointer-events-none" />
                 <div className="font-barlow absolute -top-4 -left-4 text-8xl font-black opacity-[0.03] italic">
                   0{i + 1}
                 </div>

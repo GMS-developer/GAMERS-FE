@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
+import { ContestStatus } from '@/types/contest';
 
 interface ContestCardProps {
   id: number | string;
   game: string;
-  status: 'OPEN' | 'LIVE' | 'UPCOMING' | 'CLOSED';
+  status: ContestStatus;
   title: string;
   creator: string;
   date: string;
@@ -19,29 +20,29 @@ interface ContestCardProps {
 }
 
 const statusColors = {
-  OPEN: {
+  [ContestStatus.PENDING]: {
     bg: 'bg-emerald-500/10',
     border: 'border-emerald-500/20',
     text: 'text-emerald-500',
     dot: 'bg-emerald-500',
   },
-  LIVE: {
+  [ContestStatus.ACTIVE]: {
     bg: 'bg-red-500/10',
     border: 'border-red-500/20',
     text: 'text-red-500',
     dot: 'bg-red-500',
   },
-  UPCOMING: {
-    bg: 'bg-slate-400/10',
-    border: 'border-slate-400/20',
-    text: 'text-slate-400',
-    dot: 'bg-slate-400',
-  },
-  CLOSED: {
+  [ContestStatus.FINISHED]: {
     bg: 'bg-slate-600/10',
     border: 'border-slate-600/20',
     text: 'text-slate-600',
     dot: 'bg-slate-600',
+  },
+  [ContestStatus.CANCELLED]: {
+    bg: 'bg-slate-700/10',
+    border: 'border-slate-700/20',
+    text: 'text-slate-700',
+    dot: 'bg-slate-700',
   },
 };
 
@@ -58,8 +59,11 @@ export function ContestCard({
   gameColor = 'bg-emerald-500/10',
 }: ContestCardProps) {
   const { t } = useTranslation();
-  const statusStyle = statusColors[status];
+  const statusStyle = statusColors[status] || statusColors[ContestStatus.PENDING];
   const progress = (participants / maxParticipants) * 100;
+
+  const isClosed = status === ContestStatus.FINISHED || status === ContestStatus.CANCELLED;
+  const isLive = status === ContestStatus.ACTIVE;
 
   return (
     <Link href={`/contests/${id}`} className="block w-full">
@@ -127,7 +131,7 @@ export function ContestCard({
             transition={{ duration: 1, ease: "easeOut" }}
             className={cn(
               "h-full rounded-full transition-all",
-              status === 'LIVE' ? 'bg-red-500' : 'bg-neon-mint'
+              isLive ? 'bg-red-500' : 'bg-neon-mint'
             )}
           />
         </div>
@@ -136,12 +140,12 @@ export function ContestCard({
         <div
           className={cn(
             "w-full rounded-lg py-3 text-sm font-bold transition-all text-center",
-            status === 'CLOSED' || status === 'LIVE' 
+            isClosed || isLive 
               ? "bg-[#242428] text-[#7A7A85]" 
               : "bg-neon-mint text-deep-black group-hover:bg-neon-mint/90 active:scale-[0.98] shadow-[0_0_20px_rgba(110,231,183,0.2)]"
           )}
         >
-          {status === 'CLOSED' || status === 'LIVE' ? t('contests.card.status_closed') : t('contests.card.apply')}
+          {isClosed || isLive ? t('contests.card.status_closed') : t('contests.card.apply')}
         </div>
       </motion.div>
     </Link>

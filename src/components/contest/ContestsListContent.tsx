@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import { ChevronDown, PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
+import { useContests } from '@/hooks/use-contests';
+import { GameType } from '@/types/contest';
 
 const GAMES = ['All', 'Valorant', 'LoL'];
 
@@ -14,58 +16,14 @@ export function ContestsListContent() {
   const { t } = useTranslation();
   const [selectedGame, setSelectedGame] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
+  const [currentPage] = useState(1);
 
-  const MOCK_CONTESTS = [
-    {
-      id: 1,
-      game: 'Valorant',
-      status: 'OPEN' as const,
-      title: t('contests.list.mock.contest1'),
-      creator: 'GMS_Creator',
-      date: '2026-04-05',
-      prize: '₩500,000',
-      participants: 18,
-      maxParticipants: 32,
-      gameColor: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
-    },
-    {
-      id: 2,
-      game: 'LoL',
-      status: 'LIVE' as const,
-      title: t('contests.list.mock.contest2'),
-      creator: 'LOL_Official',
-      date: '2026-03-27',
-      prize: '₩200,000',
-      participants: 16,
-      maxParticipants: 16,
-      gameColor: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
-    },
-
-    {
-      id: 3,
-      game: 'Valorant',
-      status: 'UPCOMING' as const,
-      title: t('contests.list.mock.contest3'),
-      creator: 'VCT_KR',
-      date: '2026-04-20',
-      prize: '₩3,000,000',
-      participants: 8,
-      maxParticipants: 128,
-      gameColor: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
-    },
-    {
-      id: 4,
-      game: t('contests.list.mock.multi_game'),
-      status: 'OPEN' as const,
-      title: t('contests.list.mock.contest4'),
-      creator: 'GMS_Creator',
-      date: '2026-04-08',
-      prize: '₩750,000',
-      participants: 31,
-      maxParticipants: 50,
-      gameColor: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
-    },
-  ];
+  const { data, isLoading, isError } = useContests({
+    page: currentPage,
+    page_size: 9,
+    // Note: API doesn't currently support game/status filtering, 
+    // so we'll handle it locally for now if needed, or wait for API updates.
+  });
 
   const STATUSES = [
     { key: 'All', label: t('contests.list.filters.all') },
@@ -73,6 +31,38 @@ export function ContestsListContent() {
     { key: 'UPCOMING', label: t('contests.list.filters.recruiting') },
     { key: 'COMPLETED', label: t('contests.list.filters.finished') },
   ];
+
+  // Helper to get game color and label
+  const getGameInfo = (gameType: GameType) => {
+    switch (gameType) {
+      case GameType.VALORANT:
+        return {
+          label: 'Valorant',
+          color: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20'
+        };
+      case GameType.LOL:
+        return {
+          label: 'LoL',
+          color: 'bg-amber-500/10 text-amber-500 border-amber-500/20'
+        };
+      default:
+        return {
+          label: gameType,
+          color: 'bg-purple-500/10 text-purple-500 border-purple-500/20'
+        };
+    }
+  };
+
+  if (isError) {
+    return (
+      <div className="flex h-[400px] w-full items-center justify-center text-[#7A7A85]">
+        {t('common.error')}
+      </div>
+    );
+  }
+
+  const contests = data?.data || [];
+  const totalCount = data?.total_count || 0;
 
   return (
     <div className="flex w-full flex-col gap-12 px-6 pb-20 md:px-16">
@@ -128,7 +118,7 @@ export function ContestsListContent() {
           {/* Result Count */}
           <div className="ml-auto flex items-center gap-2">
             <span className="text-[13px] font-medium text-[#7A7A85]">
-              <span className="text-neon-mint font-bold">{MOCK_CONTESTS.length}</span>{t('common.count_suffix', {defaultValue: '건'})}
+              <span className="text-neon-mint font-bold">{totalCount}</span>{t('common.count_suffix', {defaultValue: '건'})}
             </span>
           </div>
         </div>
@@ -136,9 +126,35 @@ export function ContestsListContent() {
 
       {/* Grid Section */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-        {MOCK_CONTESTS.map((contest) => (
-          <ContestCard key={contest.id} {...contest} />
-        ))}
+        {isLoading ? (
+          // Skeleton loader could go here
+          Array.from({ length: 9 }).map((_, i) => (
+            <div key={i} className="h-[420px] w-full animate-pulse rounded-2xl bg-[#141418] border border-white/5" />
+          ))
+        ) : contests.length > 0 ? (
+          contests.map((contest) => {
+            const gameInfo = getGameInfo(contest.game_type);
+            return (
+              <ContestCard 
+                key={contest.contest_id}
+                id={contest.contest_id}
+                title={contest.title}
+                game={gameInfo.label}
+                gameColor={gameInfo.color}
+                status={contest.contest_status}
+                creator="GAMERS" // Creator name isn't in simple contest response yet
+                date={new Date(contest.started_at).toLocaleDateString()}
+                prize="TBD" // Prize info isn't in simple contest response yet
+                participants={contest.total_team_member}
+                maxParticipants={contest.max_team_count}
+              />
+            );
+          })
+        ) : (
+          <div className="col-span-full py-20 text-center text-[#7A7A85]">
+            {t('contests.list.empty')}
+          </div>
+        )}
       </div>
 
 

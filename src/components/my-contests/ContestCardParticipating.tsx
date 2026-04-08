@@ -98,7 +98,7 @@ export function ContestCardParticipating({
                </span>
              ) : (
                <span className="flex items-center gap-1.5 rounded-lg bg-neon-mint/10 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-neon-mint border border-neon-mint/20">
-                 {t('contests.detail.status.OPEN')}
+                 {t('contests.detail.status.PENDING')}
                </span>
              )}
           </div>

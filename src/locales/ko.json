@@ -119,16 +119,46 @@
         "bookmark": "북마크"
       },
       "status": {
-        "DRAFT": "초안",
-        "UPCOMING": "예정",
-        "RECRUITING": "모집 중",
-        "OPEN": "모집 중",
-        "CLOSED": "마감",
+        "PENDING": "모집 중",
         "ACTIVE": "진행 중",
-        "LIVE": "진행 중",
-        "COMPLETED": "종료",
+        "FINISHED": "종료",
         "CANCELLED": "취소"
-      }
+      },
+      "brackets": "대진표",
+      "participants": "참가자",
+      "rules": "규칙",
+      "comments": "댓글"
+    },
+    "single": {
+      "no_rules": "등록된 규칙이 없습니다.",
+      "no_participants": "참가자가 없습니다.",
+      "no_comments": "댓글이 없습니다. 첫 댓글을 남겨보세요!",
+      "comment_placeholder": "댓글을 입력하세요...",
+      "post_comment": "댓글 작성",
+      "apply_success": "성공적으로 신청되었습니다.",
+      "cancel_success": "신청이 취소되었습니다.",
+      "coming_soon": {
+        "title": "준비 중입니다",
+        "desc": "곧 공개될 예정입니다. 잠시만 기다려주세요!"
+      },
+      "type": {
+        "TOURNAMENT": "토너먼트",
+        "LEAGUE": "리그"
+      },
+      "stats": {
+        "points": "포인트",
+        "prize": "상금",
+        "teams": "팀 수",
+        "start_date": "시작일",
+        "format": "진행 방식"
+      },
+      "hero": {
+        "breadcrumb": "대회 목록",
+        "discord_link": "디스코드 연동"
+      },
+      "no_description": "설명이 없습니다.",
+      "auto_start": "자동 시작",
+      "manual_start": "수동 시작"
     },
     "create": {
       "title": "대회 개최",

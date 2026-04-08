@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { Search, User, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useUser, useLogout } from '@/hooks/use-auth';
 
 const navLinks = [
   { key: 'find_contests', href: '/contests' },
@@ -20,6 +21,9 @@ export function Navbar() {
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  const { data: user } = useUser();
+  const logout = useLogout();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,24 +113,55 @@ export function Navbar() {
               </button>
             </div>
 
-            <div className="hidden md:flex items-center gap-1 text-muted-gray hover:text-foreground transition-colors cursor-pointer">
-              <User className="h-5 w-5" />
-            </div>
+            <Link 
+              href={user ? "/mypage" : "/login"}
+              className="hidden md:flex items-center gap-1 text-muted-gray hover:text-foreground transition-colors cursor-pointer"
+            >
+              {user?.avatar ? (
+                <div className="h-6 w-6 rounded-full overflow-hidden border border-white/10">
+                  <img src={user.avatar} alt={user.username} className="h-full w-full object-cover" />
+                </div>
+              ) : (
+                <User className="h-5 w-5" />
+              )}
+            </Link>
 
             <div className="hidden md:flex items-center gap-4">
-              <Link
-                href="/login"
-                className="text-sm font-medium text-muted-gray transition-colors hover:text-foreground"
-              >
-                {t('navbar.login')}
-              </Link>
-              <Button
-                size="sm"
-                className="bg-neon-mint font-bold text-deep-black hover:bg-neon-mint/90 shadow-[0_0_15px_rgba(0,212,122,0.2)]"
-                asChild
-              >
-                <Link href="/signup">{t('navbar.get_started')}</Link>
-              </Button>
+              {user ? (
+                <>
+                  <Link
+                    href="/mypage"
+                    className="text-sm font-medium text-muted-gray transition-colors hover:text-foreground line-clamp-1 max-w-[120px]"
+                  >
+                    {user.username || user.email.split('@')[0]}
+                  </Link>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-white/10 text-foreground hover:bg-white/5"
+                    onClick={() => logout.mutate()}
+                    disabled={logout.isPending}
+                  >
+                    {t('navbar.logout') || 'Logout'}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="text-sm font-medium text-muted-gray transition-colors hover:text-foreground"
+                  >
+                    {t('navbar.login')}
+                  </Link>
+                  <Button
+                    size="sm"
+                    className="bg-neon-mint font-bold text-deep-black hover:bg-neon-mint/90 shadow-[0_0_15px_rgba(0,212,122,0.2)]"
+                    asChild
+                  >
+                    <Link href="/signup">{t('navbar.get_started')}</Link>
+                  </Button>
+                </>
+              )}
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -199,12 +234,30 @@ export function Navbar() {
               </div>
 
               <div className="grid grid-cols-2 gap-4 pt-4">
-                <Button variant="outline" className="border-white/10 text-foreground" asChild>
-                  <Link href="/login">{t('navbar.login')}</Link>
-                </Button>
-                <Button className="bg-neon-mint text-deep-black font-bold h-10" asChild>
-                  <Link href="/signup">{t('navbar.get_started')}</Link>
-                </Button>
+                {user ? (
+                  <>
+                    <Button variant="outline" className="border-white/10 text-foreground" asChild>
+                      <Link href="/mypage">{t('navbar.mypage') || 'My Page'}</Link>
+                    </Button>
+                    <Button 
+                      variant="ghost" 
+                      className="text-foreground/60" 
+                      onClick={() => logout.mutate()}
+                      disabled={logout.isPending}
+                    >
+                      {t('navbar.logout') || 'Logout'}
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button variant="outline" className="border-white/10 text-foreground" asChild>
+                      <Link href="/login">{t('navbar.login')}</Link>
+                    </Button>
+                    <Button className="bg-neon-mint text-deep-black font-bold h-10" asChild>
+                      <Link href="/signup">{t('navbar.get_started')}</Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>

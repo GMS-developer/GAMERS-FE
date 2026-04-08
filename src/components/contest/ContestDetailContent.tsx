@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { 
   Trophy, 
   Users, 
@@ -12,68 +13,33 @@ import {
   ChevronRight,
   Share2,
   Heart,
-  Flag,
   Clock,
-  ExternalLink
+  MessageCircle,
+  Send,
+  Medal,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ContestCard } from './ContestCard';
-import { useState, useEffect } from 'react';
+import { 
+  useContest, 
+  useMyContestStatus, 
+  useApplyToContest, 
+  useCancelApplication, 
+  useWithdrawFromContest,
+  useContestMembers,
+  useContestResult,
+  useContestComments,
+  useCreateComment
+} from '@/hooks/use-contests';
+import { ContestStatus, GameType } from '@/types/contest';
 
-// Temporary Mock Data for Demonstration
-const MOCK_CONTEST_DETAIL = {
-  id: 1,
-  title: '발로란트 신인 오픈컵 시즌 3',
-  game: 'Valorant',
-  creator: 'GMS_Creator',
-  date: '2026-04-05',
-  introduction: 'contests.single.mock.intro',
-  formatTags: [
-    'contests.single.mock.format.single',
-    'contests.single.mock.format.five_vs_five',
-    'contests.single.mock.format.bo3'
-  ],
-  schedule: [
-    { label: 'contests.single.mock.schedule.registration', date: '3/28 ~ 4/4', status: 'completed' },
-    { label: 'contests.single.mock.schedule.contest', date: '4/5 ~ 4/6', status: 'active' },
-    { label: 'contests.single.mock.schedule.result', date: '4/7', status: 'upcoming' },
-  ],
-  notes: [
-    'contests.single.mock.notes.0',
-    'contests.single.mock.notes.1',
-    'contests.single.mock.notes.2',
-  ],
-  prizePool: [
-    { rank: '1st', amount: '₩500,000', label: 'contests.single.mock.prize.first' },
-    { rank: '2nd', amount: '₩200,000', label: 'contests.single.mock.prize.second' },
-    { rank: '3rd', amount: '₩100,000', label: 'contests.single.mock.prize.third' },
-  ],
-  sponsors: [
-    { name: 'GAMERS Official', logo: 'G' },
-    { name: 'Logitech G', logo: 'L' },
-  ],
-  info: {
-    platform: 'PC / Riot Games',
-    region: 'contests.create.basic.preview.asia',
-    format: 'contests.create.basic.preview.tournament',
-  },
-  status: 'RECRUITING',
-  participants: 18,
-  maxParticipants: 32,
-  heroImage: 'https://images.unsplash.com/photo-1624138784614-87fd1b6528f2?q=80&w=2000&auto=format&fit=crop',
-  recentTeams: [
-    { name: 'Team Alpha', time: 2, type: 'hours_ago', initials: 'TA' },
-    { name: 'NexusGG', time: 5, type: 'hours_ago', initials: 'NX' },
-    { name: 'CyberRift', time: 1, type: 'days_ago', initials: 'CR' },
-  ]
-};
-
+// Keep RELATED_MOCK for now as related contests API isn't ready
 const RELATED_MOCK = [
   {
     id: 1,
     game: 'Valorant',
-    status: 'OPEN' as const,
+    status: ContestStatus.PENDING,
     title: 'contests.single.mock.title',
     creator: 'GMS_Creator',
     date: '2026-04-05',
@@ -85,7 +51,7 @@ const RELATED_MOCK = [
   {
     id: 2,
     game: 'League of Legends',
-    status: 'LIVE' as const,
+    status: ContestStatus.ACTIVE,
     title: 'contests.single.mock.related.1',
     creator: 'LOL_Official',
     date: '2026-03-27',
@@ -99,25 +65,128 @@ const RELATED_MOCK = [
 export function ContestDetailContent() {
   const { t } = useTranslation();
   const params = useParams();
+  const id = Number(params.id);
+
+  const { data: contest, isLoading, isError } = useContest(id);
+  const { data: myStatus } = useMyContestStatus(id);
+
+  const applyMutation = useApplyToContest();
+  const cancelMutation = useCancelApplication();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _withdrawMutation = useWithdrawFromContest();
+  const createCommentMutation = useCreateComment();
+
+  // New API data for tabs
+  const { data: membersData, isLoading: isMembersLoading } = useContestMembers(id);
+  const { data: resultData, isLoading: isResultLoading } = useContestResult(id);
+  const { data: commentsData, isLoading: isCommentsLoading } = useContestComments(id);
+
   const [activeTab, setActiveTab] = useState('overview');
+  const [commentContent, setCommentContent] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 400);
+      setIsScrolled(window.scrollY > 300);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const data = MOCK_CONTEST_DETAIL;
+  const handleApply = async () => {
+    try {
+      await applyMutation.mutateAsync({ contestId: id });
+      alert(t('contests.single.apply_success'));
+    } catch (error) {
+      console.error('Failed to apply:', error);
+    }
+  };
 
+  const handleCommentSubmit = async () => {
+    if (!commentContent.trim() || createCommentMutation.isPending) return;
+
+    try {
+      await createCommentMutation.mutateAsync({
+        contestId: id,
+        content: commentContent,
+      });
+      setCommentContent('');
+    } catch (error) {
+      console.error('Failed to post comment:', error);
+    }
+  };
+
+  const handleCancel = async () => {
+    if (!confirm(t('contests.single.cancel_confirm'))) return;
+    try {
+      await cancelMutation.mutateAsync(id);
+    } catch (error) {
+      console.error('Failed to cancel:', error);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen pt-24 flex items-center justify-center">
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"
+        />
+      </div>
+    );
+  }
+
+  if (isError || !contest) {
+    return (
+      <div className="min-h-screen pt-24 flex flex-col items-center justify-center space-y-4">
+        <h2 className="text-2xl font-bold text-white">{t('contests.list.error.title')}</h2>
+        <p className="text-gray-400">{t('contests.list.error.description')}</p>
+        <Button onClick={() => window.location.reload()}>{t('contests.list.error.retry')}</Button>
+      </div>
+    );
+  }
+
+  // Map API data to UI structure
+  const gameInfo = {
+    [GameType.VALORANT]: { color: 'text-rose-500', bg: 'bg-rose-500/10', border: 'border-rose-500/20' },
+    [GameType.LOL]: { color: 'text-blue-500', bg: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  }[contest.game_type] || { color: 'text-emerald-500', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20' };
+
+  const formatTags = [
+    t(`contests.single.type.${contest.contest_type}`),
+    `${contest.max_team_count} ${t('contests.create.preview.teams')}`,
+    contest.auto_start ? t('contests.single.auto_start') : t('contests.single.manual_start')
+  ];
+
+  // Mock data for missing API fields (for layout preservation)
+  const schedule = [
+    { label: 'contests.single.mock.schedule.registration', date: '3/28 ~ 4/4', status: 'completed' },
+    { label: 'contests.single.mock.schedule.contest', date: '4/5 ~ 4/6', status: 'active' },
+    { label: 'contests.single.mock.schedule.result', date: '4/7', status: 'upcoming' },
+  ];
+
+  const prizePool = [
+    { rank: '1st', amount: contest.total_point ? `₩${contest.total_point.toLocaleString()}` : 'TBD', label: 'contests.single.mock.prize.first' },
+    { rank: '2nd', amount: 'TBD', label: 'contests.single.mock.prize.second' },
+    { rank: '3rd', amount: 'TBD', label: 'contests.single.mock.prize.third' },
+  ];
+
+  const heroImage = contest.thumbnail || 'https://images.unsplash.com/photo-1624138784614-87fd1b6528f2?q=80&w=2000&auto=format&fit=crop';
+  const participantCount = contest.total_team_member || 0;
+  const maxParticipants = contest.max_team_count || 16;
+  const creatorName = 'GAMERS Official';
   const tabs = [
-    { id: 'overview', label: t('contests.detail.overview') },
+    { id: 'overview', label: t('contests.detail.tabs.overview') },
     { id: 'brackets', label: t('contests.detail.brackets') },
     { id: 'participants', label: t('contests.detail.participants') },
     { id: 'rules', label: t('contests.detail.rules') },
+    { id: 'comments', label: t('contests.detail.comments') },
   ];
+
+  // Application status helper
+  const isApplied = myStatus?.is_applied;
+  const isPending = contest.contest_status === ContestStatus.PENDING;
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-[#0C0C0F] selection:bg-neon-mint selection:text-deep-black">
@@ -129,8 +198,8 @@ export function ContestDetailContent() {
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            src={data.heroImage} 
-            alt={data.title}
+            src={heroImage} 
+            alt={contest.title}
             className="w-full h-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0F] via-[#0C0C0F]/40 to-transparent" />
@@ -149,7 +218,7 @@ export function ContestDetailContent() {
             >
                <span className="text-sm font-black text-[#7A7A85] tracking-[0.2em] uppercase">{t('contests.single.hero.breadcrumb')}</span>
                <ChevronRight className="w-4 h-4 text-[#3A3A45]" />
-               <span className="text-sm font-black text-[#EEEEF0] tracking-tight">{t(data.title)}</span>
+               <span className="text-sm font-black text-[#EEEEF0] tracking-tight">{contest.title}</span>
             </motion.div>
 
             <div className="flex flex-col gap-4">
@@ -158,15 +227,15 @@ export function ContestDetailContent() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="flex items-center gap-3"
               >
-                <div className="flex items-center gap-2 rounded bg-neon-mint/10 px-3 py-1 border border-neon-mint/20">
-                  <span className="text-[10px] font-black tracking-widest uppercase text-neon-mint">
-                    {data.game}
+                <div className={cn("flex items-center gap-2 rounded px-3 py-1 border", gameInfo.bg, gameInfo.border)}>
+                  <span className={cn("text-[10px] font-black tracking-widest uppercase", gameInfo.color)}>
+                    {contest.game_type}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-neon-mint/10 border border-neon-mint/20 backdrop-blur-md shadow-[0_0_15px_rgba(110,231,183,0.1)]">
                   <div className="h-1.5 w-1.5 rounded-full bg-neon-mint animate-pulse shadow-[0_0_8px_rgba(110,231,183,1)]" />
                   <span className="text-[10px] font-black tracking-widest uppercase text-neon-mint">
-                    {t(`contests.status.${data.status}`)}
+                    {t(`contests.detail.status.${contest.contest_status}`)}
                   </span>
                 </div>
               </motion.div>
@@ -177,7 +246,7 @@ export function ContestDetailContent() {
                 transition={{ delay: 0.1, duration: 0.8 }}
                 className="text-5xl md:text-7xl font-black text-[#EEEEF0] tracking-tight leading-tight max-w-4xl"
               >
-                {t(data.title)}
+                {contest.title}
               </motion.h1>
 
               <motion.div 
@@ -188,9 +257,9 @@ export function ContestDetailContent() {
               >
                  <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[10px] font-bold text-[#7A7A85]">
-                       {data.creator[0]}
+                       {creatorName[0]}
                     </div>
-                    <span className="text-sm font-bold text-[#7A7A85]">{data.creator}</span>
+                    <span className="text-sm font-bold text-[#7A7A85]">{creatorName}</span>
                  </div>
                  <div className="flex items-center gap-2">
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -210,19 +279,27 @@ export function ContestDetailContent() {
             >
               <div className="flex flex-col gap-1.5 group cursor-default">
                 <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors">{t('contests.single.stats.prize')}</span>
-                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">₩500,000</span>
+                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
+                  {contest.total_point ? `₩${contest.total_point.toLocaleString()}` : 'TBD'}
+                </span>
               </div>
               <div className="flex flex-col gap-1.5 group cursor-default">
                 <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors">{t('contests.single.stats.teams')}</span>
-                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">18 / 32</span>
+                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
+                  {participantCount} / {maxParticipants}
+                </span>
               </div>
               <div className="flex flex-col gap-1.5 group cursor-default">
                 <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors">{t('contests.single.stats.start_date')}</span>
-                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">{data.date}</span>
+                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
+                  {contest.started_at ? new Date(contest.started_at).toLocaleDateString() : 'TBD'}
+                </span>
               </div>
               <div className="flex flex-col gap-1.5 group cursor-default">
                 <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors">{t('contests.single.stats.format')}</span>
-                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">{t('contests.single.hero.format', { format: t(data.info.format) })}</span>
+                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
+                  {t(`contests.single.type.${contest.contest_type}`)}
+                </span>
               </div>
             </motion.div>
 
@@ -265,9 +342,9 @@ export function ContestDetailContent() {
                     <div className="w-1.5 h-6 bg-neon-mint rounded-full" />
                     <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.intro_title')}</h2>
                   </div>
-                  <p className="text-[#7A7A85] leading-relaxed text-base font-medium max-w-3xl">
-                    {t(data.introduction)}
-                  </p>
+                  <div className="text-[#7A7A85] leading-relaxed text-base font-medium max-w-3xl whitespace-pre-wrap">
+                    {contest.description || t('contests.single.no_description')}
+                  </div>
                 </div>
 
                 {/* Format */}
@@ -277,9 +354,9 @@ export function ContestDetailContent() {
                     <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.format_title')}</h2>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    {data.formatTags.map((tag, idx) => (
+                    {formatTags.map((tag, idx) => (
                       <div key={idx} className="bg-[#141418] px-5 py-3 rounded-xl border border-white/5 text-sm font-bold text-[#EEEEF0] hover:border-neon-mint/30 hover:bg-neon-mint/5 transition-all cursor-default">
-                        {t(tag)}
+                        {tag}
                       </div>
                     ))}
                   </div>
@@ -297,7 +374,7 @@ export function ContestDetailContent() {
                     {/* Active Progress Line */}
                     <div className="absolute left-10 w-[35%] top-[44px] h-[2px] bg-neon-mint shadow-[0_0_10px_rgba(110,231,183,0.5)]" />
                     
-                    {data.schedule.map((item, idx) => (
+                    {schedule.map((item, idx) => (
                       <div key={idx} className="relative flex flex-col items-center gap-6 z-10">
                         <div className="flex flex-col items-center gap-2">
                           <div className={cn(
@@ -325,33 +402,202 @@ export function ContestDetailContent() {
                   </div>
                 </div>
 
-                {/* Notes */}
+                {/* Prize Pool */}
                 <div className="flex flex-col gap-6">
                   <div className="flex items-center gap-3">
                     <div className="w-1.5 h-6 bg-neon-mint rounded-full" />
-                    <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.notes_title')}</h2>
+                    <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.prize_title')}</h2>
                   </div>
-                  <ul className="flex flex-col gap-5">
-                    {data.notes.map((note, idx) => (
-                      <li key={idx} className="flex items-start gap-4 p-5 rounded-2xl bg-[#141418]/30 border border-white/5 hover:border-white/10 transition-colors">
-                        <div className="mt-1.5 h-2 w-2 rounded-sm bg-neon-mint rotate-45 flex-shrink-0 shadow-[0_0_8px_rgba(110,231,183,0.4)]" />
-                        <span className="text-[15px] text-[#EEEEF0]/80 leading-relaxed font-semibold">{t(note)}</span>
-                      </li>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {prizePool.map((prize, idx) => (
+                      <div key={idx} className="p-6 rounded-2xl bg-[#141418]/30 border border-white/5 flex flex-col gap-2">
+                        <span className="text-xs font-black text-neon-mint uppercase tracking-widest">{prize.rank}</span>
+                        <span className="text-2xl font-black text-[#EEEEF0] font-barlow italic">{prize.amount}</span>
+                        <span className="text-[10px] font-bold text-[#7A7A85] uppercase tracking-widest">{t(prize.label)}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </>
             )}
 
-            {/* Other tabs placeholders */}
-            {(activeTab === 'brackets' || activeTab === 'participants' || activeTab === 'rules') && (
-               <div className="flex flex-col items-center justify-center py-32 border border-white/5 border-dashed rounded-3xl bg-[#141418]/30">
-                   <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
-                     <Clock className="w-8 h-8 text-[#3A3A45]" />
+            {activeTab === 'brackets' && (
+               <div className="flex flex-col gap-8">
+                 <div className="flex items-center gap-3">
+                   <div className="w-1.5 h-6 bg-neon-mint rounded-full" />
+                   <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.brackets')}</h2>
+                 </div>
+                 
+                 {isResultLoading ? (
+                   <div className="py-20 flex justify-center">
+                     <div className="w-8 h-8 border-2 border-neon-mint border-t-transparent rounded-full animate-spin" />
                    </div>
-                   <h3 className="text-2xl font-bold text-[#EEEEF0] mb-2">{t('contests.single.coming_soon.title')}</h3>
-                   <p className="text-[#7A7A85] font-medium">{t('contests.single.coming_soon.desc')}</p>
+                 ) : !resultData || resultData.rounds.length === 0 ? (
+                   <div className="flex flex-col items-center justify-center py-32 border border-white/5 border-dashed rounded-3xl bg-[#141418]/30">
+                     <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
+                       <Layout className="w-8 h-8 text-[#3A3A45]" />
+                     </div>
+                     <h3 className="text-2xl font-bold text-[#EEEEF0] mb-2">{t('contests.single.coming_soon.title')}</h3>
+                     <p className="text-[#7A7A85] font-medium">{t('contests.single.coming_soon.desc')}</p>
+                   </div>
+                 ) : (
+                   <div className="flex flex-col gap-12">
+                     {resultData.rounds.map((round) => (
+                       <div key={round.round} className="flex flex-col gap-6">
+                         <h3 className="text-lg font-black text-neon-mint italic uppercase font-barlow tracking-widest px-4 py-2 bg-neon-mint/5 border-l-2 border-neon-mint max-w-fit">
+                           {round.round_name || `Round ${round.round}`}
+                         </h3>
+                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                           {round.games.map((game: any, idx: number) => (
+                             <div key={idx} className="p-6 rounded-2xl bg-[#141418]/50 border border-white/5 flex flex-col gap-4 hover:border-white/10 transition-colors">
+                               <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-[#3A3A45]">
+                                 <span>Game #{game.game_id || idx + 1}</span>
+                                 <span>{game.game_status}</span>
+                               </div>
+                               <div className="flex flex-col gap-3">
+                                 {/* Mock teams for display if not in resultData */}
+                                 <div className="flex justify-between items-center">
+                                   <span className="text-sm font-bold text-[#EEEEF0]">Team A</span>
+                                   <span className="text-lg font-black font-barlow italic">0</span>
+                                 </div>
+                                 <div className="h-px bg-white/5" />
+                                 <div className="flex justify-between items-center text-neon-mint">
+                                   <span className="text-sm font-bold">Team B</span>
+                                   <span className="text-lg font-black font-barlow italic">2</span>
+                                 </div>
+                               </div>
+                             </div>
+                           ))}
+                         </div>
+                       </div>
+                     ))}
+                   </div>
+                 )}
+               </div>
+            )}
+
+            {activeTab === 'participants' && (
+              <div className="flex flex-col gap-8">
+                 <div className="flex items-center gap-3">
+                   <div className="w-1.5 h-6 bg-neon-mint rounded-full" />
+                   <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.participants')}</h2>
+                 </div>
+
+                 {isMembersLoading ? (
+                   <div className="py-20 flex justify-center">
+                     <div className="w-8 h-8 border-2 border-neon-mint border-t-transparent rounded-full animate-spin" />
+                   </div>
+                 ) : !membersData || membersData.data.length === 0 ? (
+                   <div className="flex flex-col items-center justify-center py-32 border border-white/5 border-dashed rounded-3xl bg-[#141418]/30">
+                     <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
+                       <Users className="w-8 h-8 text-[#3A3A45]" />
+                     </div>
+                     <h3 className="text-lg font-bold text-[#EEEEF0]">{t('contests.single.no_participants')}</h3>
+                   </div>
+                 ) : (
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     {membersData.data.map((member) => (
+                       <div key={member.user_id} className="p-5 rounded-2xl bg-[#141418]/50 border border-white/5 flex items-center justify-between group hover:bg-[#141418] transition-colors">
+                         <div className="flex items-center gap-4">
+                           <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-transparent border border-white/5 flex items-center justify-center overflow-hidden">
+                             {member.avatar ? (
+                               <img src={member.avatar} alt={member.username} className="w-full h-full object-cover" />
+                             ) : (
+                               <span className="text-sm font-bold text-[#7A7A85]">{member.username[0]}</span>
+                             )}
+                           </div>
+                           <div className="flex flex-col">
+                             <span className="text-base font-black text-[#EEEEF0] tracking-tight">{member.username}</span>
+                             <span className="text-[10px] font-bold text-[#3A3A45] tracking-widest uppercase">{member.tag}</span>
+                           </div>
+                         </div>
+                         <div className="flex flex-col items-end">
+                           <span className="text-sm font-black text-neon-mint font-barlow italic tracking-tight">{member.point} PT</span>
+                           <span className="text-[10px] font-bold text-[#3A3A45] uppercase tracking-widest">{t('contests.single.stats.points')}</span>
+                         </div>
+                       </div>
+                     ))}
+                   </div>
+                 )}
+              </div>
+            )}
+
+            {activeTab === 'rules' && (
+               <div className="flex flex-col gap-10">
+                   <div className="flex items-center gap-3">
+                     <div className="w-1.5 h-6 bg-neon-mint rounded-full" />
+                     <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.rules')}</h2>
+                   </div>
+                   <div className="prose prose-invert max-w-none text-[#7A7A85] leading-relaxed">
+                     <p className="whitespace-pre-wrap">{contest.description || t('contests.single.no_rules')}</p>
+                   </div>
                 </div>
+            )}
+            
+            {activeTab === 'comments' && (
+              <div className="flex flex-col gap-10">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-1.5 h-6 bg-neon-mint rounded-full" />
+                    <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.comments')}</h2>
+                  </div>
+                </div>
+
+                {/* Comment Input */}
+                <div className="bg-[#141418]/50 p-6 rounded-3xl border border-white/5 flex flex-col gap-4">
+                  <textarea 
+                    className="w-full bg-transparent border-none focus:ring-0 text-[#EEEEF0] placeholder:text-[#3A3A45] font-medium resize-none min-h-[100px]"
+                    placeholder={t('contests.single.comment_placeholder')}
+                    value={commentContent}
+                    onChange={(e) => setCommentContent(e.target.value)}
+                  />
+                  <div className="flex justify-between items-center pt-4 border-t border-white/5">
+                    <span className="text-[10px] font-bold text-[#3A3A45] tracking-widest uppercase">{commentContent.length}/255</span>
+                    <Button 
+                      className="bg-neon-mint hover:bg-white text-deep-black font-black uppercase text-[11px] tracking-widest px-6 h-10 group"
+                      onClick={handleCommentSubmit}
+                      disabled={!commentContent.trim() || createCommentMutation.isPending}
+                    >
+                      {t('contests.single.post_comment')}
+                      <Send className="w-3.5 h-3.5 ml-2 transition-transform group-hover:translate-x-0.5" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Comments List */}
+                <div className="flex flex-col gap-6">
+                  {isCommentsLoading ? (
+                    <div className="py-20 flex justify-center">
+                      <div className="w-8 h-8 border-2 border-neon-mint border-t-transparent rounded-full animate-spin" />
+                    </div>
+                  ) : !commentsData || commentsData.data.length === 0 ? (
+                    <div className="text-center py-12 text-[#3A3A45] font-bold italic uppercase tracking-widest">
+                      {t('contests.single.no_comments')}
+                    </div>
+                  ) : (
+                    <div className="flex flex-col gap-8">
+                      {commentsData.data.map((comment) => (
+                        <div key={comment.comment_id} className="flex gap-4">
+                          <div className="w-10 h-10 rounded-xl bg-white/5 flex-shrink-0 flex items-center justify-center overflow-hidden border border-white/5">
+                            {comment.author.avatar ? (
+                              <img src={comment.author.avatar} alt={comment.author.username} className="w-full h-full object-cover" />
+                            ) : (
+                              <span className="text-xs font-bold text-[#7A7A85]">{comment.author.username[0]}</span>
+                            )}
+                          </div>
+                          <div className="flex flex-col gap-1.5 flex-1">
+                            <div className="flex items-center gap-3">
+                              <span className="text-sm font-black text-[#EEEEF0]">{comment.author.username}</span>
+                              <span className="text-[10px] font-bold text-[#3A3A45] uppercase tracking-widest">{new Date(comment.created_at).toLocaleDateString()}</span>
+                            </div>
+                            <p className="text-sm font-medium text-[#7A7A85] leading-relaxed">{comment.content}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
             )}
           </div>
 
@@ -372,36 +618,34 @@ export function ContestDetailContent() {
                 </div>
                 <div className="flex items-center gap-3 bg-white/5 px-5 py-2 rounded-full border border-white/5 relative z-10">
                   <div className="w-1.5 h-1.5 rounded-full bg-neon-mint animate-pulse" />
-                  <span className="text-[11px] font-black text-[#EEEEF0] uppercase tracking-wider">2026.04.05 {t('playground.today')}</span>
+                  <span className="text-[11px] font-black text-[#EEEEF0] uppercase tracking-wider">{new Date().toLocaleDateString()} {t('playground.today')}</span>
                 </div>
               </div>
             </div>
 
-            {/* Recent Teams */}
+            {/* Application Requirements */}
             <div className="flex flex-col gap-6">
-               <div className="flex items-center justify-between">
-                 <h2 className="text-xs font-black text-[#7A7A85] uppercase tracking-[0.3em] font-barlow italic">{t('contests.single.sidebar.teams')}</h2>
-                 <span className="text-[10px] font-black text-neon-mint">18/32</span>
-               </div>
-               <div className="flex flex-col gap-3">
-                 {data.recentTeams.map((team, idx) => (
-                   <div key={idx} className="bg-[#141418]/60 p-4 rounded-2xl border border-white/5 flex items-center justify-between group cursor-pointer hover:bg-[#1C1C21] hover:border-neon-mint/20 transition-all hover:translate-x-1">
-                     <div className="flex items-center gap-4">
-                        <div className="w-11 h-11 rounded-xl bg-[#0C0C0F] border border-white/10 flex items-center justify-center text-sm font-black text-neon-mint group-hover:border-neon-mint/40 transition-colors shadow-inner">
-                          {team.initials}
-                        </div>
-                        <div className="flex flex-col gap-0.5">
-                          <span className="text-[15px] font-black text-[#EEEEF0] tracking-tight">{team.name}</span>
-                          <span className="text-[10px] font-bold text-[#3A3A45] uppercase tracking-widest">{t('contests.single.verified_team')}</span>
-                        </div>
-                     </div>
-                     <div className="flex flex-col items-end gap-1">
-                        <span className="text-[11px] font-bold text-[#7A7A85]">{t(`contests.single.sidebar.${team.type}`, { count: team.time })}</span>
-                       <ChevronRight className="w-3 h-3 text-[#3A3A45] opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
-                     </div>
-                   </div>
-                 ))}
-               </div>
+              <h2 className="text-xs font-black text-[#7A7A85] uppercase tracking-[0.3em] font-barlow italic">{t('contests.single.sidebar.requirements')}</h2>
+              <div className="bg-[#141418]/60 p-6 rounded-3xl border border-white/5 flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                    <Globe className="w-4 h-4 text-[#7A7A85]" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black text-[#3A3A45] uppercase tracking-widest">{t('contests.detail.hero.region')}</span>
+                    <span className="text-xs font-bold text-[#EEEEF0]">{t('contests.detail.hero.asia_pacific')}</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                    <Users className="w-4 h-4 text-[#7A7A85]" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black text-[#3A3A45] uppercase tracking-widest">{t('contests.detail.hero.slots')}</span>
+                    <span className="text-xs font-bold text-[#EEEEF0]">{maxParticipants} {t('contests.create.team.team_suffix')}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -425,8 +669,8 @@ export function ContestDetailContent() {
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-             {RELATED_MOCK.map((contest) => (
-                <ContestCard key={contest.id} {...contest} title={t(contest.title)} />
+             {RELATED_MOCK.map((related) => (
+                <ContestCard key={related.id} {...related} title={t(related.title)} />
              ))}
            </div>
         </section>
@@ -448,15 +692,21 @@ export function ContestDetailContent() {
                 
                 <div className="hidden md:flex items-center gap-12 pl-8 relative z-10">
                   <div className="flex flex-col gap-0.5">
-                      <span className="text-[10px] font-black text-[#7A7A85] uppercase tracking-[0.2em] font-barlow italic">{t('contests.single.sidebar.total_prize')}</span>
-                      <span className="text-2xl font-black text-neon-mint font-barlow italic tracking-tight">₩500,000</span>
+                      <span className="text-[10px] font-black text-[#7A7A85] uppercase tracking-[0.2em] font-barlow italic">{t('contests.detail.hero.prize_pool')}</span>
+                      <span className="text-2xl font-black text-neon-mint font-barlow italic tracking-tight italic uppercase">
+                        {contest.total_point ? `₩${contest.total_point.toLocaleString()}` : 'TBD'}
+                      </span>
                    </div>
                    <div className="h-10 w-px bg-white/5" />
                    <div className="flex flex-col gap-0.5">
-                      <span className="text-[10px] font-black text-[#7A7A85] uppercase tracking-[0.2em] font-barlow italic">{t('contests.single.sidebar.participants')}</span>
+                      <span className="text-[10px] font-black text-[#7A7A85] uppercase tracking-[0.2em] font-barlow italic">{t('contests.detail.hero.slots')}</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-xl font-black text-[#EEEEF0] font-barlow italic">18 / 32</span>
-                        <div className="px-2 py-0.5 rounded-full bg-neon-mint/10 border border-neon-mint/20 text-[9px] font-black text-neon-mint font-barlow italic">HOT</div>
+                        <span className="text-xl font-black text-[#EEEEF0] font-barlow italic">
+                          {participantCount} / {maxParticipants}
+                        </span>
+                        {participantCount >= maxParticipants * 0.8 && (
+                          <div className="px-2 py-0.5 rounded-full bg-neon-mint/10 border border-neon-mint/20 text-[9px] font-black text-neon-mint font-barlow italic">HOT</div>
+                        )}
                       </div>
                    </div>
                    <div className="h-10 w-px bg-white/5" />
@@ -464,15 +714,28 @@ export function ContestDetailContent() {
                       <span className="text-[10px] font-black text-[#7A7A85] uppercase tracking-[0.2em] font-barlow italic">{t('contests.single.sidebar.status')}</span>
                       <div className="flex items-center gap-2">
                          <div className="w-1.5 h-1.5 rounded-full bg-neon-mint animate-pulse shadow-[0_0_8px_rgba(46,255,183,0.8)]" />
-                         <span className="text-[13px] font-black text-[#EEEEF0] font-barlow italic uppercase tracking-wider">{t(`contests.status.${data.status}`)}</span>
+                         <span className="text-[13px] font-black text-[#EEEEF0] font-barlow italic uppercase tracking-wider">
+                           {t(`contests.detail.status.${contest.contest_status}`)}
+                         </span>
                       </div>
                    </div>
                 </div>
 
                 <div className="p-1 relative z-10 w-full md:w-auto">
-                  <Button size="lg" className="w-full md:w-64 h-16 bg-neon-mint hover:bg-white text-deep-black font-black text-base uppercase tracking-[0.1em] rounded-2xl shadow-[0_0_30px_rgba(46,255,183,0.3)] transition-all active:scale-95 flex items-center justify-center gap-3 group/btn">
-                    {t('contests.detail.apply_sticky')}
-                    <div className="w-6 h-6 rounded-full bg-deep-black/10 flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
+                  <Button 
+                    size="lg" 
+                    className={cn(
+                      "w-full md:w-64 h-16 transition-all active:scale-95 flex items-center justify-center gap-3 group/btn font-black text-base uppercase tracking-[0.1em] rounded-2xl shadow-[0_0_30px_rgba(46,255,183,0.3)]",
+                      isApplied ? "bg-white/10 hover:bg-white/20 text-white border border-white/10" : "bg-neon-mint hover:bg-white text-deep-black"
+                    )}
+                    onClick={isApplied ? handleCancel : handleApply}
+                    disabled={applyMutation.isPending || cancelMutation.isPending || (!isApplied && !isPending)}
+                  >
+                    {isApplied ? t('contests.single.cancel_application') : t('contests.detail.cta.apply')}
+                    <div className={cn(
+                      "w-6 h-6 rounded-full flex items-center justify-center transition-transform group/btn:translate-x-1",
+                      isApplied ? "bg-white/10" : "bg-deep-black/10"
+                    )}>
                       <ChevronRight className="w-4 h-4" />
                     </div>
                   </Button>

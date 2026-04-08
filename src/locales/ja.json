@@ -119,16 +119,46 @@
         "bookmark": "ブックマーク"
       },
       "status": {
-        "DRAFT": "下書き",
-        "UPCOMING": "予定",
-        "RECRUITING": "募集中",
-        "OPEN": "募集中",
-        "CLOSED": "締め切り",
+        "PENDING": "募集中",
         "ACTIVE": "進行中",
-        "LIVE": "進行中",
-        "COMPLETED": "終了",
+        "FINISHED": "終了",
         "CANCELLED": "キャンセル"
-      }
+      },
+      "brackets": "トーナメント表",
+      "participants": "参加者",
+      "rules": "ルール",
+      "comments": "コメント"
+    },
+    "single": {
+      "no_rules": "登録されたルールがありません。",
+      "no_participants": "参加者がいません。",
+      "no_comments": "コメントがありません。最初のコメントを残してみましょう！",
+      "comment_placeholder": "コメントを入力してください...",
+      "post_comment": "コメント投稿",
+      "apply_success": "正常に申し込まれました。",
+      "cancel_success": "申し込みがキャンセルされました。",
+      "coming_soon": {
+        "title": "準備中です",
+        "desc": "近日公開予定です。少々お待ちください！"
+      },
+      "type": {
+        "TOURNAMENT": "トーナメント",
+        "LEAGUE": "リーグ"
+      },
+      "stats": {
+        "points": "ポイント",
+        "prize": "賞金",
+        "teams": "チーム数",
+        "start_date": "開始日",
+        "format": "進行方式"
+      },
+      "hero": {
+        "breadcrumb": "大会リスト",
+        "discord_link": "Discord連携"
+      },
+      "no_description": "説明がありません。",
+      "auto_start": "自動開始",
+      "manual_start": "手動開始"
     },
     "create": {
       "title": "大会開催",

@@ -21,7 +21,7 @@ GAMERS-FE is a Next.js 16 application built with TypeScript and Tailwind CSS v4.
 - **Form Handling**: React Hook Form (`react-hook-form`) + Zod validation
 - **API Client**: Custom Axios wrapper (`@/lib/api-client`)
 - **I18n**: `i18next` & `react-i18next`
-- **Package Manager**: npm
+- **Package Manager**: bun
 
 ## Directory Structure
 - `src/app`: Next.js App Router pages and layouts.
