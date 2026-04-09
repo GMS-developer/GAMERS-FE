@@ -106,12 +106,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className="dark scroll-smooth" suppressHydrationWarning>
-      <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
       <body
         className={cn(
           inter.variable,
