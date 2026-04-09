@@ -17,7 +17,7 @@ export function PostList() {
   const mockPosts = [
     {
       category: 'tips',
-      game: 'Valorant',
+      game: t('common.games.valorant'),
       isHot: true,
       title: t('community.mock_posts.post1.title'),
       preview: t('community.mock_posts.post1.preview'),
@@ -27,7 +27,7 @@ export function PostList() {
     },
     {
       category: 'recruiting',
-      game: 'LoL',
+      game: t('common.games.lol'),
       status: 'recruiting',
       title: t('community.mock_posts.post2.title'),
       preview: t('community.mock_posts.post2.preview'),
@@ -37,7 +37,7 @@ export function PostList() {
     },
     {
       category: 'reviews',
-      game: 'Valorant',
+      game: t('common.games.valorant'),
       title: t('community.mock_posts.post3.title'),
       preview: t('community.mock_posts.post3.preview'),
       author: { name: 'StarPlayer_KR', avatar: '', initials: 'SP' },
@@ -54,7 +54,7 @@ export function PostList() {
     },
     {
       category: 'tips',
-      game: 'LoL',
+      game: t('common.games.lol'),
       title: t('community.mock_posts.post5.title'),
       preview: t('community.mock_posts.post5.preview'),
       author: { name: 'JungleMain_KR', avatar: '', initials: 'JG' },
