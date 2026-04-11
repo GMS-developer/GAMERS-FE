@@ -32,8 +32,7 @@ export function useContests(params: GetContestsParams = {}) {
   return useQuery({
     queryKey: contestKeys.list(params),
     queryFn: async () => {
-      const response = await contestApi.getContests(params);
-      return response.data;
+      return contestApi.getContests(params);
     },
   });
 }
@@ -45,8 +44,7 @@ export function useContest(id: number) {
   return useQuery({
     queryKey: contestKeys.detail(id),
     queryFn: async () => {
-      const response = await contestApi.getContest(id);
-      return response.data;
+      return contestApi.getContest(id);
     },
     enabled: !!id,
   });
@@ -59,8 +57,7 @@ export function useMyContests(params: GetMyContestsParams = {}) {
   return useQuery({
     queryKey: contestKeys.myContests(params),
     queryFn: async () => {
-      const response = await contestApi.getMyContests(params);
-      return response.data;
+      return contestApi.getMyContests(params);
     },
   });
 }
@@ -154,8 +151,7 @@ export function useMyContestStatus(id: number) {
   return useQuery({
     queryKey: contestKeys.myStatus(id),
     queryFn: async () => {
-      const response = await contestApi.getMyContestStatus(id);
-      return response.data;
+      return contestApi.getMyContestStatus(id);
     },
     enabled: !!id,
   });
@@ -184,8 +180,7 @@ export function useContestApplications(contestId: number) {
   return useQuery({
     queryKey: contestKeys.applications(contestId),
     queryFn: async () => {
-      const response = await contestApi.getApplications(contestId);
-      return response.data;
+      return contestApi.getApplications(contestId);
     },
     enabled: !!contestId,
   });
@@ -260,8 +255,7 @@ export function useContestMembers(contestId: number, params?: { page?: number; p
   return useQuery({
     queryKey: contestKeys.members(contestId, params),
     queryFn: async () => {
-      const response = await contestApi.getContestMembers(contestId, params);
-      return response.data;
+      return contestApi.getContestMembers(contestId, params);
     },
     enabled: !!contestId,
   });
@@ -289,8 +283,7 @@ export function useContestResult(contestId: number) {
   return useQuery({
     queryKey: contestKeys.result(contestId),
     queryFn: async () => {
-      const response = await contestApi.getContestResult(contestId);
-      return response.data;
+      return contestApi.getContestResult(contestId);
     },
     enabled: !!contestId,
   });
@@ -303,8 +296,7 @@ export function useContestComments(contestId: number, params?: { page?: number; 
   return useQuery({
     queryKey: contestKeys.comments(contestId, params),
     queryFn: async () => {
-      const response = await contestApi.getContestComments(contestId, params);
-      return response.data;
+      return contestApi.getContestComments(contestId, params);
     },
     enabled: !!contestId,
   });

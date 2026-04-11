@@ -97,7 +97,7 @@ export function ContestCreateContent() {
         discord_text_channel_id: data.discord_text_channel_id,
       });
 
-      const contestId = createResponse.data.contest_id;
+      const contestId = createResponse.contest_id;
 
       // 2. Upload Thumbnail if present
       const thumbnailFile = methods.getValues('thumbnail_file');

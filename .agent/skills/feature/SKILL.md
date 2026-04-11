@@ -86,9 +86,9 @@ import { cn } from "@/lib/utils"; // or explicit imports
 - `tailwind.config.ts`: Custom theme extensions.
 
 ## Development Workflow
-- **Start Dev Server**: `npm run dev`
-- **Build for Production**: `npm run build`
-- **Lint Code**: `npm run lint`
+- **Start Dev Server**: `bun run dev`
+- **Build for Production**: `bun run build`
+- **Lint Code**: `bun run lint`
 
 ## Critical Rules
 1. **Never** use `any` type implicitly or explicitly if possible.
