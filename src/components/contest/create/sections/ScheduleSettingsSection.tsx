@@ -10,7 +10,7 @@ export function ScheduleSettingsSection() {
   const { t } = useTranslation();
   const { register, watch, setValue, formState: { errors } } = useFormContext<ContestCreateFormValues>();
 
-  const autoStart = watch('autoStart') || false;
+  const autoStart = watch('auto_start') || false;
 
   return (
     <section id="schedule_settings" className="scroll-mt-32 flex flex-col gap-8 w-full max-w-4xl mx-auto py-12 border-b border-white/5">
@@ -34,21 +34,21 @@ export function ScheduleSettingsSection() {
           <div className="relative group">
             <Calendar className={cn(
               "absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors",
-              errors.startDate ? "text-red-500" : "text-[#4A4A55] group-focus-within:text-neon-mint"
+              errors.started_at ? "text-red-500" : "text-[#4A4A55] group-focus-within:text-neon-mint"
             )} />
             <input
               type="datetime-local"
-              {...register('startDate')}
+              {...register('started_at')}
               className={cn(
                 "w-full bg-[#0C0C0F] border border-white/5 rounded-2xl pl-11 pr-4 py-3.5 text-xs font-medium focus:outline-none focus:border-neon-mint transition-all shadow-inner uppercase",
-                errors.startDate && "border-red-500/50"
+                errors.started_at && "border-red-500/50"
               )}
             />
           </div>
-          {errors.startDate && (
+          {errors.started_at && (
             <p className="text-[11px] font-bold text-red-500 flex items-center gap-1">
               <AlertCircle className="h-3 w-3" />
-              {errors.startDate.message}
+              {errors.started_at.message}
             </p>
           )}
         </div>
@@ -62,21 +62,21 @@ export function ScheduleSettingsSection() {
           <div className="relative group">
             <Calendar className={cn(
               "absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors",
-              errors.endDate ? "text-red-500" : "text-[#4A4A55] group-focus-within:text-neon-mint"
+              errors.ended_at ? "text-red-500" : "text-[#4A4A55] group-focus-within:text-neon-mint"
             )} />
             <input
               type="datetime-local"
-              {...register('endDate')}
+              {...register('ended_at')}
               className={cn(
                 "w-full bg-[#0C0C0F] border border-white/5 rounded-2xl pl-11 pr-4 py-3.5 text-xs font-medium focus:outline-none focus:border-neon-mint transition-all shadow-inner uppercase",
-                errors.endDate && "border-red-500/50"
+                errors.ended_at && "border-red-500/50"
               )}
             />
           </div>
-          {errors.endDate && (
+          {errors.ended_at && (
             <p className="text-[11px] font-bold text-red-500 flex items-center gap-1">
               <AlertCircle className="h-3 w-3" />
-              {errors.endDate.message}
+              {errors.ended_at.message}
             </p>
           )}
         </div>
@@ -98,7 +98,7 @@ export function ScheduleSettingsSection() {
             
             <button
               type="button"
-              onClick={() => setValue('autoStart', !autoStart)}
+              onClick={() => setValue('auto_start', !autoStart)}
               className={cn(
                 "w-12 h-6 rounded-full transition-all relative",
                 autoStart ? "bg-neon-mint shadow-[0_0_15px_rgba(110,231,183,0.3)]" : "bg-[#1C1C21] border border-white/5"
@@ -115,3 +115,4 @@ export function ScheduleSettingsSection() {
     </section>
   );
 }
+

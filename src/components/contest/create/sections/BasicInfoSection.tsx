@@ -32,7 +32,7 @@ export function BasicInfoSection() {
       </div>
 
       <div className="flex flex-col gap-6">
-        {/* Contest Name */}
+        {/* Contest Title */}
         <div className="flex flex-col gap-3">
           <label className="text-[13px] font-bold text-[#BBBBCB] flex items-center gap-1.5">
             {t('contests.create.basic.title')}
@@ -40,21 +40,21 @@ export function BasicInfoSection() {
           </label>
           <div className="relative group">
             <Input
-              {...register('name')}
+              {...register('title')}
               placeholder={t('contests.create.basic.title_placeholder')}
               className={cn(
                 "bg-[#0C0C0F] border-[#242428] hover:border-[#383840] focus:border-neon-mint h-14 font-medium transition-all group-hover:bg-[#111115]",
-                errors.name && "border-red-500/50"
+                errors.title && "border-red-500/50"
               )}
             />
-            {errors.name && (
+            {errors.title && (
               <span className="text-xs font-bold text-red-500 mt-1.5 flex items-center gap-1">
                 <Info className="h-3.5 w-3.5" />
-                {errors.name.message}
+                {errors.title.message}
               </span>
             )}
             <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[11px] font-bold text-[#7A7A85] tabular-nums">
-              {watch('name')?.length || 0} / 255
+              {watch('title')?.length || 0} / 255
             </div>
           </div>
         </div>

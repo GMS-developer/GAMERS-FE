@@ -33,7 +33,7 @@ const koulen = Koulen({
 export const metadata: Metadata = {
   metadataBase: new URL('https://gamers-platform.com'),
   title: {
-    default: 'GAMERS | 모든 경쟁이 기억이 되는 곳',
+    default: 'GAMERS',
     template: '%s | GAMERS',
   },
   description: '캐주얼부터 정식 리그까지. 당신만의 무대에서 경쟁하세요. 모든 경쟁이 기록되고 기억되는 국내 최대 게이밍 플랫폼 GAMERS.',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     apple: '/logo.png',
   },
   openGraph: {
-    title: 'GAMERS | 모든 경쟁이 기억이 되는 곳',
+    title: 'GAMERS',
     description: '모든 경쟁이 기록되고 기억되는 국내 최대 게이밍 플랫폼 GAMERS. 지금 바로 당신의 첫 대회를 시작하세요.',
     url: 'https://gamers-platform.com',
     siteName: 'GAMERS',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GAMERS | 모든 경쟁이 기억이 되는 곳',
+    title: 'GAMERS',
     description: '모든 경쟁이 기록되고 기억되는 국내 최대 게이밍 플랫폼 GAMERS.',
     images: ['/logo.png'],
     creator: '@gamers_official',

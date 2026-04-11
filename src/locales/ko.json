@@ -2,6 +2,21 @@
   "common": {
     "loading": "로딩 중...",
     "error": "에러가 발생했습니다",
+    "state": {
+      "no_data": {
+        "title": "결과가 없습니다",
+        "desc": "검색 결과가 없거나 데이터가 존재하지 않습니다."
+      },
+      "error": {
+        "title": "네트워크 오류",
+        "desc": "서버와의 연결이 원활하지 않습니다. 잠시 후 다시 시도해주세요."
+      },
+      "timeout": {
+        "title": "요청 시간 초과",
+        "desc": "응답 시간이 너무 오래 걸립니다. 네트워크 상태를 확인해주세요."
+      },
+      "retry": "다시 시도"
+    },
     "save": "저장",
     "cancel": "취소",
     "delete": "삭제",
@@ -131,7 +146,18 @@
       "brackets": "대진표",
       "participants": "참가자",
       "rules": "규칙",
-      "comments": "댓글"
+      "comments": "댓글",
+      "applications": "신청 관리",
+      "start_contest": "대회 시작",
+      "stop_contest": "대회 중지",
+      "delete_contest": "대회 삭제",
+      "accept": "수락",
+      "reject": "거절",
+      "promote_staff": "스태프 지정",
+      "demote_normal": "일반 멤버로 매칭",
+      "confirm_start": "대회를 시작하시겠습니까?",
+      "confirm_stop": "대회를 중지하시겠습니까?",
+      "confirm_delete": "대회를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
     },
     "single": {
       "no_rules": "등록된 규칙이 없습니다.",
@@ -141,6 +167,12 @@
       "post_comment": "댓글 작성",
       "apply_success": "성공적으로 신청되었습니다.",
       "cancel_success": "신청이 취소되었습니다.",
+      "accept_success": "신청이 수락되었습니다.",
+      "reject_success": "신청이 거절되었습니다.",
+      "start_success": "대회가 시작되었습니다.",
+      "stop_success": "대회가 중지되었습니다.",
+      "delete_success": "대회가 삭제되었습니다.",
+      "role_change_success": "역할이 변경되었습니다.",
       "coming_soon": {
         "title": "준비 중입니다",
         "desc": "곧 공개될 예정입니다. 잠시만 기다려주세요!"

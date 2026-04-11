@@ -11,6 +11,16 @@ export enum ContestType {
   CASUAL = 'CASUAL',
 }
 
+export enum MemberType {
+  STAFF = 'STAFF',
+  NORMAL = 'NORMAL',
+}
+
+export enum LeaderType {
+  LEADER = 'LEADER',
+  MEMBER = 'MEMBER',
+}
+
 export enum GameType {
   VALORANT = 'VALORANT',
   LOL = 'LOL',
@@ -23,24 +33,146 @@ export enum ValorantRole {
   SENTINEL = 'SENTINEL',
 }
 
-export interface Contest {
+export enum ApplicationStatus {
+  PENDING = 'PENDING',
+  ACCEPTED = 'ACCEPTED',
+  REJECTED = 'REJECTED',
+}
+
+export interface ContestResponse {
   contest_id: number;
   title: string;
   description: string;
-  thumbnail: string;
-  contest_status: ContestStatus;
+  max_team_count: number;
+  total_point: number;
   contest_type: ContestType;
-  game_type: GameType;
+  contest_status: ContestStatus;
   started_at: string;
   ended_at: string;
+  auto_start: boolean;
+  game_type: string | null;
+  game_point_table_id: number | null;
+  total_team_member: number;
+  discord_guild_id: string | null;
+  discord_text_channel_id: string | null;
+  thumbnail: string | null;
   created_at: string;
   modified_at: string;
-  max_team_count: number;
-  total_team_member: number;
-  total_point: number;
-  auto_start: boolean;
-  discord_guild_id: string;
-  discord_text_channel_id: string;
+}
+
+// Keep the old Contest interface as an alias for now, but update it
+export interface Contest extends ContestResponse {}
+
+export interface MyContestResponse extends ContestResponse {
+  member_type: MemberType;
+  leader_type: LeaderType;
+  point: number;
+}
+
+export interface ContestMemberResponse {
+  user_id: number;
+  contest_id: number;
+  member_type: MemberType;
+  leader_type: LeaderType;
+  point: number;
+  valorant_roles: ValorantRole[];
+  description: string;
+  username: string;
+  tag: string;
+  avatar: string;
+  current_tier: number | null;
+  current_tier_patched: string | null;
+  peak_tier: number | null;
+  peak_tier_patched: string | null;
+}
+
+export interface CreateContestRequest {
+  title: string;
+  contest_type: ContestType;
+  description?: string;
+  max_team_count?: number;
+  total_point?: number;
+  started_at?: string;
+  ended_at?: string;
+  auto_start?: boolean;
+  game_type?: string;
+  game_point_table_id?: number;
+  total_team_member?: number;
+  discord_guild_id?: string;
+  discord_text_channel_id?: string;
+  thumbnail?: string;
+}
+
+export interface UpdateContestRequest {
+  title?: string;
+  description?: string;
+  max_team_count?: number;
+  total_point?: number;
+  contest_type?: ContestType;
+  contest_status?: ContestStatus;
+  started_at?: string;
+  ended_at?: string;
+  auto_start?: boolean;
+  game_type?: string;
+  game_point_table_id?: number;
+  total_team_member?: number;
+  discord_guild_id?: string;
+  discord_text_channel_id?: string;
+  thumbnail?: string;
+}
+
+export interface RequestParticipateRequest {
+  valorant_roles?: ValorantRole[];
+  description?: string;
+}
+
+export interface ApplicationResponse {
+  user_id: number;
+  contest_id: number;
+  status: ApplicationStatus;
+  requested_at: string;
+  processed_at: string | null;
+  processed_by: number | null;
+  sender: {
+    user_id: number;
+    username: string;
+    tag: string;
+    avatar: string;
+    valorant_roles: ValorantRole[];
+    description: string;
+  } | null;
+}
+
+export interface UserContestStatusResponse {
+  is_leader: boolean;
+  is_member: boolean;
+  has_applied: boolean;
+  application_status: ApplicationStatus | null;
+  member_type: MemberType | null;
+}
+
+export interface ChangeMemberRoleRequest {
+  member_type: MemberType;
+}
+
+export interface ChangeMemberRoleResponse {
+  user_id: number;
+  contest_id: number;
+  member_type: MemberType;
+  leader_type: LeaderType;
+}
+
+export interface ThumbnailUploadResponse {
+  key: string;
+  url: string;
+  size: number;
+  mime_type: string;
+  uploaded_at: string;
+}
+
+export interface DiscordLinkRequiredResponse {
+  message: string;
+  oauth_url: string;
 }
 
 export interface PaginationMeta {
@@ -51,7 +183,15 @@ export interface PaginationMeta {
 }
 
 export interface ContestListResponse extends PaginationMeta {
-  data: Contest[];
+  data: ContestResponse[];
+}
+
+export interface MyContestListResponse extends PaginationMeta {
+  data: MyContestResponse[];
+}
+
+export interface ContestMemberListResponse extends PaginationMeta {
+  data: ContestMemberResponse[];
 }
 
 export interface GetContestsParams {
@@ -60,6 +200,10 @@ export interface GetContestsParams {
   sort_by?: string;
   order?: 'asc' | 'desc';
   title?: string;
+}
+
+export interface GetMyContestsParams extends GetContestsParams {
+  status?: ContestStatus;
 }
 
 export interface Author {
@@ -82,30 +226,6 @@ export interface ContestCommentListResponse extends PaginationMeta {
   data: ContestComment[];
 }
 
-export interface ContestMember {
-  user_id: number;
-  username: string;
-  tag: string;
-  avatar?: string;
-  point: number;
-  joined_at: string;
-}
-
-export interface ContestMemberListResponse extends PaginationMeta {
-  data: ContestMember[];
-}
-
-export interface ContestGame {
-  game_id: number;
-  contest_id: number;
-  game_status: string;
-  game_team_type: string;
-  started_at: string;
-  ended_at: string;
-  created_at: string;
-  modified_at: string;
-}
-
 export interface TeamSummary {
   team_id: number;
   team_name: string;
@@ -125,3 +245,4 @@ export interface ContestResult {
   rounds: RoundResult[];
   champion?: TeamSummary;
 }
+

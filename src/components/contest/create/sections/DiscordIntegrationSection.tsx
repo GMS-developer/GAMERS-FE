@@ -10,8 +10,8 @@ export function DiscordIntegrationSection() {
   const { t } = useTranslation();
   const { register, watch, formState: { errors } } = useFormContext<ContestCreateFormValues>();
 
-  const serverId = watch('discordServerId');
-  const channelId = watch('discordChannelId');
+  const guildId = watch('discord_guild_id');
+  const channelId = watch('discord_text_channel_id');
 
   return (
     <section id="discord_integration" className="scroll-mt-32 flex flex-col gap-8 w-full max-w-4xl mx-auto py-12 border-b border-white/5">
@@ -36,7 +36,7 @@ export function DiscordIntegrationSection() {
           </div>
 
           <div className="flex flex-col gap-5">
-            {/* Server ID */}
+            {/* Guild ID */}
             <div className="flex flex-col gap-2.5">
               <div className="flex items-center justify-between">
                 <label className="text-[13px] font-bold text-[#BBBBCB]">
@@ -51,10 +51,10 @@ export function DiscordIntegrationSection() {
               </div>
               <input
                 type="text"
-                {...register('discordServerId')}
+                {...register('discord_guild_id')}
                 className={cn(
                   "w-full bg-[#141418] border border-white/5 rounded-xl px-4 py-3.5 text-xs font-medium focus:outline-none focus:border-[#5865F2] transition-all shadow-inner",
-                  errors.discordServerId && "border-red-500/50"
+                  errors.discord_guild_id && "border-red-500/50"
                 )}
                 placeholder="123456789012345678"
               />
@@ -67,10 +67,10 @@ export function DiscordIntegrationSection() {
               </label>
               <input
                 type="text"
-                {...register('discordChannelId')}
+                {...register('discord_text_channel_id')}
                 className={cn(
                   "w-full bg-[#141418] border border-white/5 rounded-xl px-4 py-3.5 text-xs font-medium focus:outline-none focus:border-[#5865F2] transition-all shadow-inner",
-                  errors.discordChannelId && "border-red-500/50"
+                  errors.discord_text_channel_id && "border-red-500/50"
                 )}
                 placeholder="123456789012345678"
               />
@@ -112,3 +112,4 @@ export function DiscordIntegrationSection() {
     </section>
   );
 }
+

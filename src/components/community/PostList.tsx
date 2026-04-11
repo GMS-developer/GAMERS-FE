@@ -10,6 +10,7 @@ import {
   PaginationLink,
   PaginationNext,
 } from '@/components/ui/pagination';
+import { StatePlaceholder } from '@/components/shared/StatePlaceholder';
 
 export function PostList() {
   const { t } = useTranslation();
@@ -66,9 +67,16 @@ export function PostList() {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-6">
-        {mockPosts.map((post, index) => (
-          <PostItem key={index} {...post} />
-        ))}
+        {mockPosts.length > 0 ? (
+          mockPosts.map((post, index) => (
+            <PostItem key={index} {...post} />
+          ))
+        ) : (
+          <StatePlaceholder 
+            type="no-data" 
+            onRetry={() => window.location.reload()}
+          />
+        )}
       </div>
 
       <div className="mt-16 mb-24">
