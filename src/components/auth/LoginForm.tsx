@@ -9,7 +9,7 @@ import * as z from 'zod';
 import { Mail, Lock, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useLogin } from '@/hooks/use-auth';
+import { useLogin, useDiscordLogin } from '@/hooks/use-auth';
 import { useTranslation } from 'react-i18next';
 
 export function LoginForm() {
