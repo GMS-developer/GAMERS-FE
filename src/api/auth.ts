@@ -26,6 +26,8 @@ export const authApi = {
     
   getDiscordLoginUrl: () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.gamers.io.kr';
-    return `${apiUrl}/api/oauth2/discord/login`;
+    // Ensure the API URL starts with a protocol to prevent browser-side origin prepending
+    const normalizedApiUrl = apiUrl.startsWith('http') ? apiUrl : `https://${apiUrl}`;
+    return `${normalizedApiUrl}/api/oauth2/discord/login`;
   },
 };

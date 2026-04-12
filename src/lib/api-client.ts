@@ -1,7 +1,12 @@
 import Cookies from 'js-cookie';
 import { ApiResponse, ApiError } from '@/types/api';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.gamers.io.kr';
+const getApiUrl = () => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.gamers.io.kr';
+  return apiUrl.startsWith('http') ? apiUrl : `https://${apiUrl}`;
+};
+
+const BASE_URL = getApiUrl();
 
 interface RequestOptions extends RequestInit {
   params?: Record<string, string | number | boolean | undefined>;

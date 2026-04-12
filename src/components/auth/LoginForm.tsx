@@ -39,9 +39,10 @@ export function LoginForm() {
     login(data);
   };
 
+  const { login: discordLogin } = useDiscordLogin();
+
   const handleDiscordLogin = () => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.gamers.io.kr';
-    window.location.href = `${apiUrl}/api/oauth2/discord/login`;
+    discordLogin();
   };
 
   return (
