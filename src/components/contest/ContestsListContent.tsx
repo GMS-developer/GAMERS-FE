@@ -11,7 +11,7 @@ import { useContests } from '@/hooks/use-contests';
 import { GameType } from '@/types/contest';
 import { TemporalLoLBanner } from './TemporalLoLBanner';
 
-const GAMES = ['All', 'Valorant', 'LoL', 'CS2', 'Apex'];
+const GAMES = ['All', 'Valorant', 'LoL'];
 
 export function ContestsListContent() {
   const { t } = useTranslation();
@@ -46,16 +46,7 @@ export function ContestsListContent() {
           label: 'League of Legends',
           color: 'bg-amber-500/10 text-amber-500 border-amber-500/20'
         };
-      case 'CS2':
-        return {
-          label: 'CS2',
-          color: 'bg-slate-400/10 text-slate-400 border-slate-400/20'
-        };
-      case 'Apex':
-        return {
-          label: 'Apex Legends',
-          color: 'bg-orange-500/10 text-orange-500 border-orange-500/20'
-        };
+
       default:
         return {
           label: gameType || 'General',
