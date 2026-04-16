@@ -79,24 +79,32 @@
       "create_btn": "大会を開催する",
       "filters": {
         "all": "全体",
-        "recruiting": "募集中",
         "ongoing": "進行中",
-        "finished": "終了"
+        "recruiting": "予定",
+        "finished": "完了"
+      },
+      "temporal_banner": {
+        "title": "Temporal LoL チーム振り分け",
+        "badge": "ログイン不要で参加可能",
+        "description": "セッションコードだけで即座にチーム振り分けに参加 · アカウント登録不要",
+        "btn_enter": "入場する",
+        "btn_create": "新規チーム振り分け作成"
       },
       "sort": {
         "recent": "最新順",
         "popular": "人気順"
       },
       "cta": {
-        "title": "自分で大会を開催してみましょう",
-        "subtitle": "GAMERSの強力な運営ツールと一緒に、自分だけのトーナメントを始めてください。",
-        "button": "大会を作成する"
+        "title": "自分で大会を作ってみましょう",
+        "subtitle": "ホストとしてトーナメントを設計し、選手を募集してください。",
+        "button": "大会を開催する"
       },
+      "result_count": "{{count}}件の大会",
       "empty": "進行中の大会がありません。",
       "mock": {
-        "contest1": "VALORANTコミュニティオープンカップ",
-        "contest2": "LoLアカデミーリーグ シーズン4",
-        "contest3": "Valorant チャレンジャーズ予選",
+        "contest1": "Valorant新人オープンカップ",
+        "contest2": "リーグ・オブ・レジェンド コミュニティ 5vs5",
+        "contest3": "CS2 韓国サーバー トーナメント",
         "contest4": "マルチゲーム バトルロイヤル インビテーショナル",
         "multi_game": "マルチゲーム"
       }

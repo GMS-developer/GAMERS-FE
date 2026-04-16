@@ -9,8 +9,9 @@ import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { useContests } from '@/hooks/use-contests';
 import { GameType } from '@/types/contest';
+import { TemporalLoLBanner } from './TemporalLoLBanner';
 
-const GAMES = ['All', 'Valorant', 'LoL'];
+const GAMES = ['All', 'Valorant', 'LoL', 'CS2', 'Apex'];
 
 export function ContestsListContent() {
   const { t } = useTranslation();
@@ -42,8 +43,18 @@ export function ContestsListContent() {
         };
       case GameType.LOL:
         return {
-          label: 'LoL',
+          label: 'League of Legends',
           color: 'bg-amber-500/10 text-amber-500 border-amber-500/20'
+        };
+      case 'CS2':
+        return {
+          label: 'CS2',
+          color: 'bg-slate-400/10 text-slate-400 border-slate-400/20'
+        };
+      case 'Apex':
+        return {
+          label: 'Apex Legends',
+          color: 'bg-orange-500/10 text-orange-500 border-orange-500/20'
         };
       default:
         return {
@@ -118,11 +129,14 @@ export function ContestsListContent() {
           {/* Result Count */}
           <div className="ml-auto flex items-center gap-2">
             <span className="text-[13px] font-medium text-[#7A7A85]">
-              <span className="text-neon-mint font-bold">{totalCount}</span>{t('common.count_suffix', {defaultValue: '건'})}
+              {t('contests.list.result_count', { count: totalCount })}
             </span>
           </div>
         </div>
       </div>
+
+      {/* Promotional Banner Section */}
+      <TemporalLoLBanner />
 
       {/* Grid Section */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">

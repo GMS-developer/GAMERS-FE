@@ -79,25 +79,33 @@
       "create_btn": "대회 개최하기",
       "filters": {
         "all": "전체",
-        "recruiting": "모집 중",
         "ongoing": "진행 중",
-        "finished": "종료"
+        "recruiting": "예정",
+        "finished": "완료"
+      },
+      "temporal_banner": {
+        "title": "Temporal LoL 팀배분",
+        "badge": "로그인 없이 참가 가능",
+        "description": "세션 코드만으로 즉시 팀 배분에 참가하세요 · 계정 등록 불필요",
+        "btn_enter": "입장하기",
+        "btn_create": "새 팀배분 생성"
       },
       "sort": {
         "recent": "최신순",
         "popular": "인기순"
       },
       "cta": {
-        "title": "직접 대회를 개최해보세요",
-        "subtitle": "GAMERS의 강력한 운영 도구와 함께 당신만의 토너먼트를 시작하세요.",
-        "button": "대회 만들기"
+        "title": "직접 대회를 만들어보세요",
+        "subtitle": "호스트로서 토너먼트를 설계하고, 선수를 모집하세요.",
+        "button": "대회 개최하기"
       },
+      "result_count": "{{count}}개의 대회",
       "empty": "진행 중인 대회가 없습니다.",
       "mock": {
         "contest1": "발로란트 커뮤니티 오픈컵",
-        "contest2": "LoL 아카데미 리그 시즌 4",
-        "contest3": "발로란트 챌린저스 예선",
-        "contest4": "멀티 게임 배틀로얄 인비테이셔널",
+        "contest2": "리그 오브 레전드 커뮤니티 5vs5",
+        "contest3": "CS2 한국 서버 토너먼트",
+        "contest4": "멀티게임 배틀로얄 인비테이셔널",
         "multi_game": "멀티 게임"
       }
     },
