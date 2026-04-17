@@ -8,7 +8,7 @@ import { ChevronDown, PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { useContests } from '@/hooks/use-contests';
-import { GameType } from '@/types/contest';
+import { GameType, ContestStatus } from '@/types/contest';
 import { TemporalLoLBanner } from './TemporalLoLBanner';
 
 const GAMES = ['All', 'Valorant', 'LoL'];
