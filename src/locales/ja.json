@@ -392,14 +392,19 @@
     "subtitle": "PLAYGROUND",
     "tabs": {
       "overview": "概要",
+      "bracket": "トーナメント表",
       "participants": "参加者",
       "matches": "対戦",
+      "team": "チーム管理",
       "settings": "設定",
       "notice": "案内事項",
       "members": "メンバー",
       "team_manage": "チーム管理",
       "withdrawal": "出場のキャンセル",
       "staff": "スタッフ"
+    },
+    "header": {
+      "under_construction": "準備中です。近日公開予定です。"
     },
     "summary": {
       "title": "設定まとめ",
@@ -517,7 +522,57 @@
     "team": {
       "current_leader": "現在のリーダー",
       "transfer_desc": "リーダー権限を委譲できます。",
-      "me": "(自分)"
+      "me": "(自分)",
+      "copied": "結果がクリップボードにコピーされました。"
+    },
+    "team_distribution": {
+      "title": "Temporal LoL チーム振り分け",
+      "subtitle": "アカウントなしで即座にチームを分け、バランスを確認してください",
+      "start_button": "チーム振り分け開始",
+      "roles": {
+        "TOP": "トップ",
+        "JG": "ジャングル",
+        "MID": "ミッド",
+        "ADC": "ADC",
+        "SUP": "サポーター"
+      },
+      "tiers": {
+        "IRON": "アイアン",
+        "BRONZE": "ブロンズ",
+        "SILVER": "シルバー",
+        "GOLD": "ゴールド",
+        "PLATINUM": "プラチナ",
+        "EMERALD": "エメラルド",
+        "DIAMOND": "ダイヤ",
+        "MASTER": "マスター",
+        "GRANDMASTER": "グランドマスター",
+        "CHALLENGER": "チャレンジャー"
+      },
+      "parsing": {
+        "title": "ニックネーム一括パース (抽出)",
+        "placeholder": "チャットログやニックネームリストをここに貼り付けてください...\n例: Gamer1 joined the lobby\nGamer2: hello",
+        "clear_button": "初期化",
+        "parse_button": "パースする",
+        "parsed_count": "{{count}}名抽出済み",
+        "success": "成功"
+      },
+      "participants": {
+        "title": "参加者リスト",
+        "empty_slot": "空きスロット",
+        "ready": "準備完了",
+        "incomplete": "入力が必要",
+        "select_role": "ロール選択",
+        "select_tier": "ティア選択"
+      },
+      "result": {
+        "blue_side": "ブルーサイド",
+        "red_side": "レッドサイド",
+        "vs": "VS",
+        "match_quality": "マッチクオリティ",
+        "reroll": "再シャッフル",
+        "copy_result": "結果をコピー",
+        "new_session": "新規チーム振り分け作成"
+      }
     },
     "ranks": {
       "diamond": "ダイヤ {{level}}",

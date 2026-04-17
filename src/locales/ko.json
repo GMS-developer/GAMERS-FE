@@ -393,14 +393,19 @@
     "subtitle": "PLAYGROUND",
     "tabs": {
       "overview": "개요",
+      "bracket": "대진표",
       "participants": "참가자",
       "matches": "대진",
+      "team": "팀 관리",
       "settings": "설정",
       "notice": "안내사항",
       "members": "멤버",
       "team_manage": "팀 관리",
       "withdrawal": "참여 취소",
       "staff": "스태프"
+    },
+    "header": {
+      "under_construction": "준비 중입니다. 곧 공개될 예정입니다."
     },
     "summary": {
       "title": "설정 요약",
@@ -518,7 +523,57 @@
     "team": {
       "current_leader": "현재 리더",
       "transfer_desc": "리더 권한을 위임할 수 있습니다.",
-      "me": "(나)"
+      "me": "(나)",
+      "copied": "결과가 클립보드에 복사되었습니다."
+    },
+    "team_distribution": {
+      "title": "Temporal LoL 팀배분",
+      "subtitle": "계정 없이 즉시 팀을 나누고 밸런스를 확인하세요",
+      "start_button": "팀 배분 시작",
+      "roles": {
+        "TOP": "탑",
+        "JG": "정글",
+        "MID": "미드",
+        "ADC": "원딜",
+        "SUP": "서포터"
+      },
+      "tiers": {
+        "IRON": "아이언",
+        "BRONZE": "브론즈",
+        "SILVER": "실버",
+        "GOLD": "골드",
+        "PLATINUM": "플래티넘",
+        "EMERALD": "에메랄드",
+        "DIAMOND": "다이아",
+        "MASTER": "마스터",
+        "GRANDMASTER": "그랜드마스터",
+        "CHALLENGER": "챌린저"
+      },
+      "parsing": {
+        "title": "닉네임 대량 파싱 (추출)",
+        "placeholder": "채팅 로그나 닉네임 목록을 여기에 붙여넣으세요...\n예: Gamer1 joined the lobby\nGamer2: hello",
+        "clear_button": "초기화",
+        "parse_button": "파싱하기",
+        "parsed_count": "{{count}}명 추출됨",
+        "success": "성공"
+      },
+      "participants": {
+        "title": "참가자 목록",
+        "empty_slot": "빈 슬롯",
+        "ready": "준비 완료",
+        "incomplete": "입력 필요",
+        "select_role": "역할 선택",
+        "select_tier": "티어 선택"
+      },
+      "result": {
+        "blue_side": "블루 사이드",
+        "red_side": "레드 사이드",
+        "vs": "VS",
+        "match_quality": "매치 퀄리티",
+        "reroll": "다시 밸런싱",
+        "copy_result": "결과 복사",
+        "new_session": "새 팀배분 생성"
+      }
     },
     "ranks": {
       "diamond": "다이아 {{level}}",

@@ -35,9 +35,8 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block">
           <div className="bg-[#0C0C0D] border border-white/10 rounded-full px-6 py-2 text-[14px] font-black text-white italic tracking-widest shadow-2xl">
-            VS
+            {t('playground.team_distribution.result.vs', 'VS')}
           </div>
-        </div>
 
         {/* Blue Team */}
         <div className="flex flex-col gap-4">
@@ -71,7 +70,7 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-3xl bg-white/[0.02] border border-white/5 mt-4">
          <div className="flex items-center gap-6">
             <div className="flex flex-col">
-               <span className="text-[10px] font-bold text-[#5A5A65] tracking-widest uppercase">MATCH QUALITY</span>
+               <span className="text-[10px] font-bold text-[#5A5A65] tracking-widest uppercase">{t('playground.team_distribution.result.match_quality')}</span>
                <div className="flex items-center gap-2 mt-0.5">
                   <TrendingUp className="h-4 w-4 text-neon-mint" />
                   <span className="text-[16px] font-black text-[#EEEEF0] italic">94.2%</span>

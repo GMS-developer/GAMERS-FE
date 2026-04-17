@@ -100,7 +100,7 @@ export function NicknameParsingPanel({ onParse, className }: NicknameParsingPane
             {isSuccess ? (
               <>
                 <CheckCircle2 className="h-4 w-4" />
-                <span>SUCCESS</span>
+                <span>{t('playground.team_distribution.parsing.success')}</span>
               </>
             ) : (
               <>

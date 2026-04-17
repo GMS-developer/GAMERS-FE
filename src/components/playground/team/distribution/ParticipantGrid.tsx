@@ -70,12 +70,12 @@ export function ParticipantGrid({ participants, onUpdate, className }: Participa
                       isReady ? (
                         <span className="flex items-center gap-1 text-[10px] font-bold text-neon-mint/80 uppercase">
                           <CheckCircle2 className="h-3 w-3" />
-                          READY
+                          {t('playground.team_distribution.participants.ready')}
                         </span>
                       ) : (
                         <span className="flex items-center gap-1 text-[10px] font-bold text-ruby/80 uppercase">
                           <AlertCircle className="h-3 w-3" />
-                          INCOMPLETE
+                          {t('playground.team_distribution.participants.incomplete')}
                         </span>
                       )
                     ) : null}
