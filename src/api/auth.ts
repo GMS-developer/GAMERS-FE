@@ -30,4 +30,9 @@ export const authApi = {
     const normalizedApiUrl = apiUrl.startsWith('http') ? apiUrl : `https://${apiUrl}`;
     return `${normalizedApiUrl}/api/oauth2/discord/login`;
   },
+
+  discordCallback: (code: string, state?: string) =>
+    apiClient.get('/api/oauth2/discord/callback', {
+      params: { code, state },
+    }),
 };

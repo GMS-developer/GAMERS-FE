@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
@@ -7,6 +8,21 @@ import { Button } from '@/components/ui/button';
 
 export function TemporalLoLBanner() {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const handleEnter = () => {
+    // For temporal sessions, let's prompt for a code or just go back to a default one
+    const code = prompt(t('contests.list.temporal_banner.prompt_code', 'Enter Session Code:'));
+    if (code) {
+      router.push(`/contests/${code}/playground?tab=team_distribution`);
+    }
+  };
+
+  const handleCreate = () => {
+    // Create a new session or go to the default 'temporal' session
+    // For now, redirecting to 'temporal' as the base session ID
+    router.push('/contests/temporal/playground?tab=team_distribution');
+  };
 
   return (
     <motion.div 
@@ -48,9 +64,7 @@ export function TemporalLoLBanner() {
       <div className="flex items-center gap-3 relative z-10">
         <Button 
           className="h-12 px-6 bg-[#C89B3C] hover:bg-[#D9A94D] text-[#0A1018] font-bold rounded-lg flex items-center gap-2 group/btn shadow-[0_4px_14px_rgba(200,155,60,0.3)]"
-          onClick={() => {
-            // Logic to enter temporal allocation
-          }}
+          onClick={handleEnter}
         >
           {t('contests.list.temporal_banner.btn_enter')}
           <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
@@ -58,9 +72,7 @@ export function TemporalLoLBanner() {
         <Button 
           variant="outline"
           className="h-12 px-6 bg-white/5 border-white/10 hover:bg-white/10 text-[#E0E4E8] font-bold rounded-lg transition-all"
-          onClick={() => {
-            // Logic to create new temporal allocation
-          }}
+          onClick={handleCreate}
         >
           {t('contests.list.temporal_banner.btn_create')}
         </Button>

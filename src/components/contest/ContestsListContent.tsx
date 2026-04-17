@@ -19,11 +19,25 @@ export function ContestsListContent() {
   const [selectedStatus, setSelectedStatus] = useState('All');
   const [currentPage] = useState(1);
 
+  // Map UI values to API values
+  const gameTypeMap: Record<string, GameType | undefined> = {
+    'Valorant': GameType.VALORANT,
+    'LoL': GameType.LOL,
+    'All': undefined
+  };
+
+  const statusMap: Record<string, ContestStatus | undefined> = {
+    'ONGOING': ContestStatus.ACTIVE,
+    'UPCOMING': ContestStatus.PENDING,
+    'COMPLETED': ContestStatus.FINISHED,
+    'All': undefined
+  };
+
   const { data, isLoading, isError } = useContests({
     page: currentPage,
     page_size: 9,
-    // Note: API doesn't currently support game/status filtering, 
-    // so we'll handle it locally for now if needed, or wait for API updates.
+    game_type: gameTypeMap[selectedGame],
+    status: statusMap[selectedStatus],
   });
 
   const STATUSES = [

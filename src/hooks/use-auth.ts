@@ -70,6 +70,28 @@ export function useUser() {
   });
 }
 
+export function useDiscordCallback() {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: ({ code, state }: { code: string; state?: string }) => 
+      authApi.discordCallback(code, state),
+    onSuccess: (data) => {
+      // Backend might return tokens in data, or just set them in cookies.
+      // If it returns them in data (based on swagger it's 302, but if we call via AJAX it might be different)
+      // For now, let's assume it sets cookies if it's a 302, 
+      // but if we handle it here, we might need to fetch the tokens if they are in the response.
+      
+      // Let's invalidate user query to fetch the latest user info
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      
+      // Redirect to home
+      router.push('/');
+    },
+  });
+}
+
 export function useDiscordLogin() {
   const login = () => {
     window.location.href = authApi.getDiscordLoginUrl();

@@ -182,6 +182,8 @@ export interface GetContestsParams {
   sort_by?: string;
   order?: 'asc' | 'desc';
   title?: string;
+  game_type?: GameType;
+  status?: ContestStatus;
 }
 
 export interface GetMyContestsParams extends GetContestsParams {
