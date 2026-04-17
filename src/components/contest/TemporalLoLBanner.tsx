@@ -11,17 +11,11 @@ export function TemporalLoLBanner() {
   const router = useRouter();
 
   const handleEnter = () => {
-    // For temporal sessions, let's prompt for a code or just go back to a default one
-    const code = prompt(t('contests.list.temporal_banner.prompt_code', 'Enter Session Code:'));
-    if (code) {
-      router.push(`/contests/${code}/playground?tab=team_distribution`);
-    }
+    router.push('/temporal-team');
   };
 
   const handleCreate = () => {
-    // Create a new session or go to the default 'temporal' session
-    // For now, redirecting to 'temporal' as the base session ID
-    router.push('/contests/temporal/playground?tab=team_distribution');
+    router.push('/temporal-team');
   };
 
   return (

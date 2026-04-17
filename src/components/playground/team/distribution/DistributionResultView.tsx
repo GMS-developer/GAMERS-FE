@@ -31,22 +31,26 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
   };
 
   return (
-    <div className={cn("flex flex-col gap-8", className)}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative">
+    <div className={cn("flex flex-col gap-12", className)}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 relative">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block">
-          <div className="bg-[#0C0C0D] border border-white/10 rounded-full px-6 py-2 text-[14px] font-black text-white italic tracking-widest shadow-2xl">
-            {t('playground.team_distribution.result.vs', 'VS')}
-          </div>
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-[#0C0C0D] border border-white/10 rounded-full h-16 w-16 flex items-center justify-center text-[20px] font-black text-white italic tracking-widest shadow-2xl"
+          >
+            VS
+          </motion.div>
         </div>
 
         {/* Blue Team */}
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-sky-500/10 border border-sky-500/20">
-            <div className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
-            <h4 className="text-[14px] font-black text-sky-500 uppercase tracking-widest italic">{t('playground.team_distribution.result.blue_side')}</h4>
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center gap-4 px-6 py-4 rounded-[24px] bg-sky-500/10 border border-sky-500/20">
+            <div className="h-3 w-3 rounded-full bg-sky-500 shadow-[0_0_12px_rgba(14,165,233,0.5)]" />
+            <h4 className="text-[18px] font-black text-sky-500 uppercase tracking-tight italic">{t('playground.team_distribution.result.blue_side')}</h4>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             {blueTeam.map((p, i) => (
               <TeamMemberCard key={p.id} participant={p} side="blue" delay={i * 0.1} />
             ))}
@@ -54,13 +58,13 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
         </div>
 
         {/* Red Team */}
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-ruby/10 border border-ruby/20 flex-row-reverse">
-            <div className="h-2 w-2 rounded-full bg-ruby animate-pulse" />
-            <h4 className="text-[14px] font-black text-ruby uppercase tracking-widest italic">{t('playground.team_distribution.result.red_side')}</h4>
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center gap-4 px-6 py-4 rounded-[24px] bg-ruby/10 border border-ruby/20 flex-row-reverse">
+            <div className="h-3 w-3 rounded-full bg-ruby shadow-[0_0_12px_rgba(224,92,92,0.5)]" />
+            <h4 className="text-[18px] font-black text-ruby uppercase tracking-tight italic">{t('playground.team_distribution.result.red_side')}</h4>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             {redTeam.map((p, i) => (
               <TeamMemberCard key={p.id} participant={p} side="red" delay={i * 0.1} />
             ))}
@@ -68,37 +72,37 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-3xl bg-white/[0.02] border border-white/5 mt-4">
-         <div className="flex items-center gap-6">
-            <div className="flex flex-col">
-               <span className="text-[10px] font-bold text-[#5A5A65] tracking-widest uppercase">{t('playground.team_distribution.result.match_quality')}</span>
-               <div className="flex items-center gap-2 mt-0.5">
-                  <TrendingUp className="h-4 w-4 text-neon-mint" />
-                  <span className="text-[16px] font-black text-[#EEEEF0] italic">94.2%</span>
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-10 rounded-[40px] bg-[#0C0C0D] border border-white/5 shadow-2xl mt-8">
+         <div className="flex flex-col gap-1">
+            <span className="text-[13px] font-bold text-[#5A5A65] tracking-tight uppercase">{t('playground.team_distribution.result.match_quality')}</span>
+            <div className="flex items-center gap-3">
+               <div className="p-2 rounded-xl bg-neon-mint/10">
+                 <TrendingUp className="h-6 w-6 text-neon-mint" />
                </div>
+               <span className="text-[32px] font-black text-[#EEEEF0] italic tracking-tighter shadow-sm">94.2%</span>
             </div>
          </div>
 
-         <div className="flex items-center gap-3">
+         <div className="flex flex-wrap items-center gap-4">
             <button
               onClick={onReroll}
-              className="flex items-center gap-2 bg-[#0C0C0D] border border-white/10 text-[#EEEEF0] h-12 px-6 rounded-2xl text-[13px] font-black transition-all hover:bg-white/5 hover:border-white/20 active:scale-95"
+              className="group flex items-center gap-3 bg-[#1A1A20] border border-white/5 text-[#EEEEF0] h-14 px-8 rounded-2xl text-[15px] font-black transition-all hover:bg-[#25252D] active:scale-95 shadow-lg"
             >
-              <RefreshCcw className="h-4 w-4 text-[#5A5A65]" />
+              <RefreshCcw className="h-5 w-5 text-[#5A5A65] group-hover:rotate-180 transition-transform duration-500" />
               <span>{t('playground.team_distribution.result.reroll')}</span>
             </button>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-2 bg-[#0C0C0D] border border-white/10 text-[#EEEEF0] h-12 px-6 rounded-2xl text-[13px] font-black transition-all hover:bg-white/5 hover:border-white/20 active:scale-95"
+              className="flex items-center gap-3 bg-[#1A1A20] border border-white/5 text-[#EEEEF0] h-14 px-8 rounded-2xl text-[15px] font-black transition-all hover:bg-[#25252D] active:scale-95 shadow-lg"
             >
-              <Copy className="h-4 w-4 text-[#5A5A65]" />
+              <Copy className="h-5 w-5 text-[#5A5A65]" />
               <span>{t('playground.team_distribution.result.copy_result')}</span>
             </button>
             <button
               onClick={onNewSession}
-              className="flex items-center gap-2 bg-neon-mint text-black h-12 px-6 rounded-2xl text-[13px] font-black transition-all hover:brightness-110 active:scale-95"
+              className="flex items-center gap-3 bg-neon-mint text-black h-14 px-10 rounded-2xl text-[15px] font-black transition-all hover:scale-[1.02] active:scale-95 shadow-[0_8px_24px_rgba(0,212,122,0.2)]"
             >
-              <RotateCcw className="h-4 w-4" />
+              <RotateCcw className="h-5 w-5" />
               <span>{t('playground.team_distribution.result.new_session')}</span>
             </button>
          </div>
@@ -112,42 +116,42 @@ function TeamMemberCard({ participant, side, delay }: { participant: Participant
   
   return (
     <motion.div
-      initial={{ opacity: 0, x: side === 'blue' ? -20 : 20 }}
+      initial={{ opacity: 0, x: side === 'blue' ? -40 : 40 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay }}
+      transition={{ delay, type: "spring", stiffness: 100, damping: 20 }}
       className={cn(
-        "group relative flex items-center justify-between p-4 rounded-2xl border transition-all truncate",
+        "group relative flex items-center justify-between p-5 rounded-[24px] border transition-all truncate shadow-sm hover:shadow-xl",
         side === 'blue' 
-          ? "bg-sky-500/5 border-sky-500/10 hover:border-sky-500/30" 
-          : "bg-ruby/5 border-ruby/10 hover:border-ruby/30 flex-row-reverse"
+          ? "bg-[#141418] border-white/5 hover:border-sky-500/30" 
+          : "bg-[#141418] border-white/5 hover:border-ruby/30 flex-row-reverse"
       )}
     >
       <div className={cn("flex items-center gap-4", side === 'red' && "flex-row-reverse")}>
          <div className={cn(
-           "flex h-10 w-10 items-center justify-center rounded-full text-[13px] font-black",
-           side === 'blue' ? "bg-sky-500/20 text-sky-500" : "bg-ruby/20 text-ruby"
+           "flex h-12 w-12 items-center justify-center rounded-2xl text-[16px] font-black shadow-inner",
+           side === 'blue' ? "bg-sky-500/10 text-sky-500 border border-sky-500/20" : "bg-ruby/10 text-ruby border border-ruby/20"
          )}>
            {participant.name[0]?.toUpperCase()}
          </div>
          <div className={cn("flex flex-col", side === 'red' && "items-end")}>
-           <span className="text-[15px] font-black text-[#EEEEF0]">{participant.name}</span>
-           <span className="text-[11px] font-bold text-[#5A5A65] tracking-widest uppercase">
+           <span className="text-[17px] font-black text-[#EEEEF0] tracking-tight">{participant.name}</span>
+           <span className="text-[11px] font-bold text-[#5A5A65] tracking-widest uppercase mt-0.5">
               {t(`playground.team_distribution.tiers.${participant.tier}`)}
            </span>
          </div>
       </div>
 
       <div className={cn(
-        "flex h-8 px-4 items-center justify-center rounded-lg text-[11px] font-black tracking-widest",
-        side === 'blue' ? "bg-sky-500/20 text-sky-500" : "bg-ruby/20 text-ruby"
+        "flex h-9 px-5 items-center justify-center rounded-xl text-[12px] font-black tracking-widest shadow-sm",
+        side === 'blue' ? "bg-sky-500/10 text-sky-500 border border-sky-500/20" : "bg-ruby/10 text-ruby border border-ruby/20"
       )}>
         {t(`playground.team_distribution.roles.${participant.role}`)}
       </div>
       
-      {/* Glow Effect */}
+      {/* Dynamic Glow Effect */}
       <div className={cn(
-        "absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity blur-xl -z-10",
-        side === 'blue' ? "bg-sky-500/20" : "bg-ruby/20"
+        "absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity blur-2xl -z-10",
+        side === 'blue' ? "bg-sky-500/10" : "bg-ruby/10"
       )} />
     </motion.div>
   );

@@ -109,10 +109,14 @@ export function TemporalTeamDistribution() {
   };
 
   return (
-    <div className="max-w-[1200px] mx-auto py-12 px-6">
-      <div className="flex flex-col gap-2 mb-12">
-        <h2 className="text-[28px] font-black text-[#EEEEF0] tracking-tight">{t('playground.team_distribution.title')}</h2>
-        <p className="text-[14px] font-bold text-[#5A5A65] tracking-tight">{t('playground.team_distribution.subtitle')}</p>
+    <div className="max-w-[1000px] mx-auto py-16 px-6">
+      <div className="flex flex-col gap-4 mb-16 text-center md:text-left">
+        <h2 className="text-[40px] md:text-[56px] font-black text-[#EEEEF0] tracking-tight leading-[1.1]">
+          {t('playground.team_distribution.title')}
+        </h2>
+        <p className="text-[16px] md:text-[20px] font-medium text-[#7A7A85] tracking-tight max-w-[600px]">
+          {t('playground.team_distribution.subtitle')}
+        </p>
       </div>
 
       <AnimatePresence mode="wait">
@@ -127,22 +131,26 @@ export function TemporalTeamDistribution() {
           >
             <NicknameParsingPanel onParse={handleParseNicknames} />
 
-            <div className="flex flex-col gap-8">
-              <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                 <div className="flex items-center gap-2">
-                    <Users className="h-5 w-5 text-[#5A5A65]" />
-                    <h3 className="text-[16px] font-black text-[#EEEEF0] uppercase tracking-wider">{t('playground.team_distribution.participants.title')}</h3>
+            <div className="flex flex-col gap-10">
+              <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 border border-white/10">
+                      <Users className="h-6 w-6 text-neon-mint" />
+                    </div>
+                    <h3 className="text-[20px] font-black text-[#EEEEF0] tracking-tight">{t('playground.team_distribution.participants.title')}</h3>
                  </div>
                  <button 
                   onClick={distributeTeams}
                   disabled={!isReady}
                   className={cn(
-                    "flex items-center gap-2 h-12 px-8 rounded-2xl text-[14px] font-black transition-all active:scale-95",
-                    isReady ? "bg-neon-mint text-black" : "bg-white/5 text-[#5A5A65] cursor-not-allowed"
+                    "flex items-center gap-3 h-14 px-10 rounded-2xl text-[16px] font-black transition-all active:scale-95 shadow-xl",
+                    isReady 
+                      ? "bg-neon-mint text-black shadow-neon-mint/20 hover:scale-[1.02]" 
+                      : "bg-white/5 text-[#5A5A65] cursor-not-allowed opacity-50"
                   )}
                  >
                    <span>{t('playground.team_distribution.start_button')}</span>
-                   <ArrowRight className="h-4 w-4" />
+                   <ArrowRight className="h-5 w-5" />
                  </button>
               </div>
 

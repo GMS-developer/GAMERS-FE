@@ -58,43 +58,43 @@ export function NicknameParsingPanel({ onParse, className }: NicknameParsingPane
   };
 
   return (
-    <div className={cn("flex flex-col gap-4", className)}>
-      <div className="flex items-center justify-between px-2">
-        <h3 className="text-[13px] font-black text-[#EEEEF0] uppercase tracking-wider flex items-center gap-2">
-          <UserSearch className="h-4 w-4 text-neon-mint" />
+    <div className={cn("flex flex-col gap-6", className)}>
+      <div className="flex flex-col gap-1.5 px-1">
+        <h3 className="text-[20px] font-black text-[#EEEEF0] tracking-tight flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-neon-mint/10">
+            <UserSearch className="h-5 w-5 text-neon-mint" />
+          </div>
           {t('playground.team_distribution.parsing.title')}
         </h3>
-        {parsedList.length > 0 && (
-          <span className="text-[11px] font-bold text-neon-mint/80">
-            {t('playground.team_distribution.parsing.parsed_count', { count: parsedList.length })}
-          </span>
-        )}
+        <p className="text-[14px] font-medium text-[#5A5A65]">
+           {t('playground.team_distribution.parsing.parsed_count', { count: parsedList.length })}
+        </p>
       </div>
 
-      <div className="relative group">
+      <div className="relative overflow-hidden rounded-[32px] bg-[#0C0C0D] border border-white/5 p-2 transition-all focus-within:border-neon-mint/30 focus-within:ring-4 focus-within:ring-neon-mint/5 group">
         <textarea
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder={t('playground.team_distribution.parsing.placeholder')}
-          className="w-full h-32 bg-[#0C0C0D] border border-white/5 rounded-2xl p-4 text-[13px] text-[#EEEEF0] placeholder:text-[#5A5A65] focus:outline-none focus:border-neon-mint/30 focus:bg-white/5 transition-all resize-none font-mono"
+          className="w-full h-40 bg-transparent rounded-2xl p-6 text-[15px] font-medium text-[#EEEEF0] placeholder:text-[#3A3A45] focus:outline-none transition-all resize-none leading-relaxed"
         />
         
-        <div className="absolute bottom-4 right-4 flex items-center gap-2">
+        <div className="absolute bottom-4 right-4 flex items-center gap-3">
           <button
             onClick={handleClear}
-            className="p-2 rounded-xl bg-white/5 text-[#5A5A65] hover:text-white hover:bg-white/10 transition-all"
+            className="h-12 w-12 flex items-center justify-center rounded-2xl bg-white/5 text-[#5A5A65] hover:text-[#EEEEF0] hover:bg-white/10 transition-all active:scale-95"
             title={t('playground.team_distribution.parsing.clear_button')}
           >
-            <Eraser className="h-4 w-4" />
+            <Eraser className="h-5 w-5" />
           </button>
           <button
             onClick={handleParse}
             disabled={!inputText.trim()}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-xl text-[12px] font-black transition-all active:scale-95",
+              "flex items-center gap-3 px-8 h-12 rounded-2xl text-[14px] font-black transition-all active:scale-95 shadow-lg",
               isSuccess 
                 ? "bg-neon-mint text-black" 
-                : "bg-white/10 text-white hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                : "bg-[#1A1A20] text-[#EEEEF0] border border-white/5 hover:bg-[#25252D] disabled:opacity-30 disabled:cursor-not-allowed"
             )}
           >
             {isSuccess ? (
