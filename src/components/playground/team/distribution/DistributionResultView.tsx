@@ -37,6 +37,7 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
           <div className="bg-[#0C0C0D] border border-white/10 rounded-full px-6 py-2 text-[14px] font-black text-white italic tracking-widest shadow-2xl">
             {t('playground.team_distribution.result.vs', 'VS')}
           </div>
+        </div>
 
         {/* Blue Team */}
         <div className="flex flex-col gap-4">
