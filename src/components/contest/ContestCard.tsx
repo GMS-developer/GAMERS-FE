@@ -73,12 +73,12 @@ export function ContestCard({
         viewport={{ once: true }}
         whileHover={{ y: -5 }}
         transition={{ duration: 0.3 }}
-        className="group relative flex w-full flex-col rounded-2xl border border-white/5 bg-[#141418] p-6 transition-all hover:border-white/10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+        className="group relative flex w-full flex-col rounded-2xl border border-white/5 bg-[#141418] p-5 md:p-6 transition-all hover:border-white/10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
       >
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-5 md:mb-6">
           <div className={cn(
-            "rounded py-1 px-3 border border-white/10 text-[11px] font-bold tracking-wider",
+            "rounded py-1 px-3 border border-white/10 text-[10px] md:text-[11px] font-bold tracking-wider",
             gameColor
           )}>
             {game}
@@ -88,42 +88,42 @@ export function ContestCard({
             statusStyle.bg
           )}>
             <div className={cn("h-1.5 w-1.5 rounded-full animate-pulse", statusStyle.dot)} />
-            <span className={cn("font-barlow text-[11px] font-black tracking-widest", statusStyle.text)}>
+            <span className={cn("font-barlow text-[10px] md:text-[11px] font-black tracking-widest", statusStyle.text)}>
               {t(`contests.detail.status.${status}`)}
             </span>
           </div>
         </div>
 
         {/* Content */}
-        <div className="flex flex-col gap-2 mb-6">
-          <h3 className="font-pretendard text-xl font-bold leading-tight text-[#EEEEF0] group-hover:text-neon-mint transition-colors">
+        <div className="flex flex-col gap-2 mb-5 md:mb-6">
+          <h3 className="font-pretendard text-lg md:text-xl font-bold leading-tight text-[#EEEEF0] group-hover:text-neon-mint transition-colors line-clamp-2 min-h-[56px] md:min-h-0">
             {title}
           </h3>
-          <div className="flex items-center gap-2 text-[13px] text-[#7A7A85]">
-            <span>by {creator}</span>
+          <div className="flex items-center gap-2 text-[12px] md:text-[13px] text-[#7A7A85]">
+            <span className="truncate max-w-[100px] md:max-w-none">by {creator}</span>
             <span className="text-[#242428]">·</span>
             <span>{date}</span>
           </div>
         </div>
 
-        <div className="h-[1px] bg-white/5 mb-6" />
+        <div className="h-[1px] bg-white/5 mb-5 md:mb-6" />
 
         {/* Stats */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-5 md:mb-6">
           <div className="flex flex-col gap-0.5">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#7A7A85]">{t('contests.card.prize')}</span>
-            <span className="font-barlow text-2xl font-bold text-[#EEEEF0]">{prize}</span>
+            <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-[#7A7A85]">{t('contests.card.prize')}</span>
+            <span className="font-barlow text-xl md:text-2xl font-bold text-[#EEEEF0]">{prize}</span>
           </div>
           <div className="flex flex-col items-end gap-0.5">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#7A7A85]">{t('contests.card.participants')}</span>
-            <span className="font-barlow text-2xl font-bold text-[#EEEEF0]">
-              {participants} / {maxParticipants}
+            <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-[#7A7A85]">{t('contests.card.participants')}</span>
+            <span className="font-barlow text-xl md:text-2xl font-bold text-[#EEEEF0]">
+              {participants} <span className="text-sm font-medium text-[#3A3A45] mx-0.5">/</span> {maxParticipants}
             </span>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-6 h-1 w-full overflow-hidden rounded-full bg-[#242428]">
+        <div className="mb-5 md:mb-6 h-1 w-full overflow-hidden rounded-full bg-[#242428]">
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: `${progress}%` }}

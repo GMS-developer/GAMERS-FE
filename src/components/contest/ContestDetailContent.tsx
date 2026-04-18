@@ -280,7 +280,7 @@ export function ContestDetailContent() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-[#0C0C0F] selection:bg-neon-mint selection:text-deep-black">
       {/* Cinematic Hero Section */}
-      <section className="relative w-full h-[60vh] min-h-[550px] overflow-hidden">
+      <section className="relative w-full h-[50vh] min-h-[420px] md:h-[60vh] md:min-h-[550px] overflow-hidden">
         {/* Background Overlay Layer */}
         <div className="absolute inset-0 z-0">
           <motion.img 
@@ -298,33 +298,33 @@ export function ContestDetailContent() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex h-full items-end pb-20 px-6 md:px-16 container mx-auto">
-          <div className="flex flex-col gap-8 w-full">
-            <div className="flex items-center justify-between">
+        <div className="relative z-10 flex h-full items-end pb-12 md:pb-20 px-4 md:px-16 container mx-auto">
+          <div className="flex flex-col gap-6 md:gap-8 w-full">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-4"
+                className="flex items-center gap-2 md:gap-4"
               >
-                 <span className="text-sm font-black text-[#7A7A85] tracking-[0.2em] uppercase">{t('contests.single.hero.breadcrumb')}</span>
-                 <ChevronRight className="w-4 h-4 text-[#3A3A45]" />
-                 <span className="text-sm font-black text-[#EEEEF0] tracking-tight">{contest.title}</span>
+                 <span className="text-[10px] md:text-sm font-black text-[#7A7A85] tracking-[0.2em] uppercase">{t('contests.single.hero.breadcrumb')}</span>
+                 <ChevronRight className="w-3 h-3 md:w-4 md:h-4 text-[#3A3A45]" />
+                 <span className="text-[10px] md:text-sm font-black text-[#EEEEF0] tracking-tight truncate max-w-[200px] md:max-w-none">{contest.title}</span>
               </motion.div>
 
               {/* Leader Quick Actions */}
               {isLeader && (
                 <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="flex items-center gap-3"
+                  className="flex items-center gap-2 md:gap-3"
                 >
                   {isPending && (
                     <Button 
                       onClick={handleStart}
-                      className="bg-neon-mint hover:bg-white text-deep-black font-black uppercase text-[11px] tracking-widest px-6 h-10 shadow-[0_0_20px_rgba(110,231,183,0.3)]"
+                      className="flex-1 md:flex-none bg-neon-mint hover:bg-white text-deep-black font-black uppercase text-[10px] md:text-[11px] tracking-widest px-4 md:px-6 h-9 md:h-10 shadow-[0_0_20px_rgba(110,231,183,0.3)]"
                       disabled={startContest.isPending}
                     >
-                      <Play className="w-3.5 h-3.5 mr-2 fill-current" />
+                      <Play className="w-3 md:w-3.5 h-3 md:h-3.5 mr-2 fill-current" />
                       {t('contests.detail.start_contest')}
                     </Button>
                   )}
@@ -370,10 +370,10 @@ export function ContestDetailContent() {
               </motion.div>
 
               <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.8 }}
-                className="text-5xl md:text-7xl font-black text-[#EEEEF0] tracking-tight leading-tight max-w-4xl"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-[#EEEEF0] tracking-tight leading-[1.1] max-w-4xl italic font-barlow uppercase"
               >
                 {contest.title}
               </motion.h1>
@@ -404,29 +404,29 @@ export function ContestDetailContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 mt-6 max-w-5xl"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-8 md:gap-16 mt-4 md:mt-6 max-w-5xl"
             >
-              <div className="flex flex-col gap-1.5 group cursor-default">
-                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors">{t('contests.single.stats.prize')}</span>
-                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
+              <div className="flex flex-col gap-1 group cursor-default">
+                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors underline underline-offset-4 decoration-white/5">{t('contests.single.stats.prize')}</span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
                   {contest.total_point ? `₩${contest.total_point.toLocaleString()}` : 'TBD'}
                 </span>
               </div>
-              <div className="flex flex-col gap-1.5 group cursor-default">
-                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors">{t('contests.single.stats.teams')}</span>
-                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
-                  {participantCount} / {maxParticipants}
+              <div className="flex flex-col gap-1 group cursor-default">
+                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors underline underline-offset-4 decoration-white/5">{t('contests.single.stats.teams')}</span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
+                  {participantCount} <span className="text-lg opacity-20 mx-0.5">/</span> {maxParticipants}
                 </span>
               </div>
-              <div className="flex flex-col gap-1.5 group cursor-default">
-                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors">{t('contests.single.stats.start_date')}</span>
-                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
+              <div className="flex flex-col gap-1 group cursor-default">
+                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors underline underline-offset-4 decoration-white/5">{t('contests.single.stats.start_date')}</span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
                   {contest.started_at ? new Date(contest.started_at).toLocaleDateString() : 'TBD'}
                 </span>
               </div>
-              <div className="flex flex-col gap-1.5 group cursor-default">
-                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors">{t('contests.single.stats.format')}</span>
-                <span className="text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
+              <div className="flex flex-col gap-1 group cursor-default">
+                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-[#3A3A45] group-hover:text-neon-mint transition-colors underline underline-offset-4 decoration-white/5">{t('contests.single.stats.format')}</span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter transition-transform group-hover:scale-105 origin-left">
                   {t(`contests.single.type.${contest.contest_type}`)}
                 </span>
               </div>
@@ -437,8 +437,8 @@ export function ContestDetailContent() {
       </section>
 
       {/* Tab Navigation */}
-      <div className="sticky top-[80px] z-[40] bg-[#0C0C0F] border-b border-white/5 overflow-x-auto">
-        <div className="container mx-auto px-6 md:px-16 flex items-center gap-10 h-16">
+      <div className="sticky top-[80px] z-[40] bg-[#0C0C0F] border-b border-white/5 overflow-x-auto no-scrollbar">
+        <div className="container mx-auto px-4 md:px-16 flex items-center gap-8 md:gap-10 h-16">
           {tabs.map((tab) => (
             <button 
               key={tab.id}
@@ -458,7 +458,7 @@ export function ContestDetailContent() {
       </div>
 
       {/* Content Layout */}
-      <main className="container mx-auto px-6 md:px-16 py-12">
+      <main className="container mx-auto px-4 md:px-16 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Main Column */}
@@ -492,15 +492,15 @@ export function ContestDetailContent() {
                 </div>
 
                 {/* Schedule */}
-                <div className="flex flex-col gap-10">
+                <div className="flex flex-col gap-8 md:gap-10">
                   <div className="flex items-center gap-3">
                     <div className="w-1.5 h-6 bg-neon-mint rounded-full" />
                     <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.schedule_title')}</h2>
                   </div>
-                  <div className="relative flex justify-between items-center max-w-3xl px-4 py-8 bg-[#141418]/50 rounded-2xl border border-white/5">
-                    {/* Progress Line Background */}
+                  
+                  {/* Desktop Schedule (Horizontal) */}
+                  <div className="hidden md:flex relative justify-between items-center max-w-3xl px-4 py-8 bg-[#141418]/50 rounded-2xl border border-white/5">
                     <div className="absolute left-10 right-10 top-[44px] h-[2px] bg-white/5" />
-                    {/* Active Progress Line */}
                     <div className="absolute left-10 w-[35%] top-[44px] h-[2px] bg-neon-mint shadow-[0_0_10px_rgba(110,231,183,0.5)]" />
                     
                     {schedule.map((item, idx) => (
@@ -520,12 +520,31 @@ export function ContestDetailContent() {
                            )}>{t(item.label)}</span>
                            <span className="text-[10px] font-bold text-[#3A3A45] tracking-tight">{item.date}</span>
                         </div>
-                        {item.status === 'active' && (
-                          <motion.div 
-                            layoutId="activePointer"
-                            className="absolute -top-1 w-6 h-6 rounded-full bg-neon-mint/20 animate-ping"
-                          />
-                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Mobile Schedule (Vertical) */}
+                  <div className="md:hidden flex flex-col gap-6 px-4 py-8 bg-[#141418]/50 rounded-2xl border border-white/5 relative">
+                    <div className="absolute left-[31px] top-12 bottom-12 w-[2px] bg-white/5" />
+                    {/* Active vertical segment (mock) */}
+                    <div className="absolute left-[31px] top-12 h-[45%] w-[2px] bg-neon-mint shadow-[0_0_10px_rgba(110,231,183,0.5)]" />
+
+                    {schedule.map((item, idx) => (
+                      <div key={idx} className="relative flex items-center gap-6 z-10">
+                        <div className={cn(
+                          "w-4 h-4 rounded-full border-4 border-[#141418] shrink-0 transition-all duration-500",
+                          item.status === 'completed' ? "bg-neon-mint scale-110" : 
+                          item.status === 'active' ? "bg-neon-mint scale-125 shadow-[0_0_15px_rgba(110,231,183,1)]" : 
+                          "bg-[#2A2A35] border-[#141418]"
+                        )} />
+                        <div className="flex flex-col">
+                           <span className={cn(
+                             "text-sm font-black uppercase tracking-widest transition-colors",
+                             item.status === 'active' ? "text-neon-mint" : "text-[#7A7A85]"
+                           )}>{t(item.label)}</span>
+                           <span className="text-xs font-bold text-[#3A3A45] tracking-tight">{item.date}</span>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -537,12 +556,12 @@ export function ContestDetailContent() {
                     <div className="w-1.5 h-6 bg-neon-mint rounded-full" />
                     <h2 className="text-2xl font-black text-[#EEEEF0] tracking-tight">{t('contests.detail.prize_title')}</h2>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     {prizePool.map((prize, idx) => (
-                      <div key={idx} className="p-6 rounded-2xl bg-[#141418]/30 border border-white/5 flex flex-col gap-2">
-                        <span className="text-xs font-black text-neon-mint uppercase tracking-widest">{prize.rank}</span>
-                        <span className="text-2xl font-black text-[#EEEEF0] font-barlow italic">{prize.amount}</span>
-                        <span className="text-[10px] font-bold text-[#7A7A85] uppercase tracking-widest">{t(prize.label)}</span>
+                      <div key={idx} className="p-5 md:p-6 rounded-2xl bg-[#141418]/30 border border-white/5 flex flex-col gap-2 hover:border-neon-mint/20 transition-all">
+                        <span className="text-[10px] md:text-xs font-black text-neon-mint uppercase tracking-[0.2em]">{prize.rank}</span>
+                        <span className="text-2xl md:text-3xl font-black text-[#EEEEF0] font-barlow italic tracking-tighter">{prize.amount}</span>
+                        <span className="text-[10px] font-bold text-[#3A3A45] uppercase tracking-widest">{t(prize.label)}</span>
                       </div>
                     ))}
                   </div>
@@ -576,22 +595,22 @@ export function ContestDetailContent() {
                          <h3 className="text-lg font-black text-neon-mint italic uppercase font-barlow tracking-widest px-4 py-2 bg-neon-mint/5 border-l-2 border-neon-mint max-w-fit">
                            {round.round_name || `Round ${round.round}`}
                          </h3>
-                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                            {round.games.map((game: any, idx: number) => (
-                             <div key={idx} className="p-6 rounded-2xl bg-[#141418]/50 border border-white/5 flex flex-col gap-4 hover:border-white/10 transition-colors">
-                               <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-[#3A3A45]">
+                             <div key={idx} className="p-5 md:p-6 rounded-2xl bg-[#141418]/50 border border-white/5 flex flex-col gap-4 hover:border-white/10 transition-colors">
+                               <div className="flex justify-between items-center text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#3A3A45]">
                                  <span>Game #{game.game_id || idx + 1}</span>
-                                 <span>{game.game_status}</span>
+                                 <span className="text-neon-mint">{game.game_status}</span>
                                </div>
                                <div className="flex flex-col gap-3">
                                  <div className="flex justify-between items-center">
-                                   <span className="text-sm font-bold text-[#EEEEF0]">Team A</span>
-                                   <span className="text-lg font-black font-barlow italic">0</span>
+                                   <span className="text-xs md:text-sm font-bold text-[#EEEEF0]">Team A</span>
+                                   <span className="text-base md:text-lg font-black font-barlow italic">0</span>
                                  </div>
-                                 <div className="h-px bg-white/5" />
+                                 <div className="h-px bg-white/5 mx-1" />
                                  <div className="flex justify-between items-center text-neon-mint">
-                                   <span className="text-sm font-bold">Team B</span>
-                                   <span className="text-lg font-black font-barlow italic">2</span>
+                                   <span className="text-xs md:text-sm font-bold">Team B</span>
+                                   <span className="text-base md:text-lg font-black font-barlow italic">2</span>
                                  </div>
                                </div>
                              </div>

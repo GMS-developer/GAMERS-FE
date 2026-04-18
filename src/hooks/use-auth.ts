@@ -77,13 +77,14 @@ export function useDiscordCallback() {
   return useMutation({
     mutationFn: ({ code, state }: { code: string; state?: string }) => 
       authApi.discordCallback(code, state),
-    onSuccess: (data) => {
-      // Backend might return tokens in data, or just set them in cookies.
-      // If it returns them in data (based on swagger it's 302, but if we call via AJAX it might be different)
-      // For now, let's assume it sets cookies if it's a 302, 
-      // but if we handle it here, we might need to fetch the tokens if they are in the response.
+    onSuccess: (data: any) => {
+      // Backend returns AuthResponseData containing user and tokens
+      if (data?.tokens) {
+        Cookies.set('access_token', data.tokens.access_token, { expires: 1 }); // 1 day
+        Cookies.set('refresh_token', data.tokens.refresh_token, { expires: 7 }); // 7 days
+      }
       
-      // Let's invalidate user query to fetch the latest user info
+      // Invalidate user query to fetch latest user info
       queryClient.invalidateQueries({ queryKey: ['user'] });
       
       // Redirect to home
