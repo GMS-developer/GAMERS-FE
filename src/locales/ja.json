@@ -571,8 +571,14 @@
         "match_quality": "マッチクオリティ",
         "reroll": "再シャッフル",
         "copy_result": "結果をコピー",
-        "new_session": "新規チーム振り分け作成"
-      }
+        "new_session": "新規チーム振り分け作成",
+        "record_winner": "試合結果の記録",
+        "team_a_win": "ブルーチーム勝利",
+        "team_b_win": "レッドチーム勝利",
+        "save_success": "試合結果が正常に保存されました。"
+      },
+      "balancing": "バランス計算中...",
+      "error_balancing": "チーム振分けに失敗しました。参加者情報を確認してください。"
     },
     "ranks": {
       "diamond": "ダイヤ {{level}}",

@@ -572,8 +572,14 @@
         "match_quality": "매치 퀄리티",
         "reroll": "다시 밸런싱",
         "copy_result": "결과 복사",
-        "new_session": "새 팀배분 생성"
-      }
+        "new_session": "새 팀배분 생성",
+        "record_winner": "경기 결과 기록",
+        "team_a_win": "블루팀 승리",
+        "team_b_win": "레드팀 승리",
+        "save_success": "경기 결과가 성공적으로 저장되었습니다."
+      },
+      "balancing": "밸런스 계산 중...",
+      "error_balancing": "팀 배분에 실패했습니다. 참가자 정보를 확인해주세요."
     },
     "ranks": {
       "diamond": "다이아 {{level}}",

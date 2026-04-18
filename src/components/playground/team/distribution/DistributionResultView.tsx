@@ -1,12 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { RefreshCcw, Copy, RotateCcw, Share2, TrendingUp } from 'lucide-react';
+import { RefreshCcw, Copy, RotateCcw, Share2, TrendingUp, Trophy, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import type { Participant } from './ParticipantGrid';
+import { useRecordMatchResult } from '@/hooks/use-lol';
+import { LolMatchWinner } from '@/types/enums';
 
 interface DistributionResultViewProps {
+  matchId: number | null;
   blueTeam: Participant[];
   redTeam: Participant[];
   onReroll: () => void;
@@ -14,8 +17,9 @@ interface DistributionResultViewProps {
   className?: string;
 }
 
-export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSession, className }: DistributionResultViewProps) {
+export function DistributionResultView({ matchId, blueTeam, redTeam, onReroll, onNewSession, className }: DistributionResultViewProps) {
   const { t } = useTranslation();
+  const recordResultMutation = useRecordMatchResult();
 
   const handleCopy = () => {
     const text = [
@@ -30,6 +34,20 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
     alert(t('playground.team.copied'));
   };
 
+  const handleRecordResult = async (winner: LolMatchWinner) => {
+    if (!matchId || recordResultMutation.isPending || recordResultMutation.isSuccess) return;
+
+    try {
+      await recordResultMutation.mutateAsync({
+        matchId,
+        data: { winner }
+      });
+      alert(t('playground.team_distribution.result.save_success'));
+    } catch (error) {
+      console.error('Failed to record match result:', error);
+    }
+  };
+
   return (
     <div className={cn("flex flex-col gap-12", className)}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 relative">
@@ -39,7 +57,7 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
             animate={{ scale: 1, opacity: 1 }}
             className="bg-[#0C0C0D] border border-white/10 rounded-full h-16 w-16 flex items-center justify-center text-[20px] font-black text-white italic tracking-widest shadow-2xl"
           >
-            VS
+            {t('playground.team_distribution.result.vs')}
           </motion.div>
         </div>
 
@@ -55,6 +73,24 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
               <TeamMemberCard key={p.id} participant={p} side="blue" delay={i * 0.1} />
             ))}
           </div>
+
+          <button
+            onClick={() => handleRecordResult(LolMatchWinner.TEAM_A)}
+            disabled={!matchId || recordResultMutation.isPending || recordResultMutation.isSuccess}
+            className={cn(
+              "mt-2 flex items-center justify-center gap-2 h-12 rounded-2xl text-[14px] font-black transition-all active:scale-95",
+              recordResultMutation.isSuccess && recordResultMutation.variables?.data.winner === LolMatchWinner.TEAM_A
+                ? "bg-neon-mint text-black"
+                : "bg-sky-500/10 text-sky-500 border border-sky-500/20 hover:bg-sky-500/20 disabled:opacity-50"
+            )}
+          >
+            {recordResultMutation.isSuccess && recordResultMutation.variables?.data.winner === LolMatchWinner.TEAM_A ? (
+              <Check className="h-4 w-4" />
+            ) : (
+              <Trophy className="h-4 w-4" />
+            )}
+            <span>{t('playground.team_distribution.result.team_a_win')}</span>
+          </button>
         </div>
 
         {/* Red Team */}
@@ -69,6 +105,24 @@ export function DistributionResultView({ blueTeam, redTeam, onReroll, onNewSessi
               <TeamMemberCard key={p.id} participant={p} side="red" delay={i * 0.1} />
             ))}
           </div>
+
+          <button
+            onClick={() => handleRecordResult(LolMatchWinner.TEAM_B)}
+            disabled={!matchId || recordResultMutation.isPending || recordResultMutation.isSuccess}
+            className={cn(
+              "mt-2 flex items-center justify-center gap-2 h-12 rounded-2xl text-[14px] font-black transition-all active:scale-95 flex-row-reverse",
+              recordResultMutation.isSuccess && recordResultMutation.variables?.data.winner === LolMatchWinner.TEAM_B
+                ? "bg-neon-mint text-black"
+                : "bg-ruby/10 text-ruby border border-ruby/20 hover:bg-ruby/20 disabled:opacity-50"
+            )}
+          >
+            {recordResultMutation.isSuccess && recordResultMutation.variables?.data.winner === LolMatchWinner.TEAM_B ? (
+              <Check className="h-4 w-4" />
+            ) : (
+              <Trophy className="h-4 w-4" />
+            )}
+            <span>{t('playground.team_distribution.result.team_b_win')}</span>
+          </button>
         </div>
       </div>
 
