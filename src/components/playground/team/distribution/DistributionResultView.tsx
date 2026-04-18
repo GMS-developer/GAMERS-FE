@@ -133,7 +133,9 @@ export function DistributionResultView({ matchId, blueTeam, redTeam, onReroll, o
                <div className="p-2 rounded-xl bg-neon-mint/10">
                  <TrendingUp className="h-6 w-6 text-neon-mint" />
                </div>
-               <span className="text-[32px] font-black text-[#EEEEF0] italic tracking-tighter shadow-sm">94.2%</span>
+               <span className="text-[32px] font-black text-[#EEEEF0] italic tracking-tighter shadow-sm">
+                 {t('playground.team_distribution.result.match_quality_format', { value: 94.2 })}
+               </span>
             </div>
          </div>
 

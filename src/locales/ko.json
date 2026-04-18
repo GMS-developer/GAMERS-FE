@@ -555,7 +555,8 @@
         "clear_button": "초기화",
         "parse_button": "파싱하기",
         "parsed_count": "{{count}}명 추출됨",
-        "success": "성공"
+        "success": "성공",
+        "regex_joined": "님이"
       },
       "participants": {
         "title": "참가자 목록",
@@ -563,13 +564,16 @@
         "ready": "준비 완료",
         "incomplete": "입력 필요",
         "select_role": "역할 선택",
-        "select_tier": "티어 선택"
+        "select_tier": "티어 선택",
+        "lookup": "조회하기",
+        "waiting": "대기 중"
       },
       "result": {
         "blue_side": "블루 사이드",
         "red_side": "레드 사이드",
         "vs": "VS",
         "match_quality": "매치 퀄리티",
+        "match_quality_format": "{{value}}%",
         "reroll": "다시 밸런싱",
         "copy_result": "결과 복사",
         "new_session": "새 팀배분 생성",
@@ -579,7 +583,11 @@
         "save_success": "경기 결과가 성공적으로 저장되었습니다."
       },
       "balancing": "밸런스 계산 중...",
-      "error_balancing": "팀 배분에 실패했습니다. 참가자 정보를 확인해주세요."
+      "error_balancing": "팀 배분에 실패했습니다. 참가자 정보를 확인해주세요.",
+      "metadata": {
+        "title": "Temporal LoL 팀배분 | GAMERS",
+        "description": "AI 기반 리그 오브 레전드 공정 팀 배분 도구입니다. 계정 없이 즉시 사용하세요."
+      }
     },
     "ranks": {
       "diamond": "다이아 {{level}}",

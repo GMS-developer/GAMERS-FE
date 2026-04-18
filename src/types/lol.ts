@@ -7,6 +7,8 @@ export interface LolSummonerLookupResponse {
   tier: string;
   division: string;
   lp: number;
+  profile_icon_id: number;
+  summoner_level: number;
 }
 
 export interface LolTemporalPlayerV2 {

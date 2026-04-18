@@ -28,26 +28,50 @@ export function TemporalTeamDistribution() {
   const balanceTeamsMutation = useBalanceTeams();
 
   const handleLookupSummoner = useCallback(async (name: string, index: number) => {
-    if (!name.includes('#')) return;
+    if (!name) return;
 
-    const [username, tag] = name.split('#');
-    if (!username || !tag) return;
+    // Set searching state
+    setParticipants(prev => {
+      const next = [...prev];
+      next[index] = { ...next[index], isSearching: true };
+      return next;
+    });
 
     try {
+      // Logic for Riot ID: if no #, try #KR1 as default for Korean users
+      const riotId = name.includes('#') ? name : `${name}#KR1`;
+      const [username, tag] = riotId.split('#');
+      
       const response = await lolApi.summonerLookup({ name: username, tag });
       const data = response;
+      
       if (data && data.tier) {
         setParticipants(prev => {
           const next = [...prev];
           next[index] = { 
             ...next[index], 
-            tier: data.tier.toUpperCase() as Tier 
+            tier: data.tier.toUpperCase() as Tier,
+            rankName: data.rank,
+            profileIconId: data.profile_icon_id,
+            isSearching: false
           };
+          return next;
+        });
+      } else {
+        // Stop searching even if no data found
+        setParticipants(prev => {
+          const next = [...prev];
+          next[index] = { ...next[index], isSearching: false };
           return next;
         });
       }
     } catch (error) {
       console.error(`Failed to lookup summoner ${name}:`, error);
+      setParticipants(prev => {
+        const next = [...prev];
+        next[index] = { ...next[index], isSearching: false };
+        return next;
+      });
     }
   }, []);
 
@@ -200,7 +224,8 @@ export function TemporalTeamDistribution() {
 
               <ParticipantGrid 
                 participants={participants} 
-                onUpdate={handleUpdateParticipant} 
+                onUpdate={handleUpdateParticipant}
+                onLookup={(index: number) => handleLookupSummoner(participants[index].name, index)} 
               />
             </div>
           </motion.div>

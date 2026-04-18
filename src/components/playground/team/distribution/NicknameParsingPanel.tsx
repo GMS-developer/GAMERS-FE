@@ -29,12 +29,17 @@ export function NicknameParsingPanel({ onParse, className }: NicknameParsingPane
     const lines = inputText.split(/[\n,]/);
     const names = lines
       .map(line => {
-        // Extract from "Name: message"
+        // 1. Check for Riot ID pattern (Name#Tag)
+        const riotIdMatch = line.match(/([^\s#]+#[^\s:]+)/);
+        if (riotIdMatch) return riotIdMatch[1].trim();
+
+        // 2. Extract from "Name: message"
         const colonMatch = line.match(/^([^:]+):/);
         if (colonMatch) return colonMatch[1].trim();
         
-        // Extract from "Name joined/entered"
-        const joinMatch = line.match(/^([^\s]+)\s+(님이|joined|entered)/i);
+        // 3. Extract from "Name joined/entered"
+        const regexJoined = t('playground.team_distribution.parsing.regex_joined');
+        const joinMatch = line.match(new RegExp(`^([^\\s]+)\\s+(${regexJoined}|joined|entered)`, 'i'));
         if (joinMatch) return joinMatch[1].trim();
 
         return line.trim();

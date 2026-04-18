@@ -554,7 +554,8 @@
         "clear_button": "初期化",
         "parse_button": "パースする",
         "parsed_count": "{{count}}名抽出済み",
-        "success": "成功"
+        "success": "成功",
+        "regex_joined": "が"
       },
       "participants": {
         "title": "参加者リスト",
@@ -562,13 +563,16 @@
         "ready": "準備完了",
         "incomplete": "入力が必要",
         "select_role": "ロール選択",
-        "select_tier": "ティア選択"
+        "select_tier": "ティア選択",
+        "lookup": "検索する",
+        "waiting": "待機中"
       },
       "result": {
         "blue_side": "ブルーサイド",
         "red_side": "レッドサイド",
         "vs": "VS",
         "match_quality": "マッチクオリティ",
+        "match_quality_format": "{{value}}%",
         "reroll": "再シャッフル",
         "copy_result": "結果をコピー",
         "new_session": "新規チーム振り分け作成",
@@ -578,7 +582,11 @@
         "save_success": "試合結果が正常に保存されました。"
       },
       "balancing": "バランス計算中...",
-      "error_balancing": "チーム振分けに失敗しました。参加者情報を確認してください。"
+      "error_balancing": "チーム振分けに失敗しました。参加者情報を確認してください。",
+      "metadata": {
+        "title": "Temporal LoL チーム振り分け | GAMERS",
+        "description": "AIベースのLeague of Legends公正なチーム振り分けツール。アカウントなしで即座に使用可能です。"
+      }
     },
     "ranks": {
       "diamond": "ダイヤ {{level}}",
