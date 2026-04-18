@@ -35,6 +35,7 @@ export async function request<T>(
   const accessToken = Cookies.get('access_token');
   const defaultHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
   };
 
   if (accessToken) {

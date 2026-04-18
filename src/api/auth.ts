@@ -32,7 +32,7 @@ export const authApi = {
   },
 
   discordCallback: (code: string, state?: string) =>
-    apiClient.get('/api/oauth2/discord/callback', {
+    apiClient.get('/api/auth/callback/discord', {
       params: { code, state },
     }),
 };
