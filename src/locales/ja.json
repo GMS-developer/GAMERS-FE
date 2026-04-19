@@ -847,6 +847,27 @@
         "button": "コミュニティに参加"
       }
     },
+    "write": {
+      "title": "投稿を作成",
+      "subtitle": "あなたの声を届けてください",
+      "fields": {
+        "title_label": "タイトル",
+        "title_placeholder": "タイトルを入力してください",
+        "category_label": "カテゴリー",
+        "content_label": "内容",
+        "content_placeholder": "新しいニュースを共有してみてください...",
+        "tags_label": "タグ",
+        "tags_placeholder": "タグ入力後にEnter (最大5個)",
+        "upload_image": "画像をアップロード"
+      },
+      "publish": "投稿する",
+      "cancel": "キャンセル",
+      "validation": {
+        "title_required": "タイトルを入力してください。",
+        "content_required": "内容を入力してください。",
+        "category_required": "カテゴリーの選択は必須です。"
+      }
+    },
     "mock_posts": {
       "post1": {
         "title": "新パッチ後のVALORANTエントリー1ティアまとめ",

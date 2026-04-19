@@ -2,6 +2,7 @@
 
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export function CommunityHero() {
@@ -24,14 +25,16 @@ export function CommunityHero() {
             </p>
           </div>
           
-          <Button 
-            className="group flex items-center gap-2 rounded-2xl bg-white/5 px-8 h-16 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-foreground font-bold text-lg shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
-          >
-            <div className="flex items-center justify-center h-6 w-6 rounded bg-neon-mint/20 text-neon-mint group-hover:scale-110 transition-transform">
-              <Plus className="h-4 w-4 stroke-[3px]" />
-            </div>
-            <span>{t('community.write_post')}</span>
-          </Button>
+          <Link href="/community/write">
+            <Button 
+              className="group flex items-center gap-2 rounded-2xl bg-white/5 px-8 h-16 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-foreground font-bold text-lg shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+            >
+              <div className="flex items-center justify-center h-6 w-6 rounded bg-neon-mint/20 text-neon-mint group-hover:scale-110 transition-transform">
+                <Plus className="h-4 w-4 stroke-[3px]" />
+              </div>
+              <span>{t('community.write_post')}</span>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

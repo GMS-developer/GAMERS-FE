@@ -873,6 +873,27 @@
         "button": "커뮤니티 가입하기"
       }
     },
+    "write": {
+      "title": "게시글 작성",
+      "subtitle": "당신의 목소리를 들려주세요",
+      "fields": {
+        "title_label": "제목",
+        "title_placeholder": "제목을 입력하세요",
+        "category_label": "카테고리",
+        "content_label": "내용",
+        "content_placeholder": "새로운 소식을 공유해보세요...",
+        "tags_label": "태그",
+        "tags_placeholder": "태그 입력 후 엔터 (최대 5개)",
+        "upload_image": "이미지 업로드"
+      },
+      "publish": "등록하기",
+      "cancel": "취소",
+      "validation": {
+        "title_required": "제목을 입력해주세요.",
+        "content_required": "내용을 입력해주세요.",
+        "category_required": "카테고리 선택은 필수입니다."
+      }
+    },
     "mock_posts": {
       "post1": {
         "title": "신규 패치 후 발로란트 엔트리 1티어 정리",
